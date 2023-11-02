@@ -1,18 +1,28 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
+const { createThemes } = require("tw-colors");
+const colors = require("tailwindcss/colors");
 
 const config: Config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
+
   },
-  plugins: [require("daisyui")],
-}
-export default config
+  plugins: [
+    createThemes({
+      light:{
+        "surface-100": colors.white,
+        "surface-200": colors.gray[100],
+        "surface-300": colors.gray[200],
+        "surface-400": colors.gray[300],
+        "surface-500": colors.gray[400],
+        "surface-600": colors.gray[500],
+        "surface-700": colors.gray[600],
+        "content-100": colors.gray[900],
+        "content-200": colors.gray[700],
+        "content-300": colors.gray[500],
+      },
+    }),
+  ],
+};
+
+export default config;
