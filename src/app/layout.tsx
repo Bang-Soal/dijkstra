@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import Nav from "./components/Navbar";
+import Footer from "./components/Footer";
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,16 +13,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" data-theme="light">
       <body
-        className={`${inter.className} relative flex flex-col bg-surface-100`}
+        className={`${quicksand.className} relative flex flex-col bg-surface-100`}
       >
         <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
