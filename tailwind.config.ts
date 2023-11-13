@@ -6,6 +6,9 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 180s linear infinite',
+      },
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
@@ -13,7 +16,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
     createThemes({
       light: {
         "surface-100": colors.white,

@@ -3,6 +3,7 @@
 // libs
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -20,13 +21,15 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav
-      className={`fixed flex w-full items-stretch transition-all duration-700 ${
+    <motion.nav
+      className={`fixed z-20 flex w-full items-stretch duration-700 ${
         atTop ? "top-0 h-20 gap-0 px-0" : "top-3 h-12 gap-3 px-24"
       }`}
+      layout
+      transition={{ duration: 0.3 }}
     >
       <div
-        className={`flex h-full grow items-center justify-between border-surface-400/50 bg-surface-100/60 backdrop-blur-lg transition-all duration-500 ${
+        className={`flex h-full grow items-center justify-between border-surface-400/50 bg-surface-100/60 backdrop-blur-lg duration-500 ${
           atTop ? "rounded-none px-20 py-4" : "rounded-3xl border px-10 py-1"
         }`}
       >
@@ -36,7 +39,7 @@ export default function Nav() {
         </div>
       </div>
       <div
-        className={`flex items-center transition-all duration-700 ${
+        className={`flex items-center duration-700 ${
           atTop && "border-surface-400/50 pr-20"
         }`}
       >
@@ -44,6 +47,6 @@ export default function Nav() {
           <p className="text-sm font-medium text-white">Ajarin puh</p>
         </button>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
