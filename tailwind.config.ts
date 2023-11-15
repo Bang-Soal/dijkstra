@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const plugin = require("tailwindcss/plugin");
 const { createThemes } = require("tw-colors");
 const colors = require("tailwindcss/colors");
 
@@ -7,7 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        'spin-slow': 'spin 180s linear infinite',
+        "spin-slow": "spin 180s linear infinite",
+      },
+      boxShadow: {
+        "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
+      },
+      fontWeight: {
+        100: "100",
+        200: "200",
+        300: "300",
+        400: "400",
+        500: "500",
+        600: "600",
+        700: "700",
+        800: "800",
+        900: "900",
       },
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
@@ -16,6 +31,9 @@ const config: Config = {
     },
   },
   plugins: [
+    plugin(function ({ addVariant }: { addVariant: Function }) {
+      addVariant("children", "&>*");
+    }),
     createThemes({
       light: {
         "surface-100": colors.white,

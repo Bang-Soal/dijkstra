@@ -33,9 +33,9 @@ export default function Nav() {
           atTop ? "rounded-none px-20 py-4" : "rounded-3xl border px-10 py-1"
         }`}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 font-700 text-content-200">
           <Image src={"/logo-colored.svg"} alt={""} width={32} height={32} />
-          <p className="font-bold">Bang Soal</p>
+          Bang Soal
         </div>
       </div>
       <div
@@ -44,7 +44,7 @@ export default function Nav() {
         }`}
       >
         <button className="h-12 rounded-full bg-emerald-400 px-5">
-          <p className="text-sm font-medium text-white">Ajarin puh</p>
+          <p className="text-sm font-500 text-white">Ajarin puh</p>
         </button>
       </div>
     </motion.nav>

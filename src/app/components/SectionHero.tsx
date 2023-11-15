@@ -1,7 +1,7 @@
 "use client";
 
 // components
-import Quiz from "./Quiz";
+import HeroFooter from "./HeroFooter";
 
 // libs
 import dayjs from "dayjs";
@@ -21,7 +21,7 @@ export default function Hero() {
     <section className="flex min-h-screen flex-col items-center">
       <div className="relative flex w-full flex-col items-center gap-5 px-20 py-40">
         <motion.h2
-          className="text-3xl/snug font-medium text-content-300"
+          className="text-balance text-center text-3xl/snug font-500 text-content-300"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
@@ -40,7 +40,7 @@ export default function Hero() {
           lagi.
         </motion.h2>
         <motion.h1
-          className="text-7xl font-bold"
+          className="text-7xl font-700"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
@@ -87,10 +87,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <button className="h-10 rounded-full bg-emerald-400 px-5">
-            <p className="font-medium text-white">Ajarin puh</p>
+            <p className="font-500 text-white">Ajarin puh</p>
           </button>
           <button className="h-10 rounded-full border-2 border-surface-300 px-5">
-            <p className="font-medium text-content-200">Sudah dong</p>
+            <p className="font-500 text-content-200">Sudah dong</p>
           </button>
         </motion.div>
         <Image
@@ -101,7 +101,7 @@ export default function Hero() {
           className="absolute inset-x-0 top-20 -z-10"
         />
       </div>
-      <Quiz />
+      <HeroFooter />
     </section>
   );
 }
