@@ -12,7 +12,7 @@ ChartJS.register(ArcElement);
 export default function Quiz() {
   const [remainingTime, setRemainingTime] = useState(30);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 1 });
+  const isInView = useInView(ref, { amount: 1 });
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -41,10 +41,7 @@ export default function Quiz() {
   };
 
   return (
-    <div
-      className="flex gap-5 rounded-l-xl bg-surface-100 px-12 py-8 shadow-lg"
-      ref={ref}
-    >
+    <div className="flex gap-5 rounded-l-xl bg-surface-100 px-12 py-8 shadow-lg">
       <div className="flex flex-none basis-2/3 flex-col gap-3">
         <h3 className="text-2xl font-600 text-content-100">Penalaran Umum</h3>
         <p className="font-500 text-content-300">
@@ -52,7 +49,10 @@ export default function Quiz() {
           tidak dapat menari tradisional di panggung.
         </p>
         <div className="flex flex-col gap-2 pt-3">
-          <div className="flex items-center gap-2 rounded-md bg-surface-200 p-1 font-500 text-content-200">
+          <div
+            className="flex items-center gap-2 rounded-md bg-surface-200 p-1 font-500 text-content-200"
+            ref={ref}
+          >
             <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface-100 p-1 font-700 text-content-100">
               A
             </div>

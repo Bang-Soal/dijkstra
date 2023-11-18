@@ -34,27 +34,39 @@ export default function HeroFooter() {
         >
           <Tabs.Trigger
             value="tab1"
-            className="hover:bg-emerald-700/10 data-[state=active]:bg-emerald-200"
+            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
           >
-            <Iconify icon="ph:brain-duotone" />
+            <Iconify
+              icon="ph:brain-duotone"
+              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
+            />
           </Tabs.Trigger>
           <Tabs.Trigger
             value="tab2"
-            className="hover:bg-emerald-700/10 data-[state=active]:bg-emerald-200"
+            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
           >
-            <Iconify icon="ph:math-operations-bold" />
+            <Iconify
+              icon="ph:math-operations-bold"
+              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
+            />
           </Tabs.Trigger>
           <Tabs.Trigger
             value="tab3"
-            className="hover:bg-emerald-700/10 data-[state=active]:bg-emerald-200"
+            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
           >
-            <Iconify icon="ph:lightbulb-filament-duotone" />
+            <Iconify
+              icon="ph:lightbulb-filament-duotone"
+              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
+            />
           </Tabs.Trigger>
           <Tabs.Trigger
             value="tab4"
-            className="hover:bg-emerald-700/10 data-[state=active]:bg-emerald-200"
+            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
           >
-            <Iconify icon="ph:book-open-text-duotone" />
+            <Iconify
+              icon="ph:book-open-text-duotone"
+              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
+            />
           </Tabs.Trigger>
         </Tabs.List>
         <div className="to grow rounded-l-3xl bg-surface-300/20 bg-gradient-to-br from-surface-300/60 py-3 pl-3 backdrop-blur-2xl">

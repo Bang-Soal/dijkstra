@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -33,10 +34,13 @@ export default function Nav() {
           atTop ? "rounded-none px-20 py-4" : "rounded-3xl border px-10 py-1"
         }`}
       >
-        <div className="flex items-center gap-2 font-700 text-content-200">
+        <Link
+          className="flex items-center gap-2 font-700 text-content-200"
+          href={"/"}
+        >
           <Image src={"/logo-colored.svg"} alt={""} width={32} height={32} />
           Bang Soal
-        </div>
+        </Link>
       </div>
       <div
         className={`flex items-center duration-700 ${
