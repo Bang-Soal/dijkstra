@@ -9,6 +9,12 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
+        "slide-down-item": "slideDownItem 700ms cubic-bezier(0.87, 0, 0.13, 1)",
+        "slide-up-item": "slideUpItem 700ms cubic-bezier(0.87, 0, 0.13, 1)",
+        "slide-down-content":
+          "slideDownContent 700ms cubic-bezier(0.87, 0, 0.13, 1)",
+        "slide-up-content":
+          "slideUpContent 700ms cubic-bezier(0.87, 0, 0.13, 1)",
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
@@ -27,6 +33,24 @@ const config: Config = {
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+      },
+      keyframes: {
+        slideDownItem: {
+          from: { flexGrow: "0" },
+          to: { flexGrow: "1" },
+        },
+        slideUpItem: {
+          from: { flexGrow: "1" },
+          to: { flexGrow: "0" },
+        },
+        slideDownContent: {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        slideUpContent: {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
     },
   },
