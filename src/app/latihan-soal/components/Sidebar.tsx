@@ -5,10 +5,30 @@ import bgMeshVertical from "@/public/bg-mesh-vertical.webp";
 
 // components
 import Iconify from "@components/Iconify";
+import AccordianContent from "./AccordianContent";
 
 // libs
 import * as Accordion from "@radix-ui/react-accordion";
 import Image from "next/image";
+
+const accordians = [
+  {
+    title: "PU",
+    icon: "ph:brain-duotone",
+  },
+  {
+    title: "PK",
+    icon: "ph:math-operations-bold",
+  },
+  {
+    title: "PPU",
+    icon: "ph:lightbulb-filament-duotone",
+  },
+  {
+    title: "PBM",
+    icon: "ph:book-open-text-duotone",
+  },
+];
 
 export default function Sidebar() {
   return (
@@ -18,7 +38,7 @@ export default function Sidebar() {
         <p className="text-surface-400">|</p>
         <p className="font-[550]">Latihan Soal</p>
       </div>
-      <div className="flex grow flex-col gap-5 px-5 pb-10 text-content-300">
+      <div className="flex grow flex-col gap-5 px-5 pb-5 text-content-300">
         <div className="relative w-full">
           <Iconify
             icon="ph:magnifying-glass-bold"
@@ -27,7 +47,7 @@ export default function Sidebar() {
           <input
             type="text"
             placeholder="Cari soal"
-            className="flex w-full items-center rounded-full border border-surface-300 bg-surface-100 pl-11 font-500"
+            className="flex h-10 w-full items-center rounded-full border border-surface-300 bg-surface-100 pl-11 font-500"
           />
         </div>
         <Accordion.Root
@@ -35,95 +55,31 @@ export default function Sidebar() {
           type="single"
           defaultValue="item-1"
         >
-          <Accordion.Item
-            className="data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow"
-            value="item-1"
-          >
-            <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-5 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
-              <Iconify icon="ph:brain-duotone" className="" />
-              <p className="grow text-left">PU</p>
-              <Iconify
-                icon="ph:caret-down-bold"
-                className="transition-transform duration-700 group-data-[state=open]:rotate-180"
+          {accordians.map((accordian, index) => (
+            <Accordion.Item
+              key={accordian.title}
+              value={`item-${index + 1}`}
+              className="group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item"
+            >
+              <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
+                <Iconify icon={accordian.icon} className="" />
+                <p className="grow text-left">{accordian.title}</p>
+                <Iconify
+                  icon="ph:caret-down-bold"
+                  className="transition-transform duration-700 group-data-[state=open]:rotate-180"
+                />
+              </Accordion.Trigger>
+              <Accordion.Content className="z-10 grow px-1 pb-1 data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content">
+                <AccordianContent category={accordian.title} />
+              </Accordion.Content>
+              <Image
+                src={bgMeshVertical}
+                alt={""}
+                className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
+                aria-hidden="true"
               />
-            </Accordion.Trigger>
-            <Accordion.Content className="data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content z-10 grow px-5">
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </Accordion.Content>
-            <Image
-              src={bgMeshVertical}
-              alt={""}
-              className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
-              aria-hidden="true"
-            />
-          </Accordion.Item>
-          <Accordion.Item
-            className="data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow"
-            value="item-2"
-          >
-            <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-5 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
-              <Iconify icon="ph:math-operations-bold" className="" />
-              <p className="grow text-left">PK</p>
-              <Iconify
-                icon="ph:caret-down-bold"
-                className="transition-transform duration-700 group-data-[state=open]:rotate-180"
-              />
-            </Accordion.Trigger>
-            <Accordion.Content className="data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content z-10 grow px-5">
-              Yes. Its unstyled by default, giving you freedom over the look and
-              feel.
-            </Accordion.Content>
-            <Image
-              src={bgMeshVertical}
-              alt={""}
-              className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
-              aria-hidden="true"
-            />
-          </Accordion.Item>
-          <Accordion.Item
-            className="data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow"
-            value="item-3"
-          >
-            <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-5 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
-              <Iconify icon="ph:lightbulb-filament-duotone" className="" />
-              <p className="grow text-left">PPU</p>
-              <Iconify
-                icon="ph:caret-down-bold"
-                className="transition-transform duration-700 group-data-[state=open]:rotate-180"
-              />
-            </Accordion.Trigger>
-            <Accordion.Content className="data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content z-10 grow px-5">
-              Yes! You can animate the Accordion with CSS or JavaScript.
-            </Accordion.Content>
-            <Image
-              src={bgMeshVertical}
-              alt={""}
-              className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
-              aria-hidden="true"
-            />
-          </Accordion.Item>
-          <Accordion.Item
-            className="data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow"
-            value="item-4"
-          >
-            <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-5 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
-              <Iconify icon="ph:book-open-text-duotone" className="" />
-              <p className="grow text-left">PBM</p>
-              <Iconify
-                icon="ph:caret-down-bold"
-                className="transition-transform duration-700 group-data-[state=open]:rotate-180"
-              />
-            </Accordion.Trigger>
-            <Accordion.Content className="data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content z-10 grow px-5">
-              Yes! You can animate the Accordion with CSS or JavaScript.
-            </Accordion.Content>
-            <Image
-              src={bgMeshVertical}
-              alt={""}
-              className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
-              aria-hidden="true"
-            />
-          </Accordion.Item>
+            </Accordion.Item>
+          ))}
         </Accordion.Root>
         <button className="flex h-10 items-center justify-center gap-1.5 rounded-full bg-gray-800 font-600 text-surface-400">
           <Iconify
