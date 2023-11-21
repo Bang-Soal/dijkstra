@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
+import Footer from "./components/Footer";
 import Nav from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./globals.scss";
+import Providers from "./providers";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -21,9 +23,11 @@ export default function RootLayout({
       <body
         className={`${quicksand.className} relative flex flex-col bg-surface-100`}
       >
-        <Nav />
-        {children}
-        <Footer />
+        <Providers>
+          <Nav />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
