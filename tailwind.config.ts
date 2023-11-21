@@ -35,13 +35,20 @@ const config: Config = {
       },
       keyframes: {
         slideDownItem: {
-          from: { flexGrow: "0" },
-          to: { flexGrow: "1" },
+          from: { flexGrow: "0", overflow: "hidden", height: "44" },
+          to: { flexGrow: "1", overflow: "visible" },
         },
         slideUpItem: {
-          from: { flexGrow: "1" },
-          to: { flexGrow: "0" },
+          from: { flexGrow: "1", overflow: "visible" },
+          to: { flexGrow: "0", overflow: "hidden", height: "44" },
         },
+        // slideDownContent: {
+        //   from: { opacity: "0" },
+        //   to: { opacity: "1" },
+        // },
+        // slideUpContent: {
+        //   from: { opacity: "1" },
+        //   to: { opacity: "0" },
         slideDownContent: {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
