@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
+import Footer from "./components/Footer";
 import Nav from "./components/Navbar";
 import "./globals.scss";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +22,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} relative flex flex-col bg-surface-100`}
       >
-        <Nav />
-        {children}
+        <Providers>
+          <Nav />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

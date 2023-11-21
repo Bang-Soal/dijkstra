@@ -9,12 +9,11 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
-        "slide-down-item": "slideDownItem 700ms cubic-bezier(0.87, 0, 0.13, 1)",
-        "slide-up-item": "slideUpItem 700ms cubic-bezier(0.87, 0, 0.13, 1)",
+        "slide-down-item": "slideDownItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "slide-up-item": "slideUpItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-down-content":
-          "slideDownContent 700ms cubic-bezier(0.87, 0, 0.13, 1)",
-        "slide-up-content":
-          "slideUpContent 700ms cubic-bezier(0.87, 0, 0.13, 1)",
+          "slideDownContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "slide-up-content": "slideUpContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
