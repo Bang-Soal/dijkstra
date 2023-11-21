@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import Footer from "./components/Footer";
 import Nav from "./components/Navbar";
-import Footer from "./components/Footer";
 import "./globals.scss";
 import Providers from "./providers";
 
