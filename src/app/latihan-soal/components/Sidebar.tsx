@@ -5,7 +5,7 @@ import bgMeshVertical from "@/public/bg-mesh-vertical.webp";
 
 // components
 import Iconify from "@components/Iconify";
-import AccordianContent from "./AccordianContent";
+import Filters from "./Filters";
 
 // libs
 import * as Accordion from "@radix-ui/react-accordion";
@@ -61,21 +61,23 @@ export default function Sidebar() {
               value={`item-${index + 1}`}
               className="group relative flex flex-col overflow-hidden rounded-xl bg-cover data-[state=open]:grow data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item"
             >
-              <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-xl font-[650] text-content-300 transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:hover:bg-surface-300">
+              <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-xl font-[650] text-content-300 outline-none transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:focus-within:text-content-100 data-[state=closed]:hover:text-content-100">
                 <Iconify icon={accordian.icon} className="" />
                 <p className="grow text-left">{accordian.title}</p>
                 <Iconify
                   icon="ph:caret-down-bold"
-                  className="transition-transform duration-700 group-data-[state=open]:rotate-180"
+                  className="transition-transform duration-500 group-data-[state=open]:rotate-180"
                 />
               </Accordion.Trigger>
               <Accordion.Content className="z-10 grow px-1 pb-1 data-[state=closed]:animate-slide-up-content data-[state=open]:animate-slide-down-content">
-                <AccordianContent category={accordian.title} />
+                <Filters
+                  category={accordian.title as "PU" | "PK" | "PPU" | "PBM"}
+                />
               </Accordion.Content>
               <Image
                 src={bgMeshVertical}
                 alt={""}
-                className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-700 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
+                className="pointer-events-none absolute inset-0 object-cover transition-[opacity] duration-500 group-data-[state=closed]:opacity-0 group-data-[state=open]:opacity-100"
                 aria-hidden="true"
               />
             </Accordion.Item>
