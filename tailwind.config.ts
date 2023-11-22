@@ -14,6 +14,14 @@ const config: Config = {
         "slide-down-content":
           "slideDownContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up-content": "slideUpContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "scale-in": "scaleIn 200ms ease",
+        "scale-out": "scaleOut 200ms ease",
+        "fade-in": "fadeIn 200ms ease",
+        "fade-out": "fadeOut 200ms ease",
+        "enter-from-left": "enterFromLeft 250ms ease",
+        "enter-from-right": "enterFromRight 250ms ease",
+        "exit-to-left": "exitToLeft 250ms ease",
+        "exit-to-right": "exitToRight 250ms ease",
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
@@ -42,13 +50,6 @@ const config: Config = {
           from: { flexGrow: "1", overflow: "visible" },
           to: { flexGrow: "0", overflow: "hidden", height: "44" },
         },
-        // slideDownContent: {
-        //   from: { opacity: "0" },
-        //   to: { opacity: "1" },
-        // },
-        // slideUpContent: {
-        //   from: { opacity: "1" },
-        //   to: { opacity: "0" },
         slideDownContent: {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -56,6 +57,38 @@ const config: Config = {
         slideUpContent: {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
+        },
+        enterFromRight: {
+          from: { opacity: "0", transform: "translateX(200px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        enterFromLeft: {
+          from: { opacity: "0", transform: "translateX(-200px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        exitToRight: {
+          from: { opacity: "1", transform: "translateX(0)" },
+          to: { opacity: "0", transform: "translateX(200px)" },
+        },
+        exitToLeft: {
+          from: { opacity: "1", transform: "translateX(0)" },
+          to: { opacity: "0", transform: "translateX(-200px)" },
+        },
+        scaleIn: {
+          from: { opacity: "0", transform: "rotateX(-10deg) scale(0.9)" },
+          to: { opacity: "1", transform: "rotateX(0deg) scale(1)" },
+        },
+        scaleOut: {
+          from: { opacity: "1", transform: "rotateX(0deg) scale(1)" },
+          to: { opacity: "0", transform: "rotateX(-10deg) scale(0.95)" },
+        },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        fadeOut: {
+          from: { opacity: "1" },
+          to: { opacity: "0" },
         },
       },
     },
