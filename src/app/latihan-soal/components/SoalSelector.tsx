@@ -4,10 +4,13 @@ import { questions } from "@data/latihan-soal";
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Tabs from "@radix-ui/react-tabs";
+import { useRouter } from "next/navigation";
 
 export default function SoalSelector({
   category,
 }: Readonly<{ category: "PU" | "PK" | "PPU" | "PBM" }>) {
+  const router = useRouter();
+
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">
       <ScrollArea.Viewport className="grow rounded-lg">
@@ -17,7 +20,12 @@ export default function SoalSelector({
               <Tabs.Trigger
                 key={question.id}
                 value={`tab-${index + 1}`}
-                className="relative h-16 overflow-hidden rounded-lg bg-surface-100 p-3 text-left text-xs text-content-100 transition-[opacity] before:absolute before:inset-0 before:shadow-[inset_-24px_-24px_32px_0_rgba(0,0,0,1)] before:shadow-surface-100 font-500 data-[state=active]:cursor-default data-[state=active]:opacity-100 data-[state=inactive]:opacity-30 data-[state=inactive]:hover:opacity-60 "
+                className="relative h-16 overflow-hidden rounded-lg bg-surface-100 p-3 text-left text-xs font-500 text-content-100 transition-[opacity] before:absolute before:inset-0 before:shadow-[inset_-24px_-24px_32px_0_rgba(0,0,0,1)] before:shadow-surface-100 data-[state=active]:cursor-default data-[state=active]:opacity-100 data-[state=inactive]:opacity-30 data-[state=inactive]:hover:opacity-60"
+                onClick={() =>
+                  router.push(
+                    `/latihan-soal/${category.toLowerCase()}/${question.id}`,
+                  )
+                }
               >
                 <p className="w-[110%]">{question.text}</p>
               </Tabs.Trigger>
