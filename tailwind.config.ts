@@ -22,6 +22,7 @@ const config: Config = {
         "enter-from-right": "enterFromRight 250ms ease",
         "exit-to-left": "exitToLeft 250ms ease",
         "exit-to-right": "exitToRight 250ms ease",
+        // "hover-thumbnail": "hoverThumbnail 3000ms ease-in-out",
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
@@ -90,6 +91,12 @@ const config: Config = {
           from: { opacity: "1" },
           to: { opacity: "0" },
         },
+        // hoverThumbnail: {
+        //   "0%": { transform: "scale(1)" },
+        //   "20%": { transform: "scale(1.5) translateY(0)" },
+        //   "50%": { transform: "" },
+        //   "100%": { transform: "scale(1.5) translateY(-75%)" },
+        // },
       },
     },
   },

@@ -180,7 +180,7 @@ export default function NavMenu() {
         </NavigationMenu.Item>
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded-lg px-3 py-2 font-medium text-content-300 outline-none hover:bg-surface-200 hover:text-content-100">
-            Resources{" "}
+            Bang Catatan{" "}
             <Iconify
               icon={"ph:caret-down-bold"}
               className="relative top-[1px] text-content-200 transition-transform duration-300 ease-in group-data-[state=open]:-rotate-180"
