@@ -5,8 +5,8 @@ import bgMeshVertical from "@/public/bg-mesh-vertical.webp";
 
 // components
 import Iconify from "@components/Iconify";
-import Filters from "../latihan-soal/components/Filters";
-import SoalSelector from "../latihan-soal/components/SoalSelector";
+import Filters from "./Filters";
+import SoalSelector from "./SoalSelector";
 
 // libs
 import * as Accordion from "@radix-ui/react-accordion";
@@ -35,7 +35,7 @@ const accordians = [
 export default function Sidebar() {
   if (!usePathname().startsWith("/latihan-soal")) return null;
   return (
-    <nav className="sticky shrink-0 top-0 flex h-screen w-80 flex-col gap-6 border-r border-surface-300 bg-surface-200">
+    <nav className="sticky top-0 flex h-screen w-80 shrink-0 flex-col gap-6 border-r border-surface-300 bg-surface-200">
       <div className="flex h-16 items-center justify-center gap-2 text-xl font-700 text-content-200">
         <p className="">Bang Soal</p>
         <p className="text-surface-400">|</p>
