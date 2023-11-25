@@ -5,3 +5,7 @@
 * {
   box-sizing: border-box;
 }
+
+.skeleton {
+  @apply -z-10 before:-z-10 before:animate-slide-right relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r;
+}
