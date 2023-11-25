@@ -9,11 +9,14 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
+        "slide-right": "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
+        // Accordion
         "slide-down-item": "slideDownItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up-item": "slideUpItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-down-content":
           "slideDownContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up-content": "slideUpContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        // Nav Menu
         "scale-in": "scaleIn 200ms ease",
         "scale-out": "scaleOut 200ms ease",
         "fade-in": "fadeIn 200ms ease",
@@ -22,6 +25,11 @@ const config: Config = {
         "enter-from-right": "enterFromRight 250ms ease",
         "exit-to-left": "exitToLeft 250ms ease",
         "exit-to-right": "exitToRight 250ms ease",
+        // Tooltip
+        "slide-down-and-fade":
+          "slideDownAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-up-and-fade":
+          "slideUpAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
@@ -42,6 +50,11 @@ const config: Config = {
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
       },
       keyframes: {
+        slideRight: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        // Accordion
         slideDownItem: {
           from: { flexGrow: "0", overflow: "hidden", height: "44" },
           to: { flexGrow: "1", overflow: "visible" },
@@ -58,6 +71,7 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // Nav Menu
         enterFromRight: {
           from: { opacity: "0", transform: "translateX(200px)" },
           to: { opacity: "1", transform: "translateX(0)" },
@@ -90,10 +104,20 @@ const config: Config = {
           from: { opacity: "1" },
           to: { opacity: "0" },
         },
+        // Tooltip
+        slideDownAndFade: {
+          from: { opacity: "0", transform: "translateY(-4px) scale(0.9)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        slideUpAndFade: {
+          from: { opacity: "1", transform: "translateY(0px) scale(1)" },
+          to: { opacity: "0", transform: "translateY(-4px)  scale(0.9)" },
+        },
       },
     },
   },
   plugins: [
+    require("@tailwindcss/container-queries"),
     plugin(function ({ addVariant }: { addVariant: Function }) {
       addVariant("children", "&>*");
     }),
