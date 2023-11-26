@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body className={`${quicksand.className} relative flex bg-surface-100`}>
         <Providers>
-          {/* <Sidebar /> */}
+          <Sidebar />
           <div className="relative flex grow flex-col">
             <Nav />
             {children}
