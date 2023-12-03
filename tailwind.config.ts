@@ -4,18 +4,30 @@ const { createThemes } = require("tw-colors");
 const colors = require("tailwindcss/colors");
 
 const config: Config = {
+  darkMode: ["class"],
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
-        "slide-right": "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
+        "slide-right":
+          "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
         // Accordion
         "slide-down-item": "slideDownItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up-item": "slideUpItem 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-down-content":
           "slideDownContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up-content": "slideUpContent 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
         // Nav Menu
         "scale-in": "scaleIn 200ms ease",
         "scale-out": "scaleOut 200ms ease",
@@ -71,6 +83,14 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         // Nav Menu
         enterFromRight: {
           from: { opacity: "0", transform: "translateX(200px)" },
@@ -118,11 +138,13 @@ const config: Config = {
   },
   plugins: [
     require("@tailwindcss/container-queries"),
+    require("tailwindcss-animate"),
     plugin(function ({ addVariant }: { addVariant: Function }) {
       addVariant("children", "&>*");
     }),
     createThemes({
       light: {
+        // surfaces
         "surface-100": colors.white,
         "surface-200": colors.gray[100],
         "surface-300": colors.gray[200],
@@ -130,6 +152,8 @@ const config: Config = {
         "surface-500": colors.gray[400],
         "surface-600": colors.gray[500],
         "surface-700": colors.gray[600],
+
+        // contents
         "content-100": colors.gray[900],
         "content-200": colors.gray[700],
         "content-300": colors.gray[500],

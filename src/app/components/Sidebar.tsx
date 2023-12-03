@@ -1,10 +1,10 @@
 "use client";
 
 // assets
-import bgMeshVertical from "@/public/bg-mesh-vertical.webp";
+import bgMeshVertical from "@public/bg-mesh-vertical.webp";
 
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 import Filters from "./Filters";
 import SoalSelector from "./SoalSelector";
 

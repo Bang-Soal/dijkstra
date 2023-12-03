@@ -1,11 +1,11 @@
 // atoms
-import { topicAtom, yearAtom } from "@data/atoms";
+import { topicAtom, yearAtom } from "@/data/atoms";
 
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 
 // data
-import { filter } from "@/src/data/latihan-soal";
+import { filter } from "@/data/latihan-soal";
 
 // libs
 import * as Label from "@radix-ui/react-label";

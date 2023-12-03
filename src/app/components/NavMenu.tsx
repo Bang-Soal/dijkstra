@@ -1,5 +1,5 @@
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 
 // libs
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
