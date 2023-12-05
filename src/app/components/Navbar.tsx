@@ -26,7 +26,13 @@ export default function Nav() {
 
   const path = usePathname();
 
-  if (path !== "/latihan-soal" && path !== "/try-out") {
+  if (path === "/latihan-soal" || path === "/try-out") {
+    return (
+      <nav className="sticky top-0 z-20 flex h-16 items-center justify-end bg-surface-100/60 px-20 backdrop-blur-lg">
+        <NavMenu />
+      </nav>
+    );
+  } else {
     return (
       <nav
         className={`fixed z-20 flex w-full items-stretch gap-3 transition-[height,padding,top] duration-700 ${
@@ -47,6 +53,7 @@ export default function Nav() {
             <Logo className="h-8 w-8" />
             Bang Soal
           </Link>
+          <NavMenu />
         </div>
         <div
           className={`flex items-center duration-700 ${
@@ -57,12 +64,6 @@ export default function Nav() {
             <p className="text-sm font-500 text-white">Ajarin puh</p>
           </button>
         </div>
-      </nav>
-    );
-  } else {
-    return (
-      <nav className="sticky top-0 z-20 flex h-16 items-center justify-end bg-surface-100/60 px-20 backdrop-blur-lg">
-        <NavMenu />
       </nav>
     );
   }
