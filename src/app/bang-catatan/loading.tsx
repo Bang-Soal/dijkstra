@@ -9,7 +9,7 @@ export default function Loading() {
             Soal!
           </h2>
         </div>
-        <div className="skeleton h-10 w-24 rounded-full bg-surface-300 from-surface-300 via-surface-100 to-surface-300" />
+        <div className="skeleton h-10 w-24 shrink-0 rounded-full bg-surface-300 from-surface-300 via-surface-100 to-surface-300" />
       </div>
       <div className="flex items-center gap-3 text-content-300">
         <div className="relative">

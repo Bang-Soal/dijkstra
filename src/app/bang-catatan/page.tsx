@@ -1,9 +1,9 @@
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 import Filters from "./components/Filters";
 
 // data
-import { catatan } from "@data/bang-catatan";
+import { catatan } from "@/data/bang-catatan";
 
 // libs
 import { Metadata } from "next";

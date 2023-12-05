@@ -1,10 +1,10 @@
 "use client";
 
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 
 // data
-import { filter } from "@data/bang-catatan";
+import { filter } from "@/data/bang-catatan";
 
 // libs
 import * as Select from "@radix-ui/react-select";
