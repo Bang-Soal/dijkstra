@@ -8,4 +8,5 @@ module.exports = {
     "leaveFrom",
     "leaveTo",
   ],
+  tailwindFunctions: ["clsx", "cn"],
 };
