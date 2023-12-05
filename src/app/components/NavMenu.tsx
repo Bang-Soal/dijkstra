@@ -17,7 +17,7 @@ export default function NavMenu() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full bg-surface-100 data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left sm:w-auto">
             <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
               <li className="row-span-3 grid">
                 <div
@@ -65,7 +65,7 @@ export default function NavMenu() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full bg-surface-100 data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left sm:w-auto">
             <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
               <li className="row-span-3 grid">
                 <div
@@ -113,7 +113,7 @@ export default function NavMenu() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full bg-surface-100 data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left sm:w-auto">
             <ul className="grid w-[600px] list-none grid-flow-col grid-rows-3 gap-x-2 p-5">
               <li>
                 <NavigationMenu.Link asChild>
@@ -187,7 +187,7 @@ export default function NavMenu() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full bg-surface-100 data-[motion=from-end]:animate-enter-from-right data-[motion=from-start]:animate-enter-from-left data-[motion=to-end]:animate-exit-to-right data-[motion=to-start]:animate-exit-to-left sm:w-auto">
             <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
               <li className="row-span-3 grid">
                 <div
@@ -227,13 +227,13 @@ export default function NavMenu() {
           </NavigationMenu.Content>
         </NavigationMenu.Item>
 
-        <NavigationMenu.Indicator className="data-[state=visible]:animate-fade-in data-[state=hidden]:animate-fade-out top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">
+        <NavigationMenu.Indicator className="top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fade-out data-[state=visible]:animate-fade-in">
           <div className="relative top-[70%] h-2 w-2 rotate-[45deg] rounded-tl-[2px] bg-surface-100 outline outline-1 outline-surface-300" />
         </NavigationMenu.Indicator>
       </NavigationMenu.List>
 
       <div className="absolute left-0 top-full flex w-full justify-center">
-        <NavigationMenu.Viewport className="data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out relative mt-2 h-[--radix-navigation-menu-viewport-height] w-full origin-[top_center] overflow-hidden rounded-lg bg-surface-100 shadow-lg outline outline-1 outline-surface-300 transition-[width,_height] duration-300 sm:w-[--radix-navigation-menu-viewport-width]" />
+        <NavigationMenu.Viewport className="relative mt-2 h-[--radix-navigation-menu-viewport-height] w-full origin-[top_center] overflow-hidden rounded-lg bg-surface-100 shadow-lg outline outline-1 outline-surface-300 transition-[width,_height] duration-300 data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in sm:w-[--radix-navigation-menu-viewport-width]" />
       </div>
     </NavigationMenu.Root>
   );
