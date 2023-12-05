@@ -1,5 +1,5 @@
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 
 // libs
 import { ArcElement, Chart as ChartJS } from "chart.js";

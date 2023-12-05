@@ -1,10 +1,10 @@
 // assets
-import heroBgMesh from "@/public/hero-bg-mesh.webp";
-import heroMaskBottom from "@/public/hero-mask-bottom.svg";
-import heroMaskTop from "@/public/hero-mask-top.svg";
+import heroBgMesh from "@public/hero-bg-mesh.webp";
+import heroMaskBottom from "@public/hero-mask-bottom.svg";
+import heroMaskTop from "@public/hero-mask-top.svg";
 
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 import Quiz from "./Quiz";
 
 // libs
