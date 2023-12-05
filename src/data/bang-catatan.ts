@@ -210,7 +210,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "indigo",
   },
   {
@@ -228,7 +228,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "blue",
   },
   {
@@ -246,7 +246,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "lime",
   },
   {
@@ -264,7 +264,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "orange",
   },
   {
@@ -282,7 +282,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "rose",
   },
   {
@@ -300,7 +300,7 @@ export const catatan = [
       tipe: null,
     },
     likes: 69,
-    views: 420,
+    downloads: 420,
     theme: "teal",
   },
 ];

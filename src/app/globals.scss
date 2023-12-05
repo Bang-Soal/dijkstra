@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+.stagger {
+  @for $i from 0 through 999 {
+    & > :nth-child(#{$i + 1}) {
+      transition-delay: 50ms * $i;
+      animation-delay: 50ms * $i;
+    }
+  }
+}
+
 .skeleton {
-  @apply -z-10 before:-z-10 before:animate-slide-right relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r;
+  @apply relative -z-10 overflow-hidden before:absolute before:inset-0 before:-z-10 before:animate-slide-right before:bg-gradient-to-r;
 }
