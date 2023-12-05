@@ -1,10 +1,13 @@
 "use client";
 
+// components
+import Logo from "./Logo";
+import NavMenu from "./NavMenu";
+
 // libs
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -21,36 +24,46 @@ export default function Nav() {
     };
   }, []);
 
-  return (
-    <motion.nav
-      className={`fixed z-20 flex w-full items-stretch duration-700 ${
-        atTop ? "top-0 h-20 gap-0 px-0" : "top-3 h-12 gap-3 px-24"
-      }`}
-      layout
-      transition={{ duration: 0.3 }}
-    >
-      <div
-        className={`flex h-full grow items-center justify-between border-surface-400/50 bg-surface-100/60 backdrop-blur-lg duration-500 ${
-          atTop ? "rounded-none px-20 py-4" : "rounded-3xl border px-10 py-1"
+  const path = usePathname();
+
+  if (path !== "/latihan-soal" && path !== "/try-out") {
+    return (
+      <nav
+        className={`fixed z-20 flex w-full items-stretch gap-3 transition-[height,padding,top] duration-700 ${
+          atTop ? "top-0 h-20 px-20" : "top-3 h-12 px-24"
         }`}
       >
-        <Link
-          className="flex items-center gap-2 font-700 text-content-200"
-          href={"/"}
+        <div
+          className={`flex h-full grow items-center justify-between rounded-full border bg-surface-100/60 backdrop-blur-lg transition-[border-color,padding] duration-500 ${
+            atTop
+              ? "border-surface-400/0 px-0 py-4"
+              : "border-surface-400/50 px-8 py-1"
+          }`}
         >
-          <Image src={"/logo-colored.svg"} alt={""} width={32} height={32} />
-          Bang Soal
-        </Link>
-      </div>
-      <div
-        className={`flex items-center duration-700 ${
-          atTop && "border-surface-400/50 pr-20"
-        }`}
-      >
-        <button className="h-12 rounded-full bg-emerald-400 px-5">
-          <p className="text-sm font-500 text-white">Ajarin puh</p>
-        </button>
-      </div>
-    </motion.nav>
-  );
+          <Link
+            className="flex items-center gap-1 font-700 text-content-200"
+            href={"/"}
+          >
+            <Logo className="h-8 w-8" />
+            Bang Soal
+          </Link>
+        </div>
+        <div
+          className={`flex items-center duration-700 ${
+            atTop && "border-surface-400/50"
+          }`}
+        >
+          <button className="h-12 rounded-full bg-emerald-400 px-5">
+            <p className="text-sm font-500 text-white">Ajarin puh</p>
+          </button>
+        </div>
+      </nav>
+    );
+  } else {
+    return (
+      <nav className="sticky top-0 z-20 flex h-16 items-center justify-end bg-surface-100/60 px-20 backdrop-blur-lg">
+        <NavMenu />
+      </nav>
+    );
+  }
 }

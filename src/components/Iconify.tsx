@@ -11,7 +11,7 @@ const Iconify: React.FunctionComponent<IconProps & { className?: string }> = ({
   return (
     <BaseIcon
       {...props}
-      className={`shrink-0 text-current ${className}`}
+      className={`shrink-0 ${className}`}
       aria-hidden="true"
     />
   );
