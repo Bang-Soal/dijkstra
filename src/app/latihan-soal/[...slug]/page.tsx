@@ -1,8 +1,5 @@
 // components
-import Iconify from "@components/Iconify";
-
-// data
-import { questions } from "@data/latihan-soal";
+import Iconify from "@/components/Iconify";
 
 // libs
 import type { Metadata } from "next";
@@ -38,13 +35,15 @@ export default function LatihanSoal({
           <h1 className="text-3xl font-700 text-content-100">
             {categoryMap[params.slug[0]]}
           </h1>
-          <h2 className="text-xl font-600 text-content-300">
-            Barisan Bilangan
-            <button className="group ml-1 inline-flex items-center gap-1 rounded-full px-2 text-sm font-500 text-surface-400 hover:bg-emerald-400 hover:text-emerald-100">
+          <div className="flex items-center gap-1">
+            <h2 className="text-xl font-600 text-content-300">
+              Barisan Bilangan
+            </h2>
+            <button className="group inline-flex items-center gap-1 rounded-full px-2 text-sm font-500 text-surface-400 hover:bg-emerald-400 hover:text-emerald-100">
               <Iconify icon="ph:download-simple-bold" />
               <p className="hidden group-hover:block">Download</p>
             </button>
-          </h2>
+          </div>
           <h2 className="text-xl font-600 text-content-300">UTBK 2022</h2>
         </div>
         <p>

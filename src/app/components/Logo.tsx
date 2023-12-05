@@ -1,4 +1,4 @@
-export default function Logo({ className }: { className?: string }) {
+export default function Logo({ className }: Readonly<{ className?: string }>) {
   return (
     <svg
       className={className}

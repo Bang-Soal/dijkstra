@@ -1,10 +1,10 @@
 // components
-import Iconify from "@components/Iconify";
+import Iconify from "@/components/Iconify";
 
 // libs
 import { ArcElement, Chart as ChartJS } from "chart.js";
 import { useInView } from "framer-motion";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement);

@@ -1,5 +1,5 @@
 // data
-import { questions } from "@data/latihan-soal";
+import { questions } from "@/data/latihan-soal";
 
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
