@@ -1,11 +1,13 @@
 "use client";
 
+// components
+import Logo from "./Logo";
+import NavMenu from "./NavMenu";
+
 // libs
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import NavMenu from "./NavMenu";
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
@@ -24,7 +26,7 @@ export default function Nav() {
 
   const path = usePathname();
 
-  if (path === "/") {
+  if (path !== "/bang-catatan" && path !== "/try-out") {
     return (
       <nav
         className={`fixed z-20 flex w-full items-stretch gap-3 transition-[height,padding,top] duration-700 ${
@@ -39,10 +41,10 @@ export default function Nav() {
           }`}
         >
           <Link
-            className="flex items-center gap-2 font-700 text-content-200"
+            className="flex items-center gap-1 font-700 text-content-200"
             href={"/"}
           >
-            <Image src={"/logo-colored.svg"} alt={""} width={32} height={32} />
+            <Logo className="h-8 w-8" />
             Bang Soal
           </Link>
         </div>
