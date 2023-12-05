@@ -26,7 +26,7 @@ export default function Nav() {
 
   const path = usePathname();
 
-  if (path !== "/bang-catatan" && path !== "/try-out") {
+  if (path !== "/latihan-soal" && path !== "/try-out") {
     return (
       <nav
         className={`fixed z-20 flex w-full items-stretch gap-3 transition-[height,padding,top] duration-700 ${
