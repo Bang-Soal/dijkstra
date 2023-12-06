@@ -1,240 +1,164 @@
 // components
 import Iconify from "@/components/Iconify";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 // libs
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import Link from "next/link";
+import Image from "next/image";
+
+const topics: {
+  title: string;
+  icon: string;
+  href: string;
+}[] = [
+  {
+    title: "Penalaran Umum",
+    icon: "/icons/Brain.svg",
+    href: "/latihan-soal/pu",
+  },
+  {
+    title: "Pengetahuan dan Pemahaman Umum",
+    icon: "/icons/LightbulbFilament.svg",
+    href: "/latihan-soal/ppu",
+  },
+  {
+    title: "Pemahaman Bacaan dan Menulis",
+    icon: "/icons/BookOpenText.svg",
+    href: "/latihan-soal/pbm",
+  },
+  {
+    title: "Pengetahuan Kuantitatif",
+    icon: "/icons/MathOperations.svg",
+    href: "/latihan-soal/pk",
+  },
+  {
+    title: "Bahasa Indonesia",
+    icon: "/icons/Indonesia.svg",
+    href: "/latihan-soal/bindo",
+  },
+  {
+    title: "Bahasa Inggris",
+    icon: "/icons/England.svg",
+    href: "/latihan-soal/bing",
+  },
+];
 
 export default function NavMenu() {
   return (
-    <NavigationMenu.Root className="relative flex justify-center">
-      <NavigationMenu.List className="center flex list-none">
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded-lg px-3 py-2 font-medium text-content-300 outline-none hover:bg-surface-200 hover:text-content-100">
-            Dashboard{" "}
-            <Iconify
-              icon={"ph:caret-down-bold"}
-              className="relative top-[1px] text-content-200 transition-transform duration-300 ease-in group-data-[state=open]:-rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
-            <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-              <li className="row-span-3 grid">
-                <div
-                  className="flex h-full w-full
-                    select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-500 to-fuchsia-500 p-6 no-underline outline-none"
-                >
-                  <svg
-                    aria-hidden
-                    width="38"
-                    height="38"
-                    viewBox="0 0 25 25"
-                    fill="surface-100"
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>
+            <Link href="/latihan-soal">Latihan soal</Link>
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 sm:grid-cols-2 lg:w-[500px]">
+              {topics.map((topic) => (
+                <ListItemTopic
+                  key={topic.title}
+                  title={topic.title}
+                  icon={topic.icon}
+                  href={topic.href}
+                />
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/try-out" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Try out
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Leaderboard</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid grid-cols-2 gap-3 p-6 md:w-[400px] lg:w-[500px]">
+              <li className="col-span-2">
+                <NavigationMenuLink asChild>
+                  <a
+                    className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
+                    href="/"
                   >
-                    <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
-                    <path d="M12 0H4V8H12V0Z"></path>
-                    <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
-                  </svg>
-                  <div className="mb-[7px] mt-4 text-[18px] font-medium leading-[1.2] text-surface-100">
-                    Radix Primitives
-                  </div>
-                  <p className="text-mauve4 text-[14px] leading-[1.3]">
-                    Unstyled, accessible components for React.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
+                    <Iconify icon="ph:rocket-bold" className="text-base" />
+                    <div className="mb-2 mt-4 text-lg font-medium">
+                      shadcn/ui
                     </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
+                    <p className="text-muted-foreground text-sm leading-tight">
+                      Beautifully designed components built with Radix UI and
+                      Tailwind CSS.
+                    </p>
                   </a>
-                </NavigationMenu.Link>
+                </NavigationMenuLink>
               </li>
             </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded-lg px-3 py-2 font-medium text-content-300 outline-none hover:bg-surface-200 hover:text-content-100">
-            Latihan soal{" "}
-            <Iconify
-              icon={"ph:caret-down-bold"}
-              className="relative top-[1px] text-content-200 transition-transform duration-300 ease-in group-data-[state=open]:-rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
-            <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-              <li className="row-span-3 grid">
-                <div
-                  className="flex h-full w-full
-                    select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-500 to-fuchsia-500 p-6 no-underline outline-none"
-                >
-                  <svg
-                    aria-hidden
-                    width="38"
-                    height="38"
-                    viewBox="0 0 25 25"
-                    fill="surface-100"
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Bang Catatan</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid grid-cols-2 gap-3 p-6 md:w-[400px] lg:w-[500px]">
+              <li className="col-span-2">
+                <NavigationMenuLink asChild>
+                  <a
+                    className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
+                    href="/"
                   >
-                    <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
-                    <path d="M12 0H4V8H12V0Z"></path>
-                    <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
-                  </svg>
-                  <div className="mb-[7px] mt-4 text-[18px] font-medium leading-[1.2] text-surface-100">
-                    Radix Primitives
-                  </div>
-                  <p className="text-mauve4 text-[14px] leading-[1.3]">
-                    Unstyled, accessible components for React.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
+                    <Iconify icon="ph:rocket-bold" className="text-base" />
+                    <div className="mb-2 mt-4 text-lg font-medium">
+                      shadcn/ui
                     </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
+                    <p className="text-muted-foreground text-sm leading-tight">
+                      Beautifully designed components built with Radix UI and
+                      Tailwind CSS.
+                    </p>
                   </a>
-                </NavigationMenu.Link>
+                </NavigationMenuLink>
               </li>
             </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded-lg px-3 py-2 font-medium text-content-300 outline-none hover:bg-surface-200 hover:text-content-100">
-            Leaderboard{" "}
-            <Iconify
-              icon={"ph:caret-down-bold"}
-              className="relative top-[1px] text-content-200 transition-transform duration-300 ease-in group-data-[state=open]:-rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
-            <ul className="grid w-[600px] list-none grid-flow-col grid-rows-3 gap-x-2 p-5">
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-            </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded-lg px-3 py-2 font-medium text-content-300 outline-none hover:bg-surface-200 hover:text-content-100">
-            Bang Catatan{" "}
-            <Iconify
-              icon={"ph:caret-down-bold"}
-              className="relative top-[1px] text-content-200 transition-transform duration-300 ease-in group-data-[state=open]:-rotate-180"
-              aria-hidden
-            />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="data-[motion=from-start]:animate-enter-from-left data-[motion=from-end]:animate-enter-from-right data-[motion=to-start]:animate-exit-to-left data-[motion=to-end]:animate-exit-to-right absolute left-0 top-0 w-full bg-surface-100 sm:w-auto">
-            <ul className="grid list-none gap-x-2 p-5 sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-              <li className="row-span-3 grid">
-                <div
-                  className="flex h-full w-full
-                    select-none flex-col justify-end rounded-md bg-gradient-to-b from-purple-500 to-fuchsia-500 p-6 no-underline outline-none"
-                >
-                  <svg
-                    aria-hidden
-                    width="38"
-                    height="38"
-                    viewBox="0 0 25 25"
-                    fill="surface-100"
-                  >
-                    <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
-                    <path d="M12 0H4V8H12V0Z"></path>
-                    <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
-                  </svg>
-                  <div className="mb-[7px] mt-4 text-[18px] font-medium leading-[1.2] text-surface-100">
-                    Radix Primitives
-                  </div>
-                  <p className="text-mauve4 text-[14px] leading-[1.3]">
-                    Unstyled, accessible components for React.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <NavigationMenu.Link asChild>
-                  <a className="block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-surface-200">
-                    <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">
-                      title
-                    </div>
-                    <p className="text-mauve11 leading-[1.4]">child</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-            </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
 
-        <NavigationMenu.Indicator className="data-[state=visible]:animate-fade-in data-[state=hidden]:animate-fade-out top-full z-[1] flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">
-          <div className="relative top-[70%] h-2 w-2 rotate-[45deg] rounded-tl-[2px] bg-surface-100 outline outline-1 outline-surface-300" />
-        </NavigationMenu.Indicator>
-      </NavigationMenu.List>
-
-      <div className="absolute left-0 top-full flex w-full justify-center">
-        <NavigationMenu.Viewport className="data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out relative mt-2 h-[--radix-navigation-menu-viewport-height] w-full origin-[top_center] overflow-hidden rounded-lg bg-surface-100 shadow-lg outline outline-1 outline-surface-300 transition-[width,_height] duration-300 sm:w-[--radix-navigation-menu-viewport-width]" />
-      </div>
-    </NavigationMenu.Root>
+function ListItemTopic({
+  title,
+  icon,
+  href,
+}: Readonly<{
+  title: string;
+  icon: string;
+  href: string;
+}>) {
+  return (
+    <li>
+      <Link href={href}>
+        <NavigationMenuLink asChild>
+          <div className="group relative flex h-full w-full select-none items-center justify-start overflow-hidden rounded-md p-6 no-underline shadow-none outline-none transition-[transform,box-shadow] duration-500 ease-out-back before:absolute before:inset-0 before:bg-gradient-to-br before:from-emerald-300 before:to-emerald-600 before:opacity-0 before:transition-[opacity] hover:-rotate-3 hover:scale-105 hover:shadow-xl before:hover:opacity-100 focus:shadow-md">
+            <Image
+              src={icon}
+              alt={`${title} nav link icon`}
+              width={512}
+              height={512}
+              className="absolute -right-4 h-20 w-20 text-surface-400 mix-blend-multiply"
+            />
+            <p className="z-10 font-600 transition-colors group-hover:text-white">
+              {title}
+            </p>
+          </div>
+        </NavigationMenuLink>
+      </Link>
+    </li>
   );
 }
