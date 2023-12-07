@@ -5,7 +5,7 @@ const colors = require("tailwindcss/colors");
 
 const config: Config = {
   darkMode: ["class"],
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx,svg}"],
   theme: {
     container: {
       center: true,
