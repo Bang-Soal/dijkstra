@@ -51,7 +51,7 @@ export default function Nav() {
             href={"/"}
           >
             <Logo className="h-8 w-8" />
-            Bang Soal
+            BangSoal
           </Link>
           <NavMenu />
         </div>
