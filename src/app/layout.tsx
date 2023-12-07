@@ -12,30 +12,7 @@ export const metadata: Metadata = {
   title: "Bang Soal",
   description:
     "Bang Soal merupakan platform terbaik untuk persiapan UTBK dan ujian mandiri!",
-  icons: {
-    icon: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/favicons/icon-light.ico",
-        sizes: "any",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/favicons/icon-dark.ico",
-        sizes: "any",
-      },
-    ],
-    apple: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/favicons/icon-apple-light.png",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/favicons/icon-apple-dark.png",
-      },
-    ],
-  },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
