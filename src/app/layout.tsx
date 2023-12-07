@@ -9,9 +9,9 @@ import Providers from "./providers";
 const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bang Soal",
+  title: "BangSoal",
   description:
-    "Bang Soal merupakan platform terbaik untuk persiapan UTBK dan ujian mandiri!",
+    "BangSoal merupakan platform terbaik untuk persiapan UTBK dan ujian mandiri!",
   manifest: "/manifest.webmanifest",
 };
 
