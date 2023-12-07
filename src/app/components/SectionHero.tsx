@@ -40,7 +40,7 @@ export default function Hero() {
           lagi.
         </motion.h2>
         <motion.h1
-          className="text-7xl font-700"
+          className="text-center text-7xl font-700"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
