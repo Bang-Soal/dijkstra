@@ -123,11 +123,11 @@ function FeatureCard({
           colors[theme],
         )}
       >
-        <div className="relative -mb-5 h-48 after:absolute after:inset-0 after:shadow-[inset_0_-32px_40px_0_rgba(0_0_0_/_0.05)]">
+        <div className="relative -mb-5 grow after:absolute after:inset-0 after:shadow-[inset_0_-32px_40px_0_rgba(0_0_0_/_0.05)]">
           <Image
             src={illustration}
             alt={title}
-            layout="fill"
+            fill
             className="pointer-events-none select-none object-cover"
           />
         </div>
