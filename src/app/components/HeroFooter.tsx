@@ -8,7 +8,7 @@ import Iconify from "@/components/Iconify";
 import Quiz from "./Quiz";
 
 // libs
-import * as Tabs from "@radix-ui/react-tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
 export default function HeroFooter() {
@@ -19,71 +19,59 @@ export default function HeroFooter() {
           The largest bank of UTBK questions EVER
         </h2>
         <p className="text-emerald-200">
-          Bang Soal menggunakan soal asli UTBK untuk menyediakan soal-soal yang
+          BangSoal menggunakan soal asli UTBK untuk menyediakan soal-soal yang
           menggambarkan blah blah blah
         </p>
       </div>
-      <Tabs.Root
+      <Tabs
         defaultValue="tab1"
         orientation="vertical"
         className="flex basis-[70%] items-center"
       >
-        <Tabs.List
+        <TabsList
           aria-label="UTBK category tabs"
           className="z-10 -mr-8 flex shrink-0 flex-col rounded-2xl border border-surface-100/30 bg-surface-100/40 p-2 shadow-xl backdrop-blur-2xl children:rounded-lg children:px-2 children:py-5 children:text-4xl children:text-emerald-800 children:transition-colors"
         >
-          <Tabs.Trigger
+          <TabsTrigger
             value="tab1"
-            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
+            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify
-              icon="ph:brain-duotone"
-              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
-            />
-          </Tabs.Trigger>
-          <Tabs.Trigger
+            <Iconify icon="ph:brain-duotone" className="" />
+          </TabsTrigger>
+          <TabsTrigger
             value="tab2"
-            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
+            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify
-              icon="ph:math-operations-bold"
-              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
-            />
-          </Tabs.Trigger>
-          <Tabs.Trigger
+            <Iconify icon="ph:math-operations-bold" className="" />
+          </TabsTrigger>
+          <TabsTrigger
             value="tab3"
-            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
+            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify
-              icon="ph:lightbulb-filament-duotone"
-              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
-            />
-          </Tabs.Trigger>
-          <Tabs.Trigger
+            <Iconify icon="ph:lightbulb-filament-duotone" className="" />
+          </TabsTrigger>
+          <TabsTrigger
             value="tab4"
-            className="group hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-200"
+            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify
-              icon="ph:book-open-text-duotone"
-              className="transition-transform group-data-[state=inactive]:group-hover:scale-105"
-            />
-          </Tabs.Trigger>
-        </Tabs.List>
-        <div className="to grow rounded-l-3xl bg-surface-300/20 bg-gradient-to-br from-surface-300/60 py-3 pl-3 backdrop-blur-2xl">
-          <Tabs.Content value="tab1">
+            <Iconify icon="ph:book-open-text-duotone" className="" />
+          </TabsTrigger>
+        </TabsList>
+        <div className="grow rounded-l-3xl bg-gradient-to-br from-surface-300/60 to-surface-300/20 py-3 pl-3 backdrop-blur-2xl">
+          <TabsContent value="tab1">
             <Quiz />
-          </Tabs.Content>
-          <Tabs.Content value="tab2">
+          </TabsContent>
+          <TabsContent value="tab2">
             <Quiz />
-          </Tabs.Content>
-          <Tabs.Content value="tab3">
+          </TabsContent>
+          <TabsContent value="tab3">
             <Quiz />
-          </Tabs.Content>
-          <Tabs.Content value="tab4">
+          </TabsContent>
+          <TabsContent value="tab4">
             <Quiz />
-          </Tabs.Content>
+          </TabsContent>
         </div>
-      </Tabs.Root>
+      </Tabs>
       <div className="absolute inset-0 -z-10 flex items-center justify-center">
         <Image src={heroBgMesh} alt={""} className="h-full w-full" />
         <Image

@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function join(...inputs: ClassValue[]) {
   return twJoin(clsx(inputs));
 }
+
+export function shuffle(array: any[]) {
+  return array.sort(() => Math.random() - 0.5);
+}

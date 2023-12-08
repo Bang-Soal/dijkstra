@@ -1,3 +1,5 @@
+"use client";
+
 // components
 import Iconify from "@/components/Iconify";
 
