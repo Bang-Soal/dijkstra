@@ -1,8 +1,14 @@
+// components
+import FeatureCard from "./FeatureCard";
+
 // libs
 import Image from "next/image";
 
+// types
+import { Feature } from "./FeatureCard";
+
 // utils
-import { join } from "@/lib/utils";
+import { shuffle } from "@/lib/utils";
 
 export default function Features() {
   return (
@@ -37,7 +43,8 @@ export default function Features() {
           <FeatureCard
             key={feature.title}
             title={feature.title}
-            choices={feature.choices}
+            choices={shuffle(feature.choices)}
+            answer={feature.answer}
             illustration={feature.illustration}
             description={feature.description}
             theme={feature.theme}
@@ -74,116 +81,69 @@ export default function Features() {
   );
 }
 
-type Feature = {
-  title: string;
-  choices: string[];
-  illustration: string;
-  description: string;
-  theme: string;
-};
-
-function FeatureCard({
-  title,
-  choices,
-  illustration,
-  description,
-  theme,
-}: Readonly<Feature>) {
-  const colors: { [key: string]: string } = {
-    emerald:
-      "border-emerald-200 bg-emerald-600 text-emerald-50 after:shadow-emerald-400/80 children:after:shadow-emerald-600",
-    cyan: "border-cyan-200 bg-cyan-600 text-cyan-50 after:shadow-cyan-400/80 children:after:shadow-cyan-600",
-    indigo:
-      "border-indigo-600 bg-indigo-900 text-indigo-50 after:shadow-indigo-700/80 children:after:shadow-indigo-900",
-    fuchsia:
-      "border-fuchsia-300 bg-fuchsia-700 text-fuchsia-50 after:shadow-fuchsia-500/80 children:after:shadow-fuchsia-700",
-    orange:
-      "border-orange-200 bg-orange-500 text-orange-50 after:shadow-orange-300/80 children:after:shadow-orange-500",
-    rose: "border-rose-300 bg-rose-500 text-rose-50 after:shadow-rose-300/80 children:after:shadow-rose-500",
-  };
-
-  return (
-    <div className="flex gap-2 rounded-3xl bg-surface-100 p-3 shadow-lg ">
-      <div className="flex basis-1/2 flex-col justify-between px-4 py-2">
-        <p className="text-lg font-700 text-content-200">{title}</p>
-        <div className="flex flex-col gap-0.5">
-          {choices.map((choice) => (
-            <div
-              key={title}
-              className="flex gap-2 rounded-md bg-surface-200/50 px-3 py-1 font-600 text-surface-400"
-            >
-              {choice}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div
-        className={join(
-          "relative flex aspect-square basis-1/2 flex-col justify-end overflow-hidden rounded-xl border-4 after:absolute after:inset-0 after:shadow-[inset_0_40px_40px_0_rgba(0_0_0_/_0.05)]",
-          colors[theme],
-        )}
-      >
-        <div className="relative -mb-5 grow after:absolute after:inset-0 after:shadow-[inset_0_-32px_40px_0_rgba(0_0_0_/_0.05)]">
-          <Image
-            src={illustration}
-            alt={title}
-            fill
-            className="pointer-events-none select-none object-cover"
-          />
-        </div>
-        <p className="z-10 px-5 pb-5 text-center font-500">{description}</p>
-      </div>
-    </div>
-  );
-}
-
 const features: Feature[] = [
   {
-    title: "Gimana saya bisa lihat ranking saingan ke PTN saya?",
+    title: "Gimana melihat saingan yang mau masuk ke PTN tujuanku?",
     choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    answer: "Leaderboard",
     illustration: "/illustrations/leaderboard.svg",
     description:
-      "Gain insight on your competition and see where you stand with leaderboards",
+      "Dapatkan wawasan mengenai kompetisimu dan lihat posisimu melalui leaderboard.",
     theme: "emerald",
   },
   {
-    title: "Which platform provides try outs like the real deal?",
-    choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    title: "BangSoal menggunakan soal latihan tipe apa?",
+    choices: [
+      "Asli UTBK + Ujian Mandiri",
+      "Prediksi",
+      "Ujian sekolah",
+      "Ujian bimbel",
+    ],
+    answer: "Asli UTBK + Ujian Mandiri",
     illustration: "/illustrations/latsol.svg",
     description:
-      "No other platform provides try outs made from 100% real past UTBK questions",
+      "BangSoal hanya menyediakan 100% asli soal UTBK, SIMAK, UM UGM, dan lebih dari tahun-tahun sebelumnya.",
     theme: "cyan",
   },
   {
-    title: "What online tool can help me answer questions faster?",
-    choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    title: "Apa fitur yang akan membantu saya merasakan suasana ujian beneran?",
+    choices: ["Timer", "Leaderboard", "Penjelasan jawaban", "Analytics"],
+    answer: "Timer",
     illustration: "/illustrations/timer.svg",
     description:
-      "Practice with timed trials to see how well you pace and manage your time",
+      "Berlatih dengan ujian berdurasi untuk melihat seberapa baik kamu mengatur waktu.",
     theme: "indigo",
   },
   {
-    title: "Where can I get detailed test answers with explanations?",
-    choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    title: "Apa yang bisa didapatkan dari mengerjakan latihan BangSoal?",
+    choices: [
+      "Feedback + penjelasan rinci",
+      "Nilai",
+      "Feedback",
+      "Penjelasan rinci",
+    ],
+    answer: "Feedback + penjelasan rinci",
     illustration: "/illustrations/penjelasan.svg",
     description:
-      "Answers arent enough. Gain insight and learn meaningful feedback from explanations.",
+      "Dapatkan umpan balik dan penjelasan jawaban untuk setiap soal yang kamu kerjakan.",
     theme: "fuchsia",
   },
   {
-    title: "Where can I get daily flashcards to help me practice?",
-    choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    title: "Bagaimana aku bisa tetap termotivasi untuk belajar?",
+    choices: ["Flash cards", "Kopi", "Bimbel", "Try out"],
+    answer: "Flash cards",
     illustration: "/illustrations/flashcards.svg",
     description:
-      " Stay at the top of your game with brand new questions every day.",
+      "Tetap di puncak performamu dengan flash cards baru setiap hari",
     theme: "orange",
   },
   {
-    title: "How can I practice offline without online distractions?",
-    choices: ["Leaderboard", "Ranking", "Scoreboard", "Rating"],
+    title: "Apa cara terbaik untuk latihan soal di sekolah atau saat offline?",
+    choices: ["PDF export", "Flash cards", "Scoreboard", "Rating"],
+    answer: "PDF export",
     illustration: "/illustrations/print.svg",
     description:
-      "Easily download and print questions in bulk to share with friends or practice at school.",
+      "Unduh dan cetak soal dengan mudah untuk dibagikan dengan teman dan berlatih di sekolah.",
     theme: "rose",
   },
 ];
