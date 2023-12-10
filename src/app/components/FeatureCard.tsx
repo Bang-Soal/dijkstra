@@ -48,20 +48,22 @@ export default function FeatureCard({
       setAnswered(true);
       !value.includes("answer") && value.push("answer");
       setValue(value);
-      console.log(value);
     }
   }
 
   return (
-    <div className="flex gap-2 rounded-3xl bg-surface-100 p-3 shadow-lg ">
-      <div className="flex basis-1/2 flex-col justify-between px-4 py-2">
-        <p className="text-lg font-700 text-content-200">{title}</p>
+    <div className="flex flex-col-reverse gap-2 rounded-3xl bg-surface-100 p-3 shadow-lg @container sm:flex-row">
+      <div className="flex flex-col gap-5 px-4 py-2 sm:basis-1/2 sm:justify-end">
+        <p className="text-lg font-700 text-content-200 @lg:text-2xl">
+          {title}
+        </p>
         <ToggleGroup
           type="multiple"
           value={value}
           onValueChange={(value) => {
             handleChange(value);
           }}
+          disabled={answered}
           className="flex flex-col gap-0.5"
         >
           {choices.map((choice) => (
@@ -69,7 +71,7 @@ export default function FeatureCard({
               key={choice}
               value={choice === answer ? "answer" : choice}
               data-answer={choice === answer ? "true" : "false"}
-              className="flex w-full justify-start gap-2 rounded-md bg-surface-200/50 px-3 py-1 font-600 text-content-200 data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-800 data-[state=on]:data-[answer=true]:text-emerald-800"
+              className="flex w-full justify-start gap-2 truncate rounded-md bg-surface-200/50 px-3 py-1 text-left font-600 text-content-200 data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-900 data-[state=on]:data-[answer=true]:text-emerald-900"
             >
               {choice}
             </ToggleGroupItem>
@@ -78,7 +80,7 @@ export default function FeatureCard({
       </div>
       <div
         className={join(
-          "relative flex aspect-square basis-1/2 flex-col justify-end overflow-hidden rounded-xl border-4 after:absolute after:inset-0 after:shadow-[inset_0_40px_40px_0_rgba(0_0_0_/_0.05)]",
+          "relative flex aspect-square flex-col justify-end overflow-hidden rounded-xl border-4 after:absolute after:inset-0 after:shadow-[inset_0_40px_40px_0_rgba(0_0_0_/_0.05)] sm:basis-1/2",
           colorMapping[theme],
         )}
       >

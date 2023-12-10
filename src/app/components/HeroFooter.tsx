@@ -13,14 +13,14 @@ import Image from "next/image";
 
 export default function HeroFooter() {
   return (
-    <div className="relative flex w-full gap-10 py-8 pl-20">
-      <div className="flex basis-[30%] flex-col justify-center gap-4 pb-16 pt-20">
-        <h2 className="text-3xl font-600 text-white">
-          The largest bank of UTBK questions EVER
+    <div className="relative flex w-full flex-col gap-10 py-8 pl-5 sm:pl-10 md:flex-row lg:pl-20">
+      <div className="flex basis-[30%] flex-col justify-center gap-4 pr-5 pt-20 md:pb-16 md:pr-0">
+        <h2 className="text-center text-3xl font-600 text-white md:text-left">
+          Bank soal terlengkap untuk kamu yang terambis
         </h2>
-        <p className="text-emerald-200">
-          BangSoal menggunakan soal asli UTBK untuk menyediakan soal-soal yang
-          menggambarkan blah blah blah
+        <p className="text-center text-emerald-200 md:text-left">
+          Tingkatkan latihanmu dengan ribuan soal asl UTBK, SNBT, SIMAK UI, dan
+          ujian mandiri PTN lainnya.
         </p>
       </div>
       <Tabs
