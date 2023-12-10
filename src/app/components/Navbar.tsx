@@ -1,7 +1,7 @@
 "use client";
 
 // components
-import Logo from "./Logo";
+import Logo from "@/components/Logo";
 import NavMenu from "./NavMenu";
 
 // libs

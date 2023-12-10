@@ -43,8 +43,8 @@ export default function Quiz() {
   };
 
   return (
-    <div className="flex gap-5 rounded-l-xl bg-surface-100 px-12 py-8 shadow-lg">
-      <div className="flex flex-none basis-2/3 flex-col gap-3">
+    <div className="flex flex-col gap-5 rounded-l-xl bg-surface-100 py-8 pl-12 pr-5 shadow-lg lg:flex-row lg:pr-12">
+      <div className="flex flex-none flex-col gap-3 lg:basis-2/3">
         <h3 className="text-2xl font-600 text-content-100">Penalaran Umum</h3>
         <p className="font-500 text-content-300">
           Semua sinden pandai menari tradisional. Sinden yang bernama Wening
@@ -86,7 +86,7 @@ export default function Quiz() {
           </div>
         </div>
       </div>
-      <div className="flex flex-none basis-1/3 flex-col items-center">
+      <div className="flex flex-none flex-col items-center lg:basis-1/3">
         <div className="relative flex h-40 w-full items-center justify-center">
           <Doughnut data={data} />
         </div>
