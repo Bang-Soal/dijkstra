@@ -12,3 +12,8 @@ export type OnboardRequest = {
   choosen_university_three: string;
   choosen_major_three: string;
 };
+
+export type User = OnboardRequest & {
+  id: string;
+  onboard_date: string;
+};

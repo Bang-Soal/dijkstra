@@ -12,6 +12,7 @@ import {
 import { baseApi } from "./api/baseApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { rootReducer } from "./reducer";
+import { rtkQueryErrorLogger } from "./middleware";
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -20,7 +21,9 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(baseApi.middleware),
+    })
+      .prepend(rtkQueryErrorLogger)
+      .concat(baseApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

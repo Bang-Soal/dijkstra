@@ -5,20 +5,19 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 
 // libs
 import Image from "next/image";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRegisterMutation } from "@/redux/api/authApi";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -32,13 +31,13 @@ const formSchema = z.object({
     .refine((value) => !/\s/.test(value), {
       message: "Password cannot contain spaces.",
     })
-    .refine((value) => !/\d/.test(value), {
+    .refine((value) => /\d/.test(value), {
       message: "Password must contain at least one digit.",
     })
-    .refine((value) => !/[a-z]/.test(value), {
+    .refine((value) => /[a-z]/.test(value), {
       message: "Password must contain at least one lowercase letter.",
     })
-    .refine((value) => !/[A-Z]/.test(value), {
+    .refine((value) => /[A-Z]/.test(value), {
       message: "Password must contain at least one uppercase letter.",
     }),
 });
@@ -52,10 +51,14 @@ export default function SignUp() {
     },
   });
 
+  const [register, { isSuccess, isLoading }] = useRegisterMutation();
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    register(values).then(() => {
+      if (isSuccess) {
+        redirect("/signup?onboard=true");
+      }
+    });
   }
 
   return (
@@ -129,6 +132,7 @@ export default function SignUp() {
                     <FormItem>
                       <FormControl>
                         <Input
+                          type="password"
                           placeholder="Password"
                           className="border-none bg-emerald-400 font-600 text-white placeholder:text-emerald-100"
                           {...field}
@@ -155,6 +159,9 @@ export default function SignUp() {
           <Button
             type="submit"
             className="rounded-full bg-white !font-600 text-emerald-700 hover:bg-emerald-100"
+            onClick={() => {
+              window.open(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`);
+            }}
           >
             Gabung menggunakan Google
           </Button>
