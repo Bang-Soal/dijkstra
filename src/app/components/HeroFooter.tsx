@@ -4,7 +4,6 @@ import heroMaskBottom from "@public/hero-mask-bottom.svg";
 import heroMaskTop from "@public/hero-mask-top.svg";
 
 // components
-import Iconify from "@/components/Iconify";
 import Quiz from "./Quiz";
 
 // libs
@@ -19,7 +18,7 @@ export default function HeroFooter() {
           Bank soal terlengkap untuk kamu yang terambis
         </h2>
         <p className="text-center text-emerald-200 md:text-left">
-          Tingkatkan latihanmu dengan ribuan soal asl UTBK, SNBT, SIMAK UI, dan
+          Tingkatkan latihanmu dengan ribuan soal asli UTBK, SNBT, SIMAK UI, dan
           ujian mandiri PTN lainnya.
         </p>
       </div>
@@ -30,31 +29,31 @@ export default function HeroFooter() {
       >
         <TabsList
           aria-label="UTBK category tabs"
-          className="z-10 -mr-8 flex shrink-0 flex-col rounded-2xl border border-surface-100/30 bg-surface-100/40 p-2 shadow-xl backdrop-blur-2xl children:rounded-lg children:px-2 children:py-5 children:text-4xl children:text-emerald-800 children:transition-colors"
+          className="z-10 -mr-8 flex shrink-0 flex-col rounded-2xl border border-surface-100/30 bg-surface-100/40 p-2 shadow-xl backdrop-blur-2xl children:rounded-lg children:px-2 children:py-5 children:text-emerald-800 children:transition-colors"
         >
           <TabsTrigger
             value="tab1"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify icon="ph:brain-duotone" className="" />
+            <i className="i-ph-brain-duotone h-9 w-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab2"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify icon="ph:math-operations-bold" className="" />
+            <i className="i-ph-math-operations-bold h-9 w-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab3"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify icon="ph:lightbulb-filament-duotone" className="" />
+            <i className="i-ph-lightbulb-filament-duotone h-9 w-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab4"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <Iconify icon="ph:book-open-text-duotone" className="" />
+            <i className="i-ph-book-open-text-duotone h-9 w-9" />
           </TabsTrigger>
         </TabsList>
         <div className="grow rounded-l-3xl bg-gradient-to-br from-surface-300/60 to-surface-300/20 py-3 pl-3 backdrop-blur-2xl">

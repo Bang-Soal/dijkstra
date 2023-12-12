@@ -1,8 +1,5 @@
 "use client";
 
-// components
-import Iconify from "@/components/Iconify";
-
 // libs
 import { ArcElement, Chart as ChartJS } from "chart.js";
 import { useInView } from "framer-motion";
@@ -92,7 +89,7 @@ export default function Quiz() {
         </div>
         <div className="-mt-24 flex flex-col items-center gap-3 text-emerald-900">
           {remainingTime === 0 ? (
-            <Iconify icon="ph:timer-bold" className="text-5xl" />
+            <i className="i-ph-timer-bold h-12 w-12" />
           ) : (
             <p className="text-5xl font-700">{remainingTime}</p>
           )}
@@ -103,7 +100,7 @@ export default function Quiz() {
         {remainingTime === 0 ? (
           <div className="mt-3 flex flex-col gap-1 rounded-lg bg-surface-200 p-3 text-sm text-content-300">
             <div className="flex items-center gap-1 text-base font-500 text-content-200">
-              <Iconify icon="ph:info-bold" />
+              <i className="i-ph-info-bold h-4 w-4" />
               Pembahasan
             </div>
             Semua sinden pandai menari tradisional. Sinden yang bernama Wening

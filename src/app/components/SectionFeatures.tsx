@@ -9,7 +9,7 @@ import { shuffle } from "@/lib/utils";
 
 export default function Features() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center px-5 py-20 sm:px-10 xl:px-20">
+    <section className="relative flex min-h-screen flex-col items-center px-5 py-20 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-6 py-10">
         <h1 className="text-balance text-center text-5xl font-700 text-content-100">
           Satu-satunya bimbingan UTBK yang kamu butuhkan

@@ -5,7 +5,7 @@ import HeroFooter from "./HeroFooter";
 import dayjs from "dayjs";
 import Image from "next/image";
 
-const UTBK_DATE = dayjs("2024-05-06");
+const UTBK_DATE = dayjs("2024-04-30");
 const daysLeft = UTBK_DATE.diff(dayjs(), "day");
 
 export default function Hero() {
