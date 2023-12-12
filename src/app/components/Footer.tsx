@@ -22,49 +22,78 @@ export default function Footer() {
         </Link>
       </div>
       <div className="flex flex-1 flex-col gap-10 rounded-2xl bg-gray-800 p-10">
-        <div className="flex flex-col gap-10 lg:flex-row">
-          <div className="flex flex-1 gap-1 text-xl/8 font-600 text-white">
-            <Logo className="h-8 w-8" stroke="stroke-white" fill="fill-white" />
-            BangSoal
-          </div>
-          <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
-            Belajar
-            <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-20">
+          <div className="flex flex-row items-center gap-5 lg:flex-col">
+            <div className="flex items-center gap-2 text-xl/8 font-600 text-white">
+              <Logo
+                className="h-8 w-8"
+                stroke="stroke-white"
+                fill="fill-white"
+              />
+              BangSoal
+            </div>
+            <div className="h-0.5 grow rounded-full bg-gray-700 lg:hidden" />
+            <div className="flex justify-center">
               <Link
-                href="/latihan-soal"
-                className={cn(buttonVariants({ variant: "link" }), "")}
+                href="https://www.instagram.com/bangsoal.co.id"
+                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
               >
-                Latihan
+                <i className="i-bi-instagram h-5 w-5 text-gray-300 group-hover:text-white" />
               </Link>
               <Link
-                href="/try-out"
-                className={cn(buttonVariants({ variant: "link" }), "")}
+                href="https://x.com/bangsoal_co_id"
+                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
               >
-                Try out
+                <i className="i-bi-twitter-x h-5 w-5 text-gray-300 group-hover:text-white" />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@bangsoal.co.id"
+                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
+              >
+                <i className="i-bi-tiktok h-5 w-5 text-gray-300 group-hover:text-white" />
               </Link>
             </div>
           </div>
-          <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
-            Komunitas
-            <div className="flex flex-col items-start children:p-0 children:text-surface-400">
-              <Link
-                href="/bang-catatan"
-                className={cn(buttonVariants({ variant: "link" }), "")}
-              >
-                Bang Catatan
-              </Link>
-              <Link
-                href="/leaderboard"
-                className={cn(buttonVariants({ variant: "link" }), "")}
-              >
-                Leaderboard
-              </Link>
-              <Link
-                href=""
-                className={cn(buttonVariants({ variant: "link" }), "")}
-              >
-                Grup WA
-              </Link>
+          <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
+              Belajar
+              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+                <Link
+                  href="/latihan-soal"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Latihan
+                </Link>
+                <Link
+                  href="/try-out"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Try out
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
+              Komunitas
+              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+                <Link
+                  href="/bang-catatan"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Bang Catatan
+                </Link>
+                <Link
+                  href="/leaderboard"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Leaderboard
+                </Link>
+                <Link
+                  href=""
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Grup WA
+                </Link>
+              </div>
             </div>
           </div>
         </div>

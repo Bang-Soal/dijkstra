@@ -1,7 +1,8 @@
+import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import type { Config } from "tailwindcss";
-const plugin = require("tailwindcss/plugin");
-const { createThemes } = require("tw-colors");
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
+import plugin from "tailwindcss/plugin";
+import { createThemes } from "tw-colors";
 
 const config: Config = {
   darkMode: ["class"],
@@ -44,7 +45,8 @@ const config: Config = {
           "slideUpAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       boxShadow: {
-        "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
+        "inner-xl": "inset 0 40px 40px 0 rgba(0 0 0 / 0.05)",
+        highlight: "inset 0 1px 0 0 rgba(255 255 255 / 0.15)",
       },
       fontWeight: {
         100: "100",
@@ -159,6 +161,9 @@ const config: Config = {
         "content-200": colors.gray[700],
         "content-300": colors.gray[500],
       },
+    }),
+    iconsPlugin({
+      collections: getIconCollections(["bi", "ph"]),
     }),
   ],
 };

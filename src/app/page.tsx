@@ -1,6 +1,7 @@
 import Hero from "./components/SectionHero";
 import Features from "./components/SectionFeatures";
 import Comparison from "./components/SectionComparison";
+import Testimonials from "./components/SectionTestimonials";
 import SignUp from "./components/SectionSignUp";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Comparison />
+      {/* <Testimonials /> */}
       <SignUp />
     </main>
   );
