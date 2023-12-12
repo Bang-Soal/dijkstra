@@ -11,11 +11,12 @@
     "wix.vscode-import-cost",
     "VisualStudioExptTeam.vscodeintellicode",
     "ms-vscode.vscode-typescript-next",
-    "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
     "SonarSource.sonarlint-vscode",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "antfu.iconify"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

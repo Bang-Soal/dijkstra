@@ -51,9 +51,9 @@ const topics: {
   },
 ];
 
-export default function NavMenu() {
+export default function NavMenuDesktop() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden lg:block">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
