@@ -41,33 +41,33 @@ export default function HeroFooter() {
             value="tab2"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <i className="i-ph-math-operations-bold h-9 w-9" />
+            <i className="i-ph-lightbulb-filament-duotone h-9 w-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab3"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <i className="i-ph-lightbulb-filament-duotone h-9 w-9" />
+            <i className="i-ph-book-open-text-duotone h-9 w-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab4"
             className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
           >
-            <i className="i-ph-book-open-text-duotone h-9 w-9" />
+            <i className="i-ph-math-operations-bold h-9 w-9" />
           </TabsTrigger>
         </TabsList>
         <div className="grow rounded-l-3xl bg-gradient-to-br from-surface-300/60 to-surface-300/20 py-3 pl-3 backdrop-blur-2xl">
           <TabsContent value="tab1">
-            <Quiz />
+            <Quiz topic="pu" />
           </TabsContent>
           <TabsContent value="tab2">
-            <Quiz />
+            <Quiz topic="ppu" />
           </TabsContent>
           <TabsContent value="tab3">
-            <Quiz />
+            <Quiz topic="pbm" />
           </TabsContent>
           <TabsContent value="tab4">
-            <Quiz />
+            <Quiz topic="pk" />
           </TabsContent>
         </div>
       </Tabs>
