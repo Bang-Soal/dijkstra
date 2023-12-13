@@ -5,7 +5,7 @@ import ComparisonScrollArea from "./ComparisonScrollArea";
 
 export default function Comparison() {
   return (
-    <section className="flex min-h-screen flex-col items-center px-5 sm:px-10 lg:px-20">
+    <section className="flex min-h-screen flex-col items-center px-5 py-10 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-6 py-10">
         <h1 className="text-balance text-center text-3xl font-700 text-content-100 sm:text-5xl">
           Temukan apa yang membuat BangSoal cocok untuk kamu

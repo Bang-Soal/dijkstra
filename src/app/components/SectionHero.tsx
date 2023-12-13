@@ -4,6 +4,7 @@ import HeroFooter from "./HeroFooter";
 // libs
 import dayjs from "dayjs";
 import Image from "next/image";
+import Link from "next/link";
 
 const UTBK_DATE = dayjs("2024-04-30");
 const daysLeft = UTBK_DATE.diff(dayjs(), "day");
@@ -60,12 +61,12 @@ export default function Hero() {
           </span>
         </h1>
         <div className="flex gap-3">
-          <button className="h-10 rounded-full bg-emerald-400 px-5">
-            <p className="font-500 text-white">Ajarin puh</p>
-          </button>
-          <button className="h-10 rounded-full border-2 border-surface-300 px-5">
-            <p className="font-500 text-content-200">Sudah dong</p>
-          </button>
+          <Link
+            href=""
+            className="rounded-full bg-emerald-400 px-5 py-3 font-500 text-white"
+          >
+            Ajarin bang!
+          </Link>
         </div>
         <Image
           src={"/hero-bg.svg"}

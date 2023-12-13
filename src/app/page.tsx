@@ -11,7 +11,7 @@ export default function Home() {
       <Features />
       <Comparison />
       {/* <Testimonials /> */}
-      <SignUp />
+      {/* <SignUp /> */}
     </main>
   );
 }

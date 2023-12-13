@@ -141,24 +141,42 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
             <Doughnut data={doughnutData} options={doughnutOptions} />
           </div>
           <div className="-mt-24 flex flex-col items-center gap-3 text-emerald-900">
-            {remainingTime === 0 ? (
-              <i className="i-ph-timer-bold h-12 w-12" />
+            {remainingTime === 0 && value.length === 0 ? (
+              <i className="i-ph-timer-bold h-12 w-12 text-content-300" />
+            ) : value.length === 1 ? (
+              <i className="i-ph-check-bold h-12 w-12 text-emerald-500" />
+            ) : value.length === 2 ? (
+              <i className="i-ph-x-bold h-12 w-12 text-rose-500" />
             ) : (
               <p className="text-5xl font-700">{remainingTime}</p>
             )}
-            <span className="w-16 text-center font-500">
-              {remainingTime === 0 ? "waktu habis!" : "detik"}
-            </span>
+            {remainingTime === 0 && value.length === 0 ? (
+              <span className="w-16 text-center font-500 text-content-200">
+                Waktu habis!
+              </span>
+            ) : value.length === 1 ? (
+              <span className="w-16 text-center font-500 text-emerald-700">
+                Jawaban benar!
+              </span>
+            ) : value.length === 2 ? (
+              <span className="w-16 text-center font-500 text-rose-700">
+                Jawaban salah!
+              </span>
+            ) : (
+              <span className="w-16 text-center font-500 text-content-200">
+                detik
+              </span>
+            )}
           </div>
         </div>
       </div>
       <ToggleGroup
         type="multiple"
-        value={value}
+        value={remainingTime === 0 ? [...value, "answer"] : value}
         onValueChange={(value) => {
           handleChange(value);
         }}
-        disabled={answered}
+        disabled={answered || remainingTime === 0}
         className="flex flex-col gap-1 pt-3"
       >
         {data.choices.map((choice) => (
@@ -166,9 +184,9 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
             key={choice.id}
             value={choice.id === data.answer ? "answer" : choice.id}
             data-answer={choice.id === data.answer ? "true" : "false"}
-            className="flex w-full select-none items-center justify-start gap-2 truncate rounded-md border border-surface-300 bg-surface-100 p-1 text-left font-500 text-content-200 transition-transform hover:scale-[1.025] hover:bg-surface-100 hover:text-content-200 active:scale-[0.975] data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-900 data-[state=on]:data-[answer=true]:text-emerald-900"
+            className="group flex w-full select-none items-center justify-start gap-2 truncate rounded-md border border-surface-300 bg-surface-100 p-1 font-500 text-content-200 transition-transform hover:scale-[1.025] hover:bg-surface-100 active:scale-[0.975] data-[state=on]:data-[answer=false]:border-rose-300 data-[state=on]:data-[answer=true]:border-emerald-300 data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-900 data-[state=on]:data-[answer=true]:text-emerald-900"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface-200 p-1 font-700 uppercase text-content-100">
+            <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface-200 p-1 font-700 uppercase text-content-100 group-data-[state=on]:group-data-[answer=false]:bg-rose-300 group-data-[state=on]:group-data-[answer=true]:bg-emerald-300 group-data-[state=on]:group-data-[answer=false]:text-rose-900 group-data-[state=on]:group-data-[answer=true]:text-emerald-900">
               {choice.id}
             </div>
             {handleKatex(choice.text)}
