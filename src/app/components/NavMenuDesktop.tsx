@@ -1,5 +1,4 @@
 // components
-import Iconify from "@/components/Iconify";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -80,52 +79,18 @@ export default function NavMenuDesktop() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Leaderboard</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid grid-cols-2 gap-3 p-6 md:w-[400px] lg:w-[500px]">
-              <li className="col-span-2">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <Iconify icon="ph:rocket-bold" className="text-base" />
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
+          <Link href="/bang-catatan" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Bang Catatan
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Bang Catatan</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid grid-cols-2 gap-3 p-6 md:w-[400px] lg:w-[500px]">
-              <li className="col-span-2">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <Iconify icon="ph:rocket-bold" className="text-base" />
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
+          <Link href="/leaderboard" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Leaderboard
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

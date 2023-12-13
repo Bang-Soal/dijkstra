@@ -57,6 +57,51 @@ export default function NavMenuMobile() {
                 >
                   Penalaran Umum
                 </Link>
+                <Link
+                  href="/latihan-soal/ppu"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Pengetahuan dan Pemahaman Umum
+                </Link>
+                <Link
+                  href="/latihan-soal/pbm"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Pemahaman Bacaan dan Menulis
+                </Link>
+                <Link
+                  href="/latihan-soal/pk"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Penalaran Kuantitatif
+                </Link>
+                <Link
+                  href="/latihan-soal/bindo"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Bahasa Indonesia
+                </Link>
+                <Link
+                  href="/latihan-soal/bing"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Bahasa Inggris
+                </Link>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
