@@ -1,6 +1,7 @@
 import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 import { createThemes } from "tw-colors";
 
@@ -137,6 +138,10 @@ const config: Config = {
           to: { opacity: "0", transform: "translateY(-4px)  scale(0.9)" },
         },
       },
+    },
+    screens: {
+      xs: "475px",
+      ...defaultTheme.screens,
     },
   },
   plugins: [
