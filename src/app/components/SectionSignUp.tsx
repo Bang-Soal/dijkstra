@@ -156,7 +156,8 @@ export default function SignUp() {
             type="submit"
             className="rounded-full bg-white !font-600 text-emerald-700 hover:bg-emerald-100"
           >
-            Gabung menggunakan Google
+            <i className="i-logos-google-icon mr-2 h-4 w-4" />
+            <p className="">Daftar dengan Google</p>
           </Button>
         </div>
       </div>
