@@ -25,6 +25,7 @@
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tailwindcss/container-queries": "^0.1.1",
+    "@types/react-katex": "^3.0.4",
     "chart.js": "^4.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -37,6 +38,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.49.1",
+    "react-katex": "^3.0.1",
     "sharp": "^0.33.0",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
@@ -45,6 +47,7 @@
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.6.0",
     "@iconify-json/bi": "^1.1.22",
+    "@iconify-json/logos": "^1.1.41",
     "@iconify-json/ph": "^1.1.9",
     "@iconify/react": "4.1.1",
     "@swc-jotai/react-refresh": "^0.1.0",

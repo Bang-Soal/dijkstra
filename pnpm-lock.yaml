@@ -50,6 +50,9 @@ dependencies:
   '@tailwindcss/container-queries':
     specifier: ^0.1.1
     version: 0.1.1(tailwindcss@3.3.6)
+  '@types/react-katex':
+    specifier: ^3.0.4
+    version: 3.0.4
   chart.js:
     specifier: ^4.4.1
     version: 4.4.1
@@ -86,6 +89,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.49.1
     version: 7.49.1(react@18.2.0)
+  react-katex:
+    specifier: ^3.0.1
+    version: 3.0.1(prop-types@15.8.1)(react@18.2.0)
   sharp:
     specifier: ^0.33.0
     version: 0.33.0
@@ -106,6 +112,9 @@ devDependencies:
   '@iconify-json/bi':
     specifier: ^1.1.22
     version: 1.1.22
+  '@iconify-json/logos':
+    specifier: ^1.1.41
+    version: 1.1.41
   '@iconify-json/ph':
     specifier: ^1.1.9
     version: 1.1.9
@@ -320,6 +329,12 @@ packages:
 
   /@iconify-json/bi@1.1.22:
     resolution: {integrity: sha512-6hg+xd6PW1TVm6bj4SIpWEyIk67O7Ms8NPBSOp3p0hUdL4AVmY4iYEh3Fst33sSI0yblPacfa2zcpP8WCJ/h3A==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/logos@1.1.41:
+    resolution: {integrity: sha512-nq69aemSNSxsPh6hDx6QHQBZca6vQzTg6fUXdo996IQe41TNueyJrQXjdhaZr0jaqGEforuSPGLB16SMSZ+T2A==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -1556,6 +1571,12 @@ packages:
     dependencies:
       '@types/react': 18.2.45
 
+  /@types/react-katex@3.0.4:
+    resolution: {integrity: sha512-aLkykKzSKLpXI6REJ3uClao6P47HAFfR1gcHOZwDeTuALsyjgMhz+oynLV4gX0kiJVnvHrBKF/TLXqyNTpHDUg==}
+    dependencies:
+      '@types/react': 18.2.45
+    dev: false
+
   /@types/react@18.2.45:
     resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==}
     dependencies:
@@ -1989,6 +2010,11 @@ packages:
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
+
+  /commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+    dev: false
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -3139,6 +3165,13 @@ packages:
       object.values: 1.1.7
     dev: true
 
+  /katex@0.16.9:
+    resolution: {integrity: sha512-fsSYjWS0EEOwvy81j3vRA8TEAhQhKiqO+FQaKWp0m39qwOzHVBgAUBIXWj1pB+O2W3fIpNa6Y9KSKCVbfPhyAQ==}
+    hasBin: true
+    dependencies:
+      commander: 8.3.0
+    dev: false
+
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
     dependencies:
@@ -3703,7 +3736,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -3744,7 +3776,17 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
+
+  /react-katex@3.0.1(prop-types@15.8.1)(react@18.2.0):
+    resolution: {integrity: sha512-wIUW1fU5dHlkKvq4POfDkHruQsYp3fM8xNb/jnc8dnQ+nNCnaj0sx5pw7E6UyuEdLRyFKK0HZjmXBo+AtXXy0A==}
+    peerDependencies:
+      prop-types: ^15.8.1
+      react: '>=15.3.2 <=18'
+    dependencies:
+      katex: 0.16.9
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
 
   /react-remove-scroll-bar@2.3.4(@types/react@18.2.45)(react@18.2.0):
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
