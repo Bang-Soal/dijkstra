@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-1 flex-col gap-10 rounded-2xl bg-gray-800 p-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-20">
-          <div className="flex flex-row items-center gap-5 lg:flex-col">
+          <div className="flex flex-row items-center justify-between gap-5 sm:justify-normal lg:flex-col">
             <div className="flex items-center gap-2 text-xl/8 font-600 text-white">
               <Logo
                 className="h-8 w-8"
@@ -32,7 +32,7 @@ export default function Footer() {
               />
               BangSoal
             </div>
-            <div className="h-0.5 grow rounded-full bg-gray-700 lg:hidden" />
+            <div className="hidden h-0.5 grow rounded-full bg-gray-700 xs:block lg:hidden" />
             <div className="flex justify-center">
               <Link
                 href="https://www.instagram.com/bangsoal.co.id"
