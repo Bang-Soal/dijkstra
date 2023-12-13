@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export default function Footer() {
   return (
     <footer className="flex flex-col gap-3 p-4 lg:flex-row">
-      <div className="flex grow flex-col justify-center gap-6 rounded-2xl bg-[url('/bg-mesh-hero.webp')] bg-center p-10 lg:w-80 lg:grow-0">
+      <div className="flex grow flex-col justify-center gap-6 rounded-2xl bg-[url('/bg-mesh-horizontal.webp')] bg-center p-10 lg:w-80 lg:grow-0">
         <p className="text-2xl font-600 text-white">
           Ambiskan persiapan UTBK-mu sekarang
         </p>
