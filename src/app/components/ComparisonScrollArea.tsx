@@ -12,11 +12,14 @@ import Image from "next/image";
 
 export default function ComparisonScrollArea() {
   return (
-    <ScrollArea.Root type="auto" className="w-40 flex-1">
+    <ScrollArea.Root type="auto" className="w-20 flex-1">
       <ScrollArea.Viewport className="w-full">
         <div className="relative flex">
           {data.others.map((other) => (
-            <div key={other.id} className="flex min-w-[160px] flex-1 flex-col">
+            <div
+              key={other.id}
+              className="flex min-w-[120px] flex-1 flex-col sm:min-w-[160px]"
+            >
               <div className="sticky top-0 bg-surface-100/5 backdrop-blur-xl">
                 <div className="flex h-28 items-center justify-center">
                   <Image
@@ -28,7 +31,7 @@ export default function ComparisonScrollArea() {
                   />
                 </div>
                 <div className="relative my-3 h-1 bg-surface-300">
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface-200 px-5 py-1 font-600 text-content-200">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface-200 px-5 py-1 text-sm font-600 text-content-200 sm:text-base">
                     {other.id}
                   </div>
                 </div>

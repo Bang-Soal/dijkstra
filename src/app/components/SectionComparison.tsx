@@ -5,9 +5,9 @@ import ComparisonScrollArea from "./ComparisonScrollArea";
 
 export default function Comparison() {
   return (
-    <section className="flex min-h-screen flex-col items-center px-5 py-20 sm:px-10 lg:px-20">
+    <section className="flex min-h-screen flex-col items-center px-5 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-6 py-10">
-        <h1 className="text-balance text-center text-5xl font-700 text-content-100">
+        <h1 className="text-balance text-center text-3xl font-700 text-content-100 sm:text-5xl">
           Temukan apa yang membuat BangSoal cocok untuk kamu
         </h1>
         <p className="text-balance text-center font-500 text-content-300">
@@ -16,10 +16,10 @@ export default function Comparison() {
         </p>
       </div>
       <div className="relative flex w-full">
-        <div className="flex min-w-[320px] shrink-0 basis-2/5">
+        <div className="flex min-w-[240px] shrink-0 basis-2/5 sm:min-w-[320px]">
           <div className="flex flex-1 flex-col">
             <div className="sticky top-12 bg-surface-100">
-              <div className="flex h-28 w-full items-end justify-center text-center text-3xl font-600 text-content-100">
+              <div className="flex h-28 w-full items-end justify-center text-center text-xl font-600 text-content-100 sm:text-3xl">
                 Features
               </div>
               <div className="my-3 h-1 bg-surface-300" />
@@ -27,7 +27,7 @@ export default function Comparison() {
             {data.features.map((feature) => (
               <div
                 key={feature}
-                className="flex h-28 items-center justify-center px-5 text-center font-600 text-content-200"
+                className="flex h-28 items-center justify-center px-2 text-center text-xs font-600 text-content-200 sm:px-5 sm:text-base"
               >
                 {feature}
               </div>
@@ -39,7 +39,7 @@ export default function Comparison() {
                 <Logo className="h-16 w-16" />
               </div>
               <div className="relative my-3 h-1 bg-emerald-300">
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200 px-5 py-1 font-600 text-emerald-800">
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200 px-5 py-1 text-sm font-600 text-emerald-800 sm:text-base">
                   BangSoal
                 </div>
               </div>
