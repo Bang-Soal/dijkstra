@@ -47,7 +47,7 @@ const config: Config = {
       },
       boxShadow: {
         "inner-xl": "inset 0 40px 40px 0 rgba(0 0 0 / 0.05)",
-        highlight: "inset 0 1px 0 0 rgba(255 255 255 / 0.15)",
+        highlight: "inset 0 1.5px 0.5px 0 rgba(255 255 255 / 0.15)",
       },
       fontWeight: {
         100: "100",
@@ -168,7 +168,7 @@ const config: Config = {
       },
     }),
     iconsPlugin({
-      collections: getIconCollections(["bi", "ph"]),
+      collections: getIconCollections(["bi", "logos", "ph"]),
     }),
   ],
 };
