@@ -19,6 +19,7 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
+        "infinite-track": "infinite-track 10s linear infinite",
         "slide-right":
           "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
         // Accordion
@@ -69,6 +70,10 @@ const config: Config = {
         slideRight: {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
+        },
+        "infinite-track": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-160px)" },
         },
         // Accordion
         slideDownItem: {
