@@ -7,15 +7,14 @@ import rickroll from "@public/rickroll.webp";
 import {
   ContextMenu,
   ContextMenuContent,
-  ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 
 // libs
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ComingSoon() {
   const path = usePathname();
