@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 // libs
 import Link from "next/link";
 
+// utils
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
@@ -88,7 +89,7 @@ export default function Footer() {
                   Leaderboard
                 </Link>
                 <Link
-                  href=""
+                  href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
                   className={cn(buttonVariants({ variant: "link" }), "")}
                 >
                   Grup WA
