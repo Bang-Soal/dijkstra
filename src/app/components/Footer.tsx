@@ -1,14 +1,23 @@
+"use client";
+
 // component
 import Logo from "@/components/Logo";
 import { buttonVariants } from "@/components/ui/button";
 
 // libs
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // utils
 import { cn } from "@/lib/utils";
 
 export default function Footer() {
+  const path = usePathname();
+
+  if (path === "/latihan-soal" || path === "/try-out") {
+    return null;
+  }
+
   return (
     <footer className="flex flex-col gap-3 p-4 lg:flex-row">
       <div className="flex grow flex-col justify-center gap-6 rounded-2xl bg-[url('/bg-mesh-horizontal.webp')] bg-center p-10 lg:w-80 lg:grow-0">
