@@ -62,7 +62,7 @@ export default function Hero() {
         </h1>
         <div className="flex gap-3">
           <Link
-            href=""
+            href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
             className="rounded-full bg-emerald-400 px-5 py-3 font-500 text-white"
           >
             Ajarin bang!
