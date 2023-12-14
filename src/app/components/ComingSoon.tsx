@@ -20,7 +20,7 @@ export default function ComingSoon() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex h-screen flex-col items-center justify-center bg-surface-100/20 px-10 backdrop-blur-2xl">
+    <div className="fixed inset-0 z-50 flex h-screen flex-col items-center justify-center bg-surface-100/70 px-10 backdrop-blur-2xl">
       <Image
         src="/illustrations/empty-state-under-construction.svg"
         alt="Under Construction"
