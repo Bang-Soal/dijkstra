@@ -20,15 +20,15 @@ export default function ComingSoon() {
   const path = usePathname();
 
   useEffect(() => {
-    if (path !== "/" && path !== "/pricing") {
+    if (path !== "/" && path !== "/langganan") {
       document.body.classList.add("h-screen", "overflow-hidden");
     }
-    if (path === "/" || path === "/pricing") {
+    if (path === "/" || path === "/langganan") {
       document.body.classList.remove("h-screen", "overflow-hidden");
     }
   }, [path]);
 
-  if (path === "/" || path === "/pricing") {
+  if (path === "/" || path === "/langganan") {
     return null;
   }
 
