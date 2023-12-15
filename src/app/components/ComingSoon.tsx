@@ -20,9 +20,12 @@ export default function ComingSoon() {
   const path = usePathname();
 
   useEffect(() => {
-    path !== "/" && document.body.classList.add("h-screen", "overflow-hidden");
-    path === "/" &&
+    if (path !== "/" && path !== "/pricing") {
+      document.body.classList.add("h-screen", "overflow-hidden");
+    }
+    if (path === "/" || path === "/pricing") {
       document.body.classList.remove("h-screen", "overflow-hidden");
+    }
   }, [path]);
 
   if (path === "/" || path === "/pricing") {
