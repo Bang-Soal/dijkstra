@@ -34,7 +34,7 @@ export default function Comparison() {
             ))}
           </div>
           <div className="flex flex-1 flex-col rounded-2xl bg-[url('/bg-mesh-vertical-2.webp')] bg-cover">
-            <div className="sticky top-12 rounded-t-2xl bg-white/5 backdrop-blur-xl">
+            <div className="sticky top-12 z-10 rounded-t-2xl bg-white/5 backdrop-blur-xl">
               <div className="flex h-28 items-center justify-center">
                 <Logo className="h-16 w-16" />
               </div>
@@ -49,10 +49,7 @@ export default function Comparison() {
                 key={data.features[i]}
                 className="flex h-28 items-center justify-center"
               >
-                <Iconify
-                  icon="ph:seal-check-bold"
-                  className="text-4xl text-emerald-700"
-                />
+                <i className="i-ph-seal-check-bold h-10 w-10 text-emerald-700" />
               </div>
             ))}
           </div>
@@ -77,9 +74,19 @@ export const data = {
   ],
   others: [
     {
-      id: "Online",
+      id: "Buku soal",
       logo: "/icons/ph-globe.svg",
-      icons: ["minus", "minus", "check", "x", "x", "x", "x", "x", "x"],
+      icons: [
+        "i-ph-minus-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+      ],
       tooltips: [
         "Tidak semua soal asli",
         "Tidak semua menyediakan pembahasan",
@@ -95,13 +102,33 @@ export const data = {
     {
       id: "Ruangguru",
       logo: "/icons/ruangguru.svg",
-      icons: ["x", "check", "check", "check", "x", "x", "x", "x", "x"],
+      icons: [
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+      ],
       tooltips: [null, null, null, null, null, null, null, null, null],
     },
     {
       id: "Inten",
       logo: "/icons/inten.svg",
-      icons: ["x", "check", "check", "check", "x", "x", "x", "x", "x"],
+      icons: [
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-x-circle-bold text-surface-500",
+      ],
       tooltips: [null, null, null, null, null, null, null, null, null],
     },
   ],
