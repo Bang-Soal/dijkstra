@@ -121,7 +121,7 @@ export default function NavMenuMobile() {
             href="/bang-catatan"
             className={cn(buttonVariants({ variant: "link" }), "text-base")}
           >
-            Bang catatan
+            BangCatatan
           </Link>
           <Link
             href="/leaderboard"
