@@ -88,7 +88,7 @@ export default function NavMenuDesktop() {
         <NavigationMenuItem>
           <Link href="/bang-catatan" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Bang Catatan
+              BangCatatan
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
