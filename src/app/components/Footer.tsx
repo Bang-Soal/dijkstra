@@ -109,17 +109,17 @@ export default function Footer() {
               Info
               <div className="flex flex-col items-start children:p-0 children:text-surface-400">
                 <Link
-                  href="/pricing"
+                  href="/langganan"
                   className={cn(buttonVariants({ variant: "link" }), "")}
                 >
-                  Pricing
+                  Langganan
                 </Link>
-                <Link
+                {/* <Link
                   href="/tentang-kami"
                   className={cn(buttonVariants({ variant: "link" }), "")}
                 >
                   Tentang kami
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
