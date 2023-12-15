@@ -152,6 +152,7 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/container-queries"),
     require("tailwindcss-animate"),
+    require("tailwind-gradient-mask-image"),
     plugin(function ({ addVariant }: { addVariant: Function }) {
       addVariant("children", "&>*");
     }),

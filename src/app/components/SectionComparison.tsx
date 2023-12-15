@@ -75,10 +75,10 @@ export const data = {
   others: [
     {
       id: "Buku soal",
-      logo: "/icons/ph-globe.svg",
+      logo: "/icons/PhBookOpenText.svg",
       icons: [
-        "i-ph-minus-circle-bold text-surface-500",
-        "i-ph-minus-circle-bold text-surface-500",
+        "i-ph-check-circle-bold text-emerald-500",
+        "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-x-circle-bold text-surface-500",
         "i-ph-x-circle-bold text-surface-500",

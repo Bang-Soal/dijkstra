@@ -55,9 +55,9 @@ export default function NavMenuDesktop() {
     <NavigationMenu className="hidden lg:block">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/pricing" legacyBehavior passHref>
+          <Link href="/langganan" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Pricing
+              Langganan
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
