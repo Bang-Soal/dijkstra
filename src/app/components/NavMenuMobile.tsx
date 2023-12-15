@@ -44,6 +44,12 @@ export default function NavMenuMobile() {
           </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col items-start">
+          <Link
+            href="/pricing"
+            className={cn(buttonVariants({ variant: "link" }), "text-base")}
+          >
+            Pricing
+          </Link>
           <Accordion type="single" collapsible className="w-full px-4 pt-5">
             <AccordionItem value="item-1" className="border-b-0">
               <AccordionTrigger className="pb-2">Latihan soal</AccordionTrigger>
