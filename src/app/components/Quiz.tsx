@@ -184,12 +184,12 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
             key={choice.id}
             value={choice.id === data.answer ? "answer" : choice.id}
             data-answer={choice.id === data.answer ? "true" : "false"}
-            className="group flex w-full select-none items-center justify-start gap-2 truncate rounded-md border border-surface-300 bg-surface-100 p-1 font-500 text-content-200 transition-transform hover:scale-[1.025] hover:bg-surface-100 active:scale-[0.975] data-[state=on]:data-[answer=false]:border-rose-300 data-[state=on]:data-[answer=true]:border-emerald-300 data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-900 data-[state=on]:data-[answer=true]:text-emerald-900"
+            className="group flex h-auto w-full select-none items-center justify-start gap-2 rounded-md border border-surface-300 bg-surface-100 p-1 pr-2 text-left font-500 text-content-200 transition-transform hover:scale-[1.025] hover:bg-surface-100 active:scale-[0.975] data-[state=on]:data-[answer=false]:border-rose-300 data-[state=on]:data-[answer=true]:border-emerald-300 data-[state=on]:data-[answer=false]:bg-rose-200 data-[state=on]:data-[answer=true]:bg-emerald-200 data-[state=on]:data-[answer=false]:text-rose-900 data-[state=on]:data-[answer=true]:text-emerald-900"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface-200 p-1 font-700 uppercase text-content-100 group-data-[state=on]:group-data-[answer=false]:bg-rose-300 group-data-[state=on]:group-data-[answer=true]:bg-emerald-300 group-data-[state=on]:group-data-[answer=false]:text-rose-900 group-data-[state=on]:group-data-[answer=true]:text-emerald-900">
+            <div className="flex w-8 shrink-0 items-center justify-center self-stretch rounded-sm bg-surface-200 font-700 uppercase text-content-100 group-data-[state=on]:group-data-[answer=false]:bg-rose-300 group-data-[state=on]:group-data-[answer=true]:bg-emerald-300 group-data-[state=on]:group-data-[answer=false]:text-rose-900 group-data-[state=on]:group-data-[answer=true]:text-emerald-900">
               {choice.id}
             </div>
-            {handleKatex(choice.text)}
+            <p className="py-2">{handleKatex(choice.text)}</p>
           </ToggleGroupItem>
         ))}
       </ToggleGroup>

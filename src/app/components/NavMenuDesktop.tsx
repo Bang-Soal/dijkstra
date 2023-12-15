@@ -55,6 +55,13 @@ export default function NavMenuDesktop() {
     <NavigationMenu className="hidden lg:block">
       <NavigationMenuList>
         <NavigationMenuItem>
+          <Link href="/pricing" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Pricing
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuTrigger>
             <Link href="/latihan-soal">Latihan soal</Link>
           </NavigationMenuTrigger>
