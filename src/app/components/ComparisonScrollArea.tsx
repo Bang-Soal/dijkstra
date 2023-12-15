@@ -1,14 +1,14 @@
 "use client";
 
-// components
-import Iconify from "@/components/Iconify";
-
 // data
 import { data } from "./SectionComparison";
 
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import Image from "next/image";
+
+// utils
+import { cn } from "@/lib/utils";
 
 export default function ComparisonScrollArea() {
   return (
@@ -41,10 +41,7 @@ export default function ComparisonScrollArea() {
                   key={data.features[i]}
                   className="flex h-28 shrink-0 items-center justify-center"
                 >
-                  <Iconify
-                    icon={`ph:${icon}-circle-bold`}
-                    className="text-4xl text-content-300"
-                  />
+                  <i className={cn(icon, "h-10 w-10")} />
                 </div>
               ))}
             </div>

@@ -34,7 +34,7 @@ export default function Footer() {
       <div className="flex flex-1 flex-col gap-10 rounded-2xl bg-gray-800 p-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-20">
           <div className="flex flex-row items-center justify-between gap-5 sm:justify-normal lg:flex-col">
-            <div className="flex items-center gap-2 text-xl/8 font-600 text-white">
+            <div className="flex items-center gap-1 text-xl/8 font-600 text-white">
               <Logo
                 className="h-8 w-8"
                 stroke="stroke-white"
@@ -89,7 +89,7 @@ export default function Footer() {
                   href="/bang-catatan"
                   className={cn(buttonVariants({ variant: "link" }), "")}
                 >
-                  Bang Catatan
+                  BangCatatan
                 </Link>
                 <Link
                   href="/leaderboard"
@@ -102,6 +102,23 @@ export default function Footer() {
                   className={cn(buttonVariants({ variant: "link" }), "")}
                 >
                   Grup WA
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
+              Info
+              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+                <Link
+                  href="/pricing"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Pricing
+                </Link>
+                <Link
+                  href="/tentang-kami"
+                  className={cn(buttonVariants({ variant: "link" }), "")}
+                >
+                  Tentang kami
                 </Link>
               </div>
             </div>
