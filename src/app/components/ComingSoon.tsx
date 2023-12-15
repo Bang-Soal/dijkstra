@@ -25,7 +25,7 @@ export default function ComingSoon() {
       document.body.classList.remove("h-screen", "overflow-hidden");
   }, [path]);
 
-  if (path === "/" || path === "pricing") {
+  if (path === "/" || path === "/pricing") {
     return null;
   }
 
