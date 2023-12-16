@@ -66,6 +66,9 @@ export default function FeatureCard({
           disabled={answered}
           className="flex flex-col gap-0.5"
         >
+          <p className="self-start pb-2 text-left font-500 text-content-300">
+            Pilih jawaban yang tepat:
+          </p>
           {choices.map((choice) => (
             <ToggleGroupItem
               key={choice}
