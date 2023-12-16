@@ -48,7 +48,7 @@ export const SignupForm = () => {
       </div>
 
       <div className="-mx-10 -mb-8 overflow-hidden md:overflow-visible lg:w-1/2 lg:self-end">
-        <div className="w-full min-w-[380px]  -skew-x-12 overflow-hidden rounded-2xl bg-emerald-100/50 p-4 shadow-lg">
+        <div className="w-full min-w-[380px] -skew-x-12 overflow-hidden rounded-2xl bg-emerald-100/50 p-4 shadow-lg">
           <div className="rounded-2xl bg-white py-16">
             <div className="flex skew-x-12 flex-col items-center justify-center px-10 py-4">
               <div className="flex flex-col gap-2 text-center">
