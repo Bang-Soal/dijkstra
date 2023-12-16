@@ -47,7 +47,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@egoist/tailwindcss-icons": "^1.7.0",
+    "@egoist/tailwindcss-icons": "^1.7.1",
     "@iconify-json/bi": "^1.1.22",
     "@iconify-json/logos": "^1.1.41",
     "@iconify-json/ph": "^1.1.9",
