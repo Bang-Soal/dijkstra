@@ -13,6 +13,7 @@ import "./globals.scss";
 
 // providers
 import Providers from "./providers";
+import Script from "next/script";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -30,6 +31,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light">
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-M8NGWXK801" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-M8NGWXK801');
+        `}
+      </Script>
       <body className={`${quicksand.className} relative flex bg-surface-100`}>
         <Providers>
           <ComingSoon />
