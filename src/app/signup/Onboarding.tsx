@@ -1,5 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useEffect } from "react";
 
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,14 +13,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { DUMMY_PTN as ptnList } from "./constants";
+
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useGetAllPTNQuery } from "@/redux/api/ptnApi";
 import { useOnboardingMutation } from "@/redux/api/usersApi";
 import { onboardingFormSchema } from "@/types/schema/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+import SearchableDropdown from "@/components/ui/searchable-dropdown";
+import { PTN } from "@/types";
+import { PTNChoices } from "./interface";
 
 export const Onboarding = () => {
   const form = useForm<z.infer<typeof onboardingFormSchema>>({
@@ -36,7 +44,38 @@ export const Onboarding = () => {
     },
   });
 
-  const { data: ptnList } = useGetAllPTNQuery();
+  const { setValue, watch, getValues } = form;
+  // const { data: ptnList } = useGetAllPTNQuery();
+  const ptnOptions = ptnList?.map(({ name }) => name) ?? [];
+  const uniOne = watch("choosen_university_one");
+  const uniTwo = watch("choosen_university_two");
+  const uniThree = watch("choosen_university_three");
+  const ptnValues = getValues([
+    "choosen_university_one",
+    "choosen_university_two",
+    "choosen_university_three",
+  ]);
+
+  const [selectedPTN, setSelectedPTN] = useState<PTNChoices>({
+    one: null,
+    two: null,
+    three: null,
+  });
+  const [selectedMajor, setSelectedMajor] = useState({
+    one: "",
+    two: "",
+    three: "",
+  });
+
+  useEffect(() => {
+    if (ptnList) {
+      setSelectedPTN({
+        one: ptnList.find(({ name }) => name == ptnValues[0]) ?? null,
+        two: ptnList.find(({ name }) => name == ptnValues[1]) ?? null,
+        three: ptnList.find(({ name }) => name == ptnValues[2]) ?? null,
+      });
+    }
+  }, [uniOne, uniTwo, uniThree]);
 
   const [onboard, { isSuccess, isLoading }] = useOnboardingMutation();
 
@@ -60,7 +99,7 @@ export const Onboarding = () => {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll px-4 pb-16 pt-8"
+                className="mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll px-4 py-8"
               >
                 <div className="flex flex-col gap-4">
                   <FormField
@@ -110,131 +149,123 @@ export const Onboarding = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="choosen_university_one"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              Which PTN are you aiming for?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Primary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="PTN" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="choosen_major_one"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              What do you hope to major in?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Primary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="Major" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="choosen_university_two"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              Which PTN are you aiming for?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Secondary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="PTN" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="choosen_major_two"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              What do you hope to major in?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Secondary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="Major" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="choosen_university_three"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              Which PTN are you aiming for?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Tertiary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="PTN" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="choosen_major_three"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <>
-                            <FormLabel>
-                              What do you hope to major in?{" "}
-                              <span className="text-xs text-gray-400">
-                                &#40;Tertiary Choice&#41;
-                              </span>
-                              <span className="text-xs text-gray-400">
-                                &#40;Secondary Choice&#41;
-                              </span>
-                            </FormLabel>
-                            <Input placeholder="Major" {...field} />
-                          </>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>
+                          Which PTN are you aiming for?{" "}
+                          <span className="text-xs text-gray-400">
+                            &#40;Primary Choice&#41;
+                          </span>
+                        </FormLabel>
+                        <SearchableDropdown
+                          options={ptnOptions}
+                          setValue={setValue}
+                          field={"choosen_university_one"}
+                          placeholder="PTN"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>What do you hope to major in? </FormLabel>
+                        <SearchableDropdown
+                          options={selectedPTN.one?.prodi ?? []}
+                          setValue={setValue}
+                          field={"choosen_major_one"}
+                          placeholder="Major"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>
+                          Which PTN are you aiming for?{" "}
+                          <span className="text-xs text-gray-400">
+                            &#40;Secondary Choice&#41;
+                          </span>
+                        </FormLabel>
+                        <SearchableDropdown
+                          options={ptnOptions}
+                          setValue={setValue}
+                          field={"choosen_university_two"}
+                          placeholder="PTN"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>
+                          What do you hope to major in?{" "}
+                          <span className="text-xs text-gray-400">
+                            &#40;Secondary Choice&#41;
+                          </span>
+                        </FormLabel>
+                        <SearchableDropdown
+                          options={selectedPTN.two?.prodi ?? []}
+                          setValue={setValue}
+                          field={"choosen_university_two"}
+                          placeholder="PTN"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>
+                          Which PTN are you aiming for?{" "}
+                          <span className="text-xs text-gray-400">
+                            &#40;Tertiary Choice&#41;
+                          </span>
+                        </FormLabel>
+                        <SearchableDropdown
+                          options={ptnOptions}
+                          setValue={setValue}
+                          field={"choosen_university_three"}
+                          placeholder="PTN"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+
+                  <FormItem>
+                    <FormControl>
+                      <>
+                        <FormLabel>
+                          What do you hope to major in?{" "}
+                          <span className="text-xs text-gray-400">
+                            &#40;Tertiary Choice&#41;
+                          </span>
+                        </FormLabel>
+                        <SearchableDropdown
+                          options={selectedPTN.three?.prodi ?? []}
+                          setValue={setValue}
+                          field={"choosen_major_three"}
+                          placeholder="PTN"
+                        />
+                      </>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 </div>
-                <div className="flex flex-row justify-end">
+                <div className="flex flex-row justify-end pt-8">
                   <Button
                     type="submit"
                     className="w-40 items-end rounded-full bg-emerald-400 !font-600 text-white hover:bg-emerald-400/70"
