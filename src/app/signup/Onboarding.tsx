@@ -87,19 +87,19 @@ export const Onboarding = () => {
     });
   }
   return (
-    <div className="mx-16 flex h-full flex-col-reverse items-center justify-center gap-10 md:flex-row">
-      <div className="-mb-16 w-full overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg lg:w-2/3 ">
-        <div className="rounded-2xl bg-white">
-          <div className="relative flex flex-col items-center justify-center px-10 py-4">
-            <p className="mt-12 text-center text-3xl font-bold md:mx-20">
+    <div className="flex h-full items-center justify-center gap-10 lg:mx-16">
+      <div className="-mb-16 overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg">
+        <div className="w-full rounded-2xl bg-white">
+          <div className="relative z-10 flex flex-col items-center justify-center px-10 py-4">
+            <p className="mt-6 text-center text-2xl font-bold md:mx-20 md:mt-12 md:text-3xl">
               Let&apos;s get your UTBK journey started
             </p>
-            <div className="absolute inset-x-0 top-20 h-24 w-full rounded-[50%] bg-transparent shadow-[0_6px_10px_-5px_rgba(0,0,0,0.2)]" />
+            <div className="absolute inset-x-0 top-[6%] h-24 w-full rounded-[50%] bg-gradient-to-b from-transparent to-white shadow-[0_6px_10px_-5px_rgba(0,0,0,0.2)] md:top-[8%]" />
 
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll px-4 py-8"
+                className="hide-scrollbar mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll px-4 py-8"
               >
                 <div className="flex flex-col gap-4">
                   <FormField
@@ -163,7 +163,7 @@ export const Onboarding = () => {
                           options={ptnOptions}
                           setValue={setValue}
                           field={"choosen_university_one"}
-                          placeholder="PTN"
+                          placeholder="Primary PTN"
                         />
                       </>
                     </FormControl>
@@ -178,7 +178,7 @@ export const Onboarding = () => {
                           options={selectedPTN.one?.prodi ?? []}
                           setValue={setValue}
                           field={"choosen_major_one"}
-                          placeholder="Major"
+                          placeholder="Primary Major"
                         />
                       </>
                     </FormControl>
@@ -198,7 +198,7 @@ export const Onboarding = () => {
                           options={ptnOptions}
                           setValue={setValue}
                           field={"choosen_university_two"}
-                          placeholder="PTN"
+                          placeholder="Secondary PTN"
                         />
                       </>
                     </FormControl>
@@ -218,7 +218,7 @@ export const Onboarding = () => {
                           options={selectedPTN.two?.prodi ?? []}
                           setValue={setValue}
                           field={"choosen_university_two"}
-                          placeholder="PTN"
+                          placeholder="Secondary Major"
                         />
                       </>
                     </FormControl>
@@ -238,7 +238,7 @@ export const Onboarding = () => {
                           options={ptnOptions}
                           setValue={setValue}
                           field={"choosen_university_three"}
-                          placeholder="PTN"
+                          placeholder="Tertiary PTN"
                         />
                       </>
                     </FormControl>
@@ -258,7 +258,7 @@ export const Onboarding = () => {
                           options={selectedPTN.three?.prodi ?? []}
                           setValue={setValue}
                           field={"choosen_major_three"}
-                          placeholder="PTN"
+                          placeholder="Tertiary Major"
                         />
                       </>
                     </FormControl>

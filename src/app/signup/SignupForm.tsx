@@ -42,13 +42,13 @@ export const SignupForm = () => {
   }
 
   return (
-    <div className="mx-16 flex h-full flex-row items-center justify-center gap-10">
-      <div className="w-1/2">
+    <div className="mx-5 flex h-full flex-col justify-center gap-10 md:mx-16 lg:flex-row lg:items-center">
+      <div className="w-full lg:w-1/2">
         <InfiniteSlider images={UNI_LOGOS} />
       </div>
 
-      <div className="-mb-8 w-1/2 self-end">
-        <div className="w-full -skew-x-12 overflow-hidden rounded-2xl bg-emerald-100/50 p-4 shadow-lg">
+      <div className="-mx-10 -mb-8 overflow-hidden md:overflow-visible lg:w-1/2 lg:self-end">
+        <div className="w-full min-w-[380px]  -skew-x-12 overflow-hidden rounded-2xl bg-emerald-100/50 p-4 shadow-lg">
           <div className="rounded-2xl bg-white py-16">
             <div className="flex skew-x-12 flex-col items-center justify-center px-10 py-4">
               <div className="flex flex-col gap-2 text-center">

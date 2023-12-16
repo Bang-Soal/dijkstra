@@ -6,14 +6,15 @@ import { infiniteSliderVariants } from "./constants";
 
 interface InfiniteSliderI {
   images: string[];
+  className?: string;
 }
-export const InfiniteSlider = ({ images }: InfiniteSliderI) => {
+export const InfiniteSlider = ({ images, className }: InfiniteSliderI) => {
   const minWidth = images.length * 150;
   const sliderVariants = infiniteSliderVariants(minWidth, images.length);
   return (
-    <div className="w-full -skew-x-12 overflow-hidden rounded-2xl bg-gray-800">
-      <div className="flex h-full w-full skew-x-6 flex-col items-center justify-center px-10 py-10">
-        <p className="text-center text-2xl font-bold text-white">
+    <div className="mt-10 w-full -skew-x-12 overflow-hidden rounded-2xl bg-gray-800 md:mt-0">
+      <div className="flex h-full w-full skew-x-12 flex-col items-center justify-center px-10 py-2 lg:py-10">
+        <p className="text-center text-xl font-bold text-white md:text-2xl">
           Enabling students to get into top PTNs
         </p>
         <motion.div
