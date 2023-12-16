@@ -9,9 +9,11 @@ import type { Metadata } from "next";
 // styles
 import { Quicksand } from "next/font/google";
 import "./globals.scss";
+import "react-virtualized/styles.css";
 
 // providers
 import Providers from "./providers";
+import { MainLayout } from "./components/MainLayout";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -29,14 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light">
-      <body className={`${quicksand.className} relative flex bg-surface-100`}>
+      <body className={`${quicksand.className} relative bg-surface-100`}>
         <Providers>
           <Sidebar />
-          <div className="relative flex grow flex-col">
-            <Nav />
-            {children}
-            <Footer />
-          </div>
+          <MainLayout>{children}</MainLayout>
         </Providers>
       </body>
     </html>
