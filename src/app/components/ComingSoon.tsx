@@ -41,16 +41,35 @@ export default function ComingSoon() {
           width={400}
           height={260}
           loading="eager"
+          className="w-64 sm:w-80"
         />
         <div className="flex flex-col gap-2 py-5">
           <h1 className="text-center text-3xl font-bold sm:text-4xl">
             Sabar dulu bang!
           </h1>
-          <p className="text-balance max-w-lg text-center text-content-300">
-            Fitur ini sedang dibuat oleh abang developer kami! Sambil menunggu,
-            ayo join grup WA biar ga FOMO.
+          <p className="text-balance max-w-lg text-center text-sm text-content-300 sm:text-base">
+            Fitur ini akan segera datang! Sambil menunggu, ayo join grup WA
+            BangSoal! Dengan join grupnya, kamu akan mendapatkan benefit:
           </p>
-          <div className="flex flex-col justify-center gap-2 pt-5 sm:flex-row">
+          <ul className="flex flex-col gap-2 self-center pt-3 text-sm text-content-300 sm:text-base">
+            <li className="flex items-center gap-2">
+              <i className="i-ph-book-bookmark-duotone h-5 w-5 shrink-0 text-emerald-600" />
+              <p>Latihan drilling soal harian serta pembahasan</p>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="i-ph-files-duotone h-5 w-5 shrink-0 text-emerald-600" />
+              <p>Latihan soal PDF per topik mata kuliah</p>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="i-ph-info-duotone h-5 w-5 shrink-0 text-emerald-600" />
+              <p>Info2 terbaru tentang UTBK SNBT</p>
+            </li>
+            <li className="flex items-center gap-2">
+              <i className="i-ph-users-three-duotone h-5 w-5 shrink-0 text-emerald-600" />
+              <p>Komunitas pejuang utbk yang sama2 ngejer PTN</p>
+            </li>
+          </ul>
+          <div className="flex flex-col justify-center gap-2 pt-3 sm:flex-row">
             <Link
               href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
               className="flex items-center justify-center gap-1.5 rounded-full bg-emerald-400 px-5 py-2 font-500 text-white transition-transform hover:scale-105"
@@ -66,7 +85,7 @@ export default function ComingSoon() {
             </Link>
           </div>
         </div>
-        <div className="absolute top-5 -rotate-6 bg-[url('/bg-mesh-horizontal.webp')] bg-cover bg-center shadow-md">
+        <div className="absolute top-1 -rotate-6 bg-[url('/bg-mesh-horizontal.webp')] bg-cover bg-center shadow-md">
           <div className="flex animate-infinite-track">
             {[...Array(20)].map((e, i) => (
               <p
@@ -78,7 +97,7 @@ export default function ComingSoon() {
             ))}
           </div>
         </div>
-        <div className="absolute bottom-5 rotate-3 bg-[url('/bg-mesh-horizontal.webp')] bg-cover bg-center shadow-md">
+        <div className="absolute bottom-0 rotate-3 bg-[url('/bg-mesh-horizontal.webp')] bg-cover bg-center shadow-md">
           <div className="flex animate-infinite-track">
             {[...Array(20)].map((e, i) => (
               <p
