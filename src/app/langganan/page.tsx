@@ -31,7 +31,7 @@ export default function Pricing() {
       >
         <TabsContent
           value="pemula"
-          className="w-[80vw] max-w-md rounded-xl border-4 border-surface-100 bg-gradient-to-br from-surface-200 to-surface-300 p-5 shadow-2xl outline outline-1 outline-surface-300"
+          className="w-[80vw] max-w-md rounded-xl border-4 border-surface-100 bg-gradient-to-br from-surface-200 to-surface-300 p-4 shadow-2xl ring-1 ring-surface-300"
         >
           <div className="flex flex-col gap-5 text-content-300">
             <div className="flex justify-between">

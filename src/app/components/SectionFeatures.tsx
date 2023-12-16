@@ -17,10 +17,10 @@ export default function Features() {
         <p className="text-balance text-center font-500 text-content-300">
           Memberikan fitur-fitur yang kamu perlukan untuk masuk ke PTN impianmu
         </p>
-        <div className="flex items-center gap-1 self-center rounded-full border-4 border-surface-100 bg-surface-200 px-5 py-1 text-content-300 outline outline-1 outline-surface-300">
+        {/* <div className="flex items-center gap-1 self-center rounded-full border-4 border-surface-100 bg-surface-200 px-5 py-1 text-content-300 outline outline-1 outline-surface-300">
           <i className="i-ph-hand-tap-duotone h-4 w-4" />
           <p>Pilih yang tepat!</p>
-        </div>
+        </div> */}
       </div>
       <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2">
         {features.map((feature) => (
