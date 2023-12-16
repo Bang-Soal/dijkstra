@@ -52,7 +52,7 @@ export const Onboarding = () => {
       <div className="-mb-16 w-full overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg lg:w-2/3 ">
         <div className="rounded-2xl bg-white">
           <div className="relative flex flex-col items-center justify-center px-10 py-4">
-            <p className="text-center text-3xl font-bold md:mx-20">
+            <p className="mt-12 text-center text-3xl font-bold md:mx-20">
               Let&apos;s get your UTBK journey started
             </p>
             <div className="absolute inset-x-0 top-20 h-24 w-full rounded-[50%] bg-transparent shadow-[0_6px_10px_-5px_rgba(0,0,0,0.2)]" />
