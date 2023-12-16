@@ -11,12 +11,16 @@ export default function Features() {
   return (
     <section className="relative flex min-h-screen flex-col items-center px-5 py-20 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-6 py-10">
-        <h1 className="text-balance text-center text-5xl font-700 text-content-100">
-          Satu-satunya bimbingan UTBK yang kamu butuhkan
+        <h1 className="text-balance text-center text-3xl font-700 text-content-100 sm:text-5xl">
+          Satu-satunya persiapan UTBK yang kamu butuhkan
         </h1>
         <p className="text-balance text-center font-500 text-content-300">
           Memberikan fitur-fitur yang kamu perlukan untuk masuk ke PTN impianmu
         </p>
+        <div className="flex items-center gap-1 self-center rounded-full border-4 border-surface-100 bg-surface-200 px-5 py-1 text-content-300 outline outline-1 outline-surface-300">
+          <i className="i-ph-hand-tap-duotone h-4 w-4" />
+          <p>Pilih yang tepat!</p>
+        </div>
       </div>
       <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-2">
         {features.map((feature) => (

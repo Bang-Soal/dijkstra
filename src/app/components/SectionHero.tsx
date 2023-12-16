@@ -4,6 +4,7 @@ import HeroFooter from "./HeroFooter";
 // libs
 import dayjs from "dayjs";
 import Image from "next/image";
+import Link from "next/link";
 
 const UTBK_DATE = dayjs("2024-04-30");
 const daysLeft = UTBK_DATE.diff(dayjs(), "day");
@@ -11,8 +12,8 @@ const daysLeft = UTBK_DATE.diff(dayjs(), "day");
 export default function Hero() {
   return (
     <section className="flex min-h-screen flex-col items-center">
-      <div className="relative flex w-full flex-col items-center gap-5 px-20 py-40">
-        <h2 className="text-balance text-center text-3xl/snug font-500 text-content-300">
+      <div className="relative flex w-full flex-col items-center gap-5 px-5 py-40 sm:px-10 lg:px-20">
+        <h2 className="text-balance text-center text-xl font-500 text-content-300 sm:text-3xl/snug">
           UTBK hanya{" "}
           <span className="inline-flex items-center gap-1">
             <span className="from-emeral-100 rounded-md bg-gradient-to-b from-emerald-100 to-emerald-200 px-3 py-1 text-emerald-700">
@@ -24,7 +25,7 @@ export default function Hero() {
           </span>{" "}
           lagi.
         </h2>
-        <h1 className="text-center text-7xl font-700">
+        <h1 className="text-center text-5xl font-700 sm:text-7xl">
           Apakah{" "}
           <span className="inline-flex items-center gap-1">
             <Image
@@ -33,7 +34,7 @@ export default function Hero() {
               width={64}
               height={64}
               loading="eager"
-              className="h-16 w-16"
+              className="h-10 w-10 sm:h-16 sm:w-16"
             />
             <Image
               src={"/animated-emoji-raised-eyebrow.webp"}
@@ -41,7 +42,7 @@ export default function Hero() {
               width={64}
               height={64}
               loading="eager"
-              className="h-16 w-16"
+              className="h-10 w-10 sm:h-16 sm:w-16"
             />
           </span>{" "}
           sudah{" "}
@@ -60,12 +61,12 @@ export default function Hero() {
           </span>
         </h1>
         <div className="flex gap-3">
-          <button className="h-10 rounded-full bg-emerald-400 px-5">
-            <p className="font-500 text-white">Ajarin puh</p>
-          </button>
-          <button className="h-10 rounded-full border-2 border-surface-300 px-5">
-            <p className="font-500 text-content-200">Sudah dong</p>
-          </button>
+          <Link
+            href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
+            className="rounded-full bg-emerald-400 px-5 py-3 font-500 text-white transition-transform hover:scale-105"
+          >
+            Ajarin bang!
+          </Link>
         </div>
         <Image
           src={"/hero-bg.svg"}

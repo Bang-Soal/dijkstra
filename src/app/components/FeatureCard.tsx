@@ -52,9 +52,9 @@ export default function FeatureCard({
   }
 
   return (
-    <div className="flex flex-col-reverse gap-2 rounded-3xl bg-surface-100 p-3 shadow-lg @container sm:flex-row">
-      <div className="flex flex-col gap-5 px-4 py-2 sm:basis-1/2 sm:justify-end">
-        <p className="text-lg font-700 text-content-200 @lg:text-2xl">
+    <div className="flex flex-col-reverse gap-2 rounded-3xl border border-surface-300 bg-surface-100 p-3 shadow @container sm:flex-row">
+      <div className="flex flex-col gap-5 px-4 py-2 sm:basis-1/2 sm:justify-evenly">
+        <p className="text-lg font-700 text-content-200 @xl:text-3xl">
           {title}
         </p>
         <ToggleGroup

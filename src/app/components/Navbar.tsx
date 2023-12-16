@@ -65,9 +65,13 @@ export default function Nav() {
           <NavMenuDesktop />
           <NavMenuMobile />
         </div>
-        <button className="hidden h-12 shrink-0 rounded-full bg-emerald-400 px-5 lg:block">
-          <p className="text-sm font-500 text-white">Ajarin puh</p>
-        </button>
+        <Link
+          href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
+          className="hidden h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-emerald-400 px-5 text-sm font-500 text-white transition-transform hover:scale-105 lg:flex"
+        >
+          <i className="i-bi-whatsapp h-4 w-4" />
+          <p>Masuk grup WA</p>
+        </Link>
       </nav>
     );
   }

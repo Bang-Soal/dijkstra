@@ -1,4 +1,5 @@
 // components
+import ComingSoon from "./components/ComingSoon";
 import Footer from "./components/Footer";
 import Nav from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang="en" data-theme="light">
       <body className={`${quicksand.className} relative bg-surface-100`}>
         <Providers>
+          <ComingSoon />
           <Sidebar />
           <MainLayout>{children}</MainLayout>
         </Providers>

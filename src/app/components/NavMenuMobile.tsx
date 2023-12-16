@@ -44,6 +44,12 @@ export default function NavMenuMobile() {
           </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col items-start">
+          <Link
+            href="/langganan"
+            className={cn(buttonVariants({ variant: "link" }), "text-base")}
+          >
+            Langganan
+          </Link>
           <Accordion type="single" collapsible className="w-full px-4 pt-5">
             <AccordionItem value="item-1" className="border-b-0">
               <AccordionTrigger className="pb-2">Latihan soal</AccordionTrigger>
@@ -56,6 +62,51 @@ export default function NavMenuMobile() {
                   )}
                 >
                   Penalaran Umum
+                </Link>
+                <Link
+                  href="/latihan-soal/ppu"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Pengetahuan dan Pemahaman Umum
+                </Link>
+                <Link
+                  href="/latihan-soal/pbm"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Pemahaman Bacaan dan Menulis
+                </Link>
+                <Link
+                  href="/latihan-soal/pk"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Penalaran Kuantitatif
+                </Link>
+                <Link
+                  href="/latihan-soal/bindo"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Bahasa Indonesia
+                </Link>
+                <Link
+                  href="/latihan-soal/bing"
+                  className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "text-base",
+                  )}
+                >
+                  Bahasa Inggris
                 </Link>
               </AccordionContent>
             </AccordionItem>
@@ -70,7 +121,7 @@ export default function NavMenuMobile() {
             href="/bang-catatan"
             className={cn(buttonVariants({ variant: "link" }), "text-base")}
           >
-            Bang catatan
+            BangCatatan
           </Link>
           <Link
             href="/leaderboard"

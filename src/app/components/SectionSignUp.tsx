@@ -62,7 +62,7 @@ export default function SignUp() {
   }
 
   return (
-    <section className="flex flex-col items-center -space-y-24 px-5 py-20 sm:px-10 lg:flex-row lg:-space-x-16 lg:space-y-0 lg:px-20">
+    <section className="flex flex-col items-center -space-y-16 px-5 py-20 sm:-space-y-28 sm:px-10 lg:flex-row lg:-space-x-16 lg:space-y-0 lg:px-20">
       <div className="flex w-full flex-col drop-shadow-2xl lg:w-auto lg:flex-1 lg:flex-row">
         <div className="px:10 flex flex-col justify-center gap-5 rounded-t-3xl bg-surface-100 px-10 py-8 lg:grow lg:rounded-l-3xl lg:rounded-r-none lg:pl-20 lg:pr-0">
           <h1 className="text-center text-4xl font-600 text-content-100 lg:text-left">
@@ -163,7 +163,8 @@ export default function SignUp() {
               window.open(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`);
             }}
           >
-            Gabung menggunakan Google
+            <i className="i-logos-google-icon mr-2 h-4 w-4" />
+            <p className="">Daftar dengan Google</p>
           </Button>
         </div>
       </div>
