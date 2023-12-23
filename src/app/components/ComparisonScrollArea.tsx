@@ -27,11 +27,11 @@ export default function ComparisonScrollArea() {
                     alt="Other logo"
                     width={512}
                     height={512}
-                    className="h-16 w-16"
+                    className="size-16"
                   />
                 </div>
                 <div className="relative my-3 h-1 bg-surface-300">
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface-200 px-5 py-1 text-sm font-600 text-content-200 sm:text-base">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-surface-200 px-5 py-1 text-center text-sm font-600 text-content-200 sm:text-base">
                     {other.id}
                   </div>
                 </div>
@@ -41,7 +41,7 @@ export default function ComparisonScrollArea() {
                   key={data.features[i]}
                   className="flex h-28 shrink-0 items-center justify-center"
                 >
-                  <i className={cn(icon, "h-10 w-10")} />
+                  <i className={cn(icon, "size-10")} />
                 </div>
               ))}
             </div>

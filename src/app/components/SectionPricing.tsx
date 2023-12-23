@@ -1,9 +1,13 @@
 // components
 import Logo from "@/components/Logo";
 import MeshGradient from "@/components/MeshGradient";
+import { buttonVariants } from "@/components/ui/button";
 
 // libs
 import Link from "next/link";
+
+// utils
+import { cn } from "@/lib/utils";
 
 export default function Pricing() {
   return (
@@ -19,7 +23,10 @@ export default function Pricing() {
         </p>
         <Link
           href="/langganan"
-          className="self-start rounded-full bg-emerald-400 px-5 py-3 font-500 text-white"
+          className={cn(
+            buttonVariants({ variant: "bsPrimary", size: "lg" }),
+            "self-start",
+          )}
         >
           Lihat semua langganan
         </Link>

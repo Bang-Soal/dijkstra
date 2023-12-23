@@ -1,7 +1,7 @@
 // components
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MeshGradient from "@/components/MeshGradient";
 import Logo from "@/components/Logo";
+import MeshGradient from "@/components/MeshGradient";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // libs
 import { Metadata } from "next";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function Pricing() {
   return (
-    <main className="flex min-h-screen flex-col items-stretch gap-20 px-5 py-20 sm:px-10 lg:px-20">
+    <main className="flex min-h-svh flex-col items-stretch gap-20 px-5 py-20 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-5 pt-20">
         <h1 className="text-center text-4xl font-600 text-content-100 lg:text-5xl">
           Satu layanan, belajar sepuasnya
@@ -91,7 +91,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Ambis</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-gray-800"
                 fill="fill-gray-800"
               />
@@ -108,7 +108,7 @@ export default function Pricing() {
             </div>
           </div>
         </TabsContent>
-        <TabsList className="mt-10 flex w-full children:flex-1">
+        <TabsList className="mt-10 flex w-full *:flex-1">
           <TabsTrigger value="pemula" className="relative">
             1 bulan
           </TabsTrigger>

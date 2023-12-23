@@ -1,11 +1,10 @@
 // components
-import Iconify from "@/components/Iconify";
 import Logo from "@/components/Logo";
 import ComparisonScrollArea from "./ComparisonScrollArea";
 
 export default function Comparison() {
   return (
-    <section className="flex min-h-screen flex-col items-center px-5 py-10 sm:px-10 lg:px-20">
+    <section className="flex min-h-svh flex-col items-center px-5 py-10 sm:px-10 lg:px-20">
       <div className="flex flex-col gap-6 py-10">
         <h1 className="text-balance text-center text-3xl font-700 text-content-100 sm:text-5xl">
           Temukan apa yang membuat BangSoal cocok untuk kamu
@@ -80,12 +79,12 @@ export const data = {
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
       ],
       tooltips: [
         "Tidak semua soal asli",
@@ -103,15 +102,15 @@ export const data = {
       id: "Ruangguru",
       logo: "/icons/ruangguru.svg",
       icons: [
-        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-400",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
       ],
       tooltips: [null, null, null, null, null, null, null, null, null],
     },
@@ -119,15 +118,15 @@ export const data = {
       id: "Inten",
       logo: "/icons/inten.svg",
       icons: [
-        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-400",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
         "i-ph-check-circle-bold text-emerald-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
-        "i-ph-x-circle-bold text-surface-500",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
+        "i-ph-minus-circle-bold text-surface-400",
       ],
       tooltips: [null, null, null, null, null, null, null, null, null],
     },

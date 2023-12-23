@@ -1,4 +1,5 @@
 // components
+import { buttonVariants } from "@/components/ui/button";
 import HeroFooter from "./HeroFooter";
 
 // libs
@@ -11,7 +12,7 @@ const daysLeft = UTBK_DATE.diff(dayjs(), "day");
 
 export default function Hero() {
   return (
-    <section className="flex min-h-screen flex-col items-center">
+    <section className="flex min-h-svh flex-col items-center">
       <div className="relative flex w-full flex-col items-center gap-5 px-5 py-40 sm:px-10 lg:px-20">
         <h2 className="text-balance text-center text-xl font-500 text-content-300 sm:text-3xl/snug">
           UTBK hanya{" "}
@@ -60,10 +61,10 @@ export default function Hero() {
             <span className="relative">siap?</span>
           </span>
         </h1>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
           <Link
             href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
-            className="rounded-full bg-emerald-400 px-5 py-3 font-500 text-white transition-transform hover:scale-105"
+            className={buttonVariants({ variant: "bsPrimary", size: "lg" })}
           >
             Ajarin bang!
           </Link>

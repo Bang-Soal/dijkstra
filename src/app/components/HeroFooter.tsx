@@ -29,7 +29,7 @@ export default function HeroFooter() {
       >
         <TabsList
           aria-label="UTBK category tabs"
-          className="z-10 -mr-8 mt-12 flex shrink-0 flex-col self-start rounded-2xl border border-surface-100/30 bg-surface-100/40 p-2 shadow-xl backdrop-blur-2xl children:rounded-lg children:px-2 children:py-5 children:text-emerald-800 children:transition-colors"
+          className="z-10 -mr-8 mt-12 flex shrink-0 flex-col self-start rounded-2xl border border-surface-100/30 bg-surface-100/40 p-2 shadow-xl backdrop-blur-2xl *:rounded-lg *:px-2 *:py-5 *:text-emerald-800 *:transition-colors"
         >
           <TabsTrigger
             value="tab1"
