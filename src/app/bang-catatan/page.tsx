@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function BangCatatan() {
   return (
-    <main className="flex min-h-screen flex-col items-stretch gap-8 px-5 pb-20 sm:px-10 xl:px-20">
+    <main className="flex min-h-svh flex-col items-stretch gap-8 px-5 pb-20 sm:px-10 lg:px-20">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1 py-10">
           <h1 className="text-3xl font-700 text-content-100">Bang Catatan</h1>
