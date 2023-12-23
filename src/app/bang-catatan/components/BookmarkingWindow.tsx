@@ -6,10 +6,7 @@ import { colorMapping } from "@/data/bang-catatan";
 
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import * as Toggle from "@radix-ui/react-toggle";
-import * as Tooltip from "@radix-ui/react-tooltip";
 import Image from "next/image";
-import { useRef, useState } from "react";
 
 // types
 import { Catatan } from "./CatatanCard";
@@ -38,9 +35,9 @@ export default function BookmarkingWindow({
       </p>
       <ScrollArea.Root className="relative h-10 grow rounded-t-xl">
         <ScrollArea.Viewport className="h-full pl-8 pr-16">
-          <div className="grid grid-cols-1 gap-2 py-3 @xs:grid-cols-2 children:cursor-pointer">
+          <div className="grid grid-cols-1 gap-2 py-3 *:cursor-pointer @xs:grid-cols-2">
             <div className="flex aspect-square flex-col gap-3 rounded-xl bg-gradient-to-b from-white/30 to-white/50 p-3 shadow-none transition-[transform,box-shadow] hover:scale-105 hover:shadow-xl active:scale-95">
-              <div className="grid aspect-square w-full grid-cols-2 gap-1 children:pointer-events-none children:h-full children:w-full children:select-none children:rounded children:object-cover">
+              <div className="grid aspect-square w-full grid-cols-2 gap-1 *:pointer-events-none *:h-full *:w-full *:select-none *:rounded *:object-cover">
                 <Image
                   src="https://source.unsplash.com/random"
                   alt="Collection preview"

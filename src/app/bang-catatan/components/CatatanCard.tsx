@@ -61,8 +61,8 @@ export default function CatatanCard({
         <BookmarkingWindow isBookmarking={isBookmarking} catatan={catatan} />
         <div
           className={cn(
-            "stagger absolute inset-y-0 right-0 z-10 flex flex-col justify-center gap-2 p-3 children:sm:translate-x-14 children:sm:group-hover:translate-x-0",
-            isBookmarking && "children:sm:translate-x-0",
+            "stagger absolute inset-y-0 right-0 z-10 flex flex-col justify-center gap-2 p-3 *:sm:translate-x-14 *:sm:group-hover:translate-x-0",
+            isBookmarking && "*:sm:translate-x-0",
           )}
         >
           <Toggle.Root
