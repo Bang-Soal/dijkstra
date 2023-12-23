@@ -1,5 +1,9 @@
 module.exports = {
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: [
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss",
+  ],
   tailwindAttributes: [
     "enter",
     "enterFrom",
@@ -7,6 +11,8 @@ module.exports = {
     "leave",
     "leaveFrom",
     "leaveTo",
+    ".*Variants.*",
+    ".*Mapping.*",
   ],
-  tailwindFunctions: ["clsx", "cn"],
+  tailwindFunctions: ["clsx", "cn", "cva", "join"],
 };

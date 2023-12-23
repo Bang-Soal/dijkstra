@@ -1,11 +1,12 @@
+import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import type { Config } from "tailwindcss";
-const plugin = require("tailwindcss/plugin");
-const { createThemes } = require("tw-colors");
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
+import defaultTheme from "tailwindcss/defaultTheme";
+import { createThemes } from "tw-colors";
 
 const config: Config = {
   darkMode: ["class"],
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx,svg}"],
   theme: {
     container: {
       center: true,
@@ -17,6 +18,7 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
+        "infinite-track": "infinite-track 10s linear infinite",
         "slide-right":
           "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
         // Accordion
@@ -44,7 +46,8 @@ const config: Config = {
           "slideUpAndFade 300ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       boxShadow: {
-        "inner-xl": "inset 0 40px 40px 0 rgb(0 0 0 / 0.05)",
+        "inner-xl": "inset 0 40px 40px 0 rgba(0 0 0 / 0.05)",
+        highlight: "inset 0 1.5px 0.5px 0 rgba(255 255 255 / 0.15)",
       },
       fontWeight: {
         100: "100",
@@ -60,11 +63,16 @@ const config: Config = {
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "out-back": "cubic-bezier(0.34, 1.56, 0.64, 1)",
       },
       keyframes: {
         slideRight: {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
+        },
+        "infinite-track": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-160px)" },
         },
         // Accordion
         slideDownItem: {
@@ -135,13 +143,15 @@ const config: Config = {
         },
       },
     },
+    screens: {
+      xs: "475px",
+      ...defaultTheme.screens,
+    },
   },
   plugins: [
     require("@tailwindcss/container-queries"),
     require("tailwindcss-animate"),
-    plugin(function ({ addVariant }: { addVariant: Function }) {
-      addVariant("children", "&>*");
-    }),
+    require("tailwind-gradient-mask-image"),
     createThemes({
       light: {
         // surfaces
@@ -158,6 +168,9 @@ const config: Config = {
         "content-200": colors.gray[700],
         "content-300": colors.gray[500],
       },
+    }),
+    iconsPlugin({
+      collections: getIconCollections(["bi", "logos", "ph"]),
     }),
   ],
 };

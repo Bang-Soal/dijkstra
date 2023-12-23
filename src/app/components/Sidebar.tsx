@@ -37,7 +37,7 @@ export default function Sidebar() {
   return (
     <nav className="sticky top-0 flex h-screen w-80 shrink-0 flex-col gap-6 border-r border-surface-300 bg-surface-200">
       <div className="flex h-16 items-center justify-center gap-2 text-xl font-700 text-content-200">
-        <p className="">Bang Soal</p>
+        <p className="">BangSoal</p>
         <p className="text-surface-400">|</p>
         <p className="font-[550]">Latihan Soal</p>
       </div>
