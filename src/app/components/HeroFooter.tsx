@@ -33,27 +33,27 @@ export default function HeroFooter() {
         >
           <TabsTrigger
             value="tab1"
-            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+            className="border border-transparent hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:border-emerald-700 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-highlight data-[state=active]:shadow-white/25"
           >
-            <i className="i-ph-brain-duotone h-9 w-9" />
+            <i className="i-ph-brain-duotone size-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab2"
-            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+            className="border border-transparent hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:border-emerald-700 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-highlight data-[state=active]:shadow-white/25"
           >
-            <i className="i-ph-lightbulb-filament-duotone h-9 w-9" />
+            <i className="i-ph-lightbulb-filament-duotone size-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab3"
-            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+            className="border border-transparent hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:border-emerald-700 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-highlight data-[state=active]:shadow-white/25"
           >
-            <i className="i-ph-book-open-text-duotone h-9 w-9" />
+            <i className="i-ph-book-open-text-duotone size-9" />
           </TabsTrigger>
           <TabsTrigger
             value="tab4"
-            className="hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+            className="border border-transparent hover:bg-emerald-700/10 data-[state=active]:cursor-default data-[state=active]:border-emerald-700 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-highlight data-[state=active]:shadow-white/25"
           >
-            <i className="i-ph-math-operations-bold h-9 w-9" />
+            <i className="i-ph-math-operations-bold size-9" />
           </TabsTrigger>
         </TabsList>
         <div className="grow rounded-l-3xl bg-gradient-to-br from-surface-300/60 to-surface-300/20 py-3 pl-3 backdrop-blur-2xl">
