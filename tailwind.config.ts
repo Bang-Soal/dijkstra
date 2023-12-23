@@ -2,7 +2,6 @@ import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
-import plugin from "tailwindcss/plugin";
 import { createThemes } from "tw-colors";
 
 const config: Config = {
@@ -19,6 +18,7 @@ const config: Config = {
     extend: {
       animation: {
         "spin-slow": "spin 180s linear infinite",
+        "infinite-track": "infinite-track 10s linear infinite",
         "slide-right":
           "slideRight 1000ms cubic-bezier(0.4, 0, 0.2, 1) infinite",
         // Accordion
@@ -69,6 +69,10 @@ const config: Config = {
         slideRight: {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
+        },
+        "infinite-track": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-160px)" },
         },
         // Accordion
         slideDownItem: {
@@ -148,9 +152,6 @@ const config: Config = {
     require("@tailwindcss/container-queries"),
     require("tailwindcss-animate"),
     require("tailwind-gradient-mask-image"),
-    plugin(function ({ addVariant }: { addVariant: Function }) {
-      addVariant("children", "&>*");
-    }),
     createThemes({
       light: {
         // surfaces

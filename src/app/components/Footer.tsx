@@ -25,7 +25,7 @@ export default function Footer() {
           Ambiskan persiapan UTBK-mu sekarang
         </p>
         <Link
-          href=""
+          href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
           className="inline-flex self-start rounded-lg bg-emerald-900/30 px-5 py-3 font-600 text-white hover:bg-emerald-900/60"
         >
           Mulai sekarang
@@ -67,7 +67,7 @@ export default function Footer() {
           <div className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
               Belajar
-              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+              <div className="flex flex-col items-start *:p-0 *:text-surface-400">
                 <Link
                   href="/latihan-soal"
                   className={cn(buttonVariants({ variant: "link" }), "")}
@@ -84,7 +84,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
               Komunitas
-              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+              <div className="flex flex-col items-start *:p-0 *:text-surface-400">
                 <Link
                   href="/bang-catatan"
                   className={cn(buttonVariants({ variant: "link" }), "")}
@@ -107,7 +107,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-1 flex-col gap-2 text-xl font-600 text-white">
               Info
-              <div className="flex flex-col items-start children:p-0 children:text-surface-400">
+              <div className="flex flex-col items-start *:p-0 *:text-surface-400">
                 <Link
                   href="/langganan"
                   className={cn(buttonVariants({ variant: "link" }), "")}

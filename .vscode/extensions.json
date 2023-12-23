@@ -4,8 +4,8 @@
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
-    "steoates.autoimport",
     "usernamehw.errorlens",
+    "WallabyJs.console-ninja",
     "dbaeumer.vscode-eslint",
     "figma.figma-vscode-extension",
     "wix.vscode-import-cost",
