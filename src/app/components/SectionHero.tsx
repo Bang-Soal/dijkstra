@@ -35,7 +35,7 @@ export default function Hero() {
               width={64}
               height={64}
               loading="eager"
-              className="h-10 w-10 sm:h-16 sm:w-16"
+              className="size-10 sm:h-16 sm:w-16"
             />
             <Image
               src={"/animated-emoji-raised-eyebrow.webp"}
@@ -43,7 +43,7 @@ export default function Hero() {
               width={64}
               height={64}
               loading="eager"
-              className="h-10 w-10 sm:h-16 sm:w-16"
+              className="size-10 sm:h-16 sm:w-16"
             />
           </span>{" "}
           sudah{" "}

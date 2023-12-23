@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/navigation-menu";
 
 // libs
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const topics: {
   title: string;
@@ -123,7 +123,7 @@ function ListItemTopic({
               alt={`${title} nav link icon`}
               width={512}
               height={512}
-              className="absolute -right-4 h-20 w-20 text-surface-400 mix-blend-multiply"
+              className="absolute -right-4 size-20 text-surface-400 mix-blend-multiply"
             />
             <p className="z-10 font-600 transition-colors group-hover:text-white">
               {title}

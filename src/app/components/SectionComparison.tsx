@@ -35,7 +35,7 @@ export default function Comparison() {
           <div className="flex flex-1 flex-col rounded-2xl bg-[url('/bg-mesh-vertical-2.webp')] bg-cover">
             <div className="sticky top-12 z-10 rounded-t-2xl bg-white/5 backdrop-blur-xl">
               <div className="flex h-28 items-center justify-center">
-                <Logo className="h-16 w-16" />
+                <Logo className="size-16" />
               </div>
               <div className="relative my-3 h-1 bg-emerald-300">
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200 px-5 py-1 text-sm font-600 text-emerald-800 sm:text-base">
@@ -48,7 +48,7 @@ export default function Comparison() {
                 key={data.features[i]}
                 className="flex h-28 items-center justify-center"
               >
-                <i className="i-ph-seal-check-bold h-10 w-10 text-emerald-700" />
+                <i className="i-ph-seal-check-bold size-10 text-emerald-700" />
               </div>
             ))}
           </div>

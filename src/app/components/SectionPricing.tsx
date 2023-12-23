@@ -37,7 +37,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Pemula</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-gray-800"
                 fill="fill-gray-800"
               />
@@ -55,7 +55,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Setia</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-emerald-600"
                 fill="fill-emerald-600"
               />
@@ -72,7 +72,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Ambis</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-gray-800"
                 fill="fill-gray-800"
               />

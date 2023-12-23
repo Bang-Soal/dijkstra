@@ -61,7 +61,7 @@ export default function CatatanCard({
         <BookmarkingWindow isBookmarking={isBookmarking} catatan={catatan} />
         <div
           className={cn(
-            "stagger absolute inset-y-0 right-0 z-10 flex flex-col justify-center gap-2 p-3 children:sm:translate-x-14 children:sm:group-hover:translate-x-0",
+            "stagger children:sm:translate-x-14 children:sm:group-hover:translate-x-0 absolute inset-y-0 right-0 z-10 flex flex-col justify-center gap-2 p-3",
             isBookmarking && "children:sm:translate-x-0",
           )}
         >
@@ -208,7 +208,7 @@ export default function CatatanCard({
               alt="Catatan avatar"
               width={800}
               height={800}
-              className="h-4 w-4 rounded-full"
+              className="size-4 rounded-full"
             />
             <p
               className={cn(

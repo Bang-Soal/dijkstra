@@ -60,7 +60,7 @@ export default function Nav() {
             className="flex items-center gap-1 font-700 text-content-200"
             href="/"
           >
-            <Logo className="h-8 w-8" />
+            <Logo className="size-8" />
             BangSoal
           </Link>
           <NavMenuDesktop />

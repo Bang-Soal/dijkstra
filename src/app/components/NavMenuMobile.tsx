@@ -28,7 +28,7 @@ export default function NavMenuMobile() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="flex lg:hidden">
-          <i className="i-ph-list-bold my-auto h-6 w-6" />
+          <i className="i-ph-list-bold my-auto size-6" />
         </Button>
       </SheetTrigger>
       <SheetContent side="top" className="block lg:hidden">
@@ -38,7 +38,7 @@ export default function NavMenuMobile() {
               className="flex items-center gap-1 font-700 text-content-200"
               href="/"
             >
-              <Logo className="h-8 w-8" />
+              <Logo className="size-8" />
               BangSoal
             </Link>
           </SheetTitle>

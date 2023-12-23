@@ -5,20 +5,17 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 
 // libs
-import Image from "next/image";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -156,7 +153,7 @@ export default function SignUp() {
             type="submit"
             className="rounded-full bg-white !font-600 text-emerald-700 hover:bg-emerald-100"
           >
-            <i className="i-logos-google-icon mr-2 h-4 w-4" />
+            <i className="i-logos-google-icon mr-2 size-4" />
             <p className="">Daftar dengan Google</p>
           </Button>
         </div>

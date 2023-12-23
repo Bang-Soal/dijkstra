@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="flex flex-row items-center justify-between gap-5 sm:justify-normal lg:flex-col">
             <div className="flex items-center gap-1 text-xl/8 font-600 text-white">
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-white"
                 fill="fill-white"
               />
@@ -46,19 +46,19 @@ export default function Footer() {
             <div className="flex justify-center">
               <Link
                 href="https://www.instagram.com/bangsoal.co.id"
-                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
+                className="group flex size-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
               >
                 <i className="i-bi-instagram h-5 w-5 text-gray-300 group-hover:text-white" />
               </Link>
               <Link
                 href="https://x.com/bangsoal_co_id"
-                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
+                className="group flex size-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
               >
                 <i className="i-bi-twitter-x h-5 w-5 text-gray-300 group-hover:text-white" />
               </Link>
               <Link
                 href="https://www.tiktok.com/@bangsoal.co.id"
-                className="group flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
+                className="group flex size-10 items-center justify-center rounded-lg hover:bg-gray-700 hover:shadow-highlight"
               >
                 <i className="i-bi-tiktok h-5 w-5 text-gray-300 group-hover:text-white" />
               </Link>

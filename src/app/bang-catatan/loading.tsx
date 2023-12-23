@@ -13,7 +13,7 @@ export default function Loading() {
       </div>
       <div className="flex items-center gap-3 text-content-300">
         <div className="relative">
-          <div className="skeleton absolute left-5 top-1/2 h-4 w-4 -translate-y-1/2 rounded bg-surface-300 from-surface-300 via-surface-100 to-surface-300" />
+          <div className="skeleton absolute left-5 top-1/2 size-4 -translate-y-1/2 rounded bg-surface-300 from-surface-300 via-surface-100 to-surface-300" />
           <input
             type="text"
             placeholder="Cari catatan"
