@@ -10,7 +10,6 @@ import NavMenuMobile from "./NavMenuMobile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 // utils
 import { cn } from "@/lib/utils";
@@ -68,7 +67,7 @@ export default function Nav() {
           <div className="flex items-center gap-2 lg:hidden">
             <Link
               href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
-              className={twMerge(
+              className={cn(
                 buttonVariants({ variant: "bsPrimary" }),
                 "w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:hidden",
               )}
@@ -81,7 +80,7 @@ export default function Nav() {
         </div>
         <Link
           href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
-          className={twMerge(
+          className={cn(
             buttonVariants({ variant: "bsPrimary" }),
             "hidden h-12 w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:flex",
           )}
