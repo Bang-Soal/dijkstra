@@ -28,7 +28,7 @@ export default function NavMenuMobile() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="flex lg:hidden">
-          <i className="i-ph-list-bold my-auto h-6 w-6" />
+          <i className="i-ph-list-bold my-auto size-6" />
         </Button>
       </SheetTrigger>
       <SheetContent side="top" className="block lg:hidden">
@@ -38,21 +38,23 @@ export default function NavMenuMobile() {
               className="flex items-center gap-1 font-700 text-content-200"
               href="/"
             >
-              <Logo className="h-8 w-8" />
+              <Logo className="size-8" />
               BangSoal
             </Link>
           </SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start pt-5">
           <Link
             href="/langganan"
             className={cn(buttonVariants({ variant: "link" }), "text-base")}
           >
             Langganan
           </Link>
-          <Accordion type="single" collapsible className="w-full px-4 pt-5">
+          <Accordion type="single" collapsible className="w-full px-4">
             <AccordionItem value="item-1" className="border-b-0">
-              <AccordionTrigger className="pb-2">Latihan soal</AccordionTrigger>
+              <AccordionTrigger className="pb-2 pt-2">
+                Latihan soal
+              </AccordionTrigger>
               <AccordionContent className="pb-0">
                 <Link
                   href="/latihan-soal/pu"

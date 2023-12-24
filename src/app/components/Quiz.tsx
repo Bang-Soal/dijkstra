@@ -16,10 +16,13 @@ import { sampleSoal } from "@/data/landing";
 // styles
 import "katex/dist/katex.min.css";
 
+// utils
+import { cn } from "@/lib/utils";
+
 ChartJS.register(ArcElement);
 
 function handleExplanation(explanation: string): JSX.Element[] {
-  return explanation.split("\n").map((line, index) => {
+  return explanation.split("\n").map((line) => {
     const parts = line.split("->");
     const elements: JSX.Element[] = [];
 
@@ -28,15 +31,15 @@ function handleExplanation(explanation: string): JSX.Element[] {
       if (i < parts.length - 1) {
         elements.push(
           <i
-            key={`arrow-${i}`}
-            className="i-ph-arrow-right-bold mx-1 h-4 w-4 translate-y-[3px]"
+            key={part}
+            className="i-ph-arrow-right-bold mx-1 size-4 translate-y-[3px]"
           />,
         );
       }
     });
 
     return (
-      <p key={index} className="font-500 leading-snug">
+      <p key={line} className="font-500 leading-snug">
         {elements}
       </p>
     );
@@ -123,7 +126,7 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
   return (
     <div className="flex flex-col gap-5 rounded-l-xl bg-gray-50 py-8 pl-12 pr-5 shadow-lg lg:pr-12">
       <div className="flex flex-col gap-3 lg:flex-row">
-        <div className="flex flex-col gap-2">
+        <div className="flex grow flex-col gap-2">
           <h3 className="text-2xl font-600 text-content-100">{data.title}</h3>
           <div ref={ref} className="flex flex-col gap-2">
             {data.question.split("\n").map((line) => (
@@ -136,17 +139,17 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
             ))}
           </div>
         </div>
-        <div className="flex flex-none flex-col items-center lg:basis-1/3">
-          <div className="relative flex h-40 w-full items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="relative flex w-40 items-center justify-center">
             <Doughnut data={doughnutData} options={doughnutOptions} />
           </div>
           <div className="-mt-24 flex flex-col items-center gap-3 text-emerald-900">
             {remainingTime === 0 && value.length === 0 ? (
-              <i className="i-ph-timer-bold h-12 w-12 text-content-300" />
+              <i className="i-ph-timer-bold size-12 text-content-300" />
             ) : value.length === 1 ? (
-              <i className="i-ph-check-bold h-12 w-12 text-emerald-500" />
+              <i className="i-ph-check-bold size-12 text-emerald-500" />
             ) : value.length === 2 ? (
-              <i className="i-ph-x-bold h-12 w-12 text-rose-500" />
+              <i className="i-ph-x-bold size-12 text-rose-500" />
             ) : (
               <p className="text-5xl font-700">{remainingTime}</p>
             )}
@@ -193,15 +196,18 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
-      {remainingTime === 0 ? (
-        <div className="mt-3 flex flex-col gap-1 rounded-lg border-[3px] border-surface-100 bg-surface-200 p-3 text-sm text-content-300 outline outline-1 outline-surface-300">
-          <div className="flex items-center gap-1 text-content-100">
-            <i className="i-ph-info-bold h-4 w-4" />
-            <p className="text-base font-500">Pembahasan</p>
-          </div>
-          {handleExplanation(data.explanation)}
+      <div
+        className={cn(
+          "mt-3 flex flex-col gap-1 rounded-lg border-[3px] border-surface-100 bg-surface-200 p-3 text-sm text-content-300 outline outline-1 outline-surface-300",
+          remainingTime > 0 && "hidden",
+        )}
+      >
+        <div className="flex items-center gap-1 text-content-100">
+          <i className="i-ph-info-bold size-4" />
+          <p className="text-base font-500">Pembahasan</p>
         </div>
-      ) : null}
+        {handleExplanation(data.explanation)}
+      </div>
     </div>
   );
 }

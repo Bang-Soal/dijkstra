@@ -12,13 +12,14 @@ import {
 import { Input } from "@/components/ui/input";
 
 // libs
-import Image from "next/image";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useRegisterMutation } from "@/redux/api/authApi";
-import { redirect } from "next/navigation";
+
 import { SigninFormSchema } from "@/types/schema/auth";
+import { redirect } from "next/navigation";
+
+import * as z from "zod";
 
 export default function SignUp() {
   const form = useForm<z.infer<typeof SigninFormSchema>>({
@@ -117,7 +118,7 @@ export default function SignUp() {
               window.open(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`);
             }}
           >
-            <i className="i-logos-google-icon mr-2 h-4 w-4" />
+            <i className="i-logos-google-icon mr-2 size-4" />
             <p className="">Daftar dengan Google</p>
           </Button>
         </div>

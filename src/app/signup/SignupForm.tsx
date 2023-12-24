@@ -1,8 +1,4 @@
 "use client ";
-import { useState, useEffect } from "react";
-import { redirect, useSearchParams } from "next/navigation";
-import { InfiniteSlider } from "../components/InfiniteSlider";
-import { SIGNUP_COPYWRITING, UNI_LOGOS } from "./constants";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,16 +8,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
 import {
   useLoginMutation,
   useRegisterMutation,
   useSendOTPMutation,
 } from "@/redux/api/authApi";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { SigninFormSchema } from "@/types/schema/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { InfiniteSlider } from "../components/InfiniteSlider";
 import { OTPInput } from "../components/OTPInput";
+import { SIGNUP_COPYWRITING, UNI_LOGOS } from "./constants";
 
 export const SignupForm = () => {
   const searchParams = useSearchParams();
@@ -121,7 +121,7 @@ export const SignupForm = () => {
                     )}
                     <Button
                       onClick={handleSubmit(onSubmitForm)}
-                      variant={"emerald"}
+                      variant={"bsPrimary"}
                       className="-ml-6 mr-2 rounded-full md:-ml-8 md:mr-4"
                       loading={
                         isOTPLoading || isLoginLoading || isRegisterLoading

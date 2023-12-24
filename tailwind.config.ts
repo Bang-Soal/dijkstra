@@ -2,7 +2,6 @@ import { getIconCollections, iconsPlugin } from "@egoist/tailwindcss-icons";
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
-import plugin from "tailwindcss/plugin";
 import { createThemes } from "tw-colors";
 
 const config: Config = {
@@ -153,9 +152,6 @@ const config: Config = {
     require("@tailwindcss/container-queries"),
     require("tailwindcss-animate"),
     require("tailwind-gradient-mask-image"),
-    plugin(function ({ addVariant }: { addVariant: Function }) {
-      addVariant("children", "&>*");
-    }),
     createThemes({
       light: {
         // surfaces

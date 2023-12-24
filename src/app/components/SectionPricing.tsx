@@ -1,9 +1,13 @@
 // components
 import Logo from "@/components/Logo";
 import MeshGradient from "@/components/MeshGradient";
+import { buttonVariants } from "@/components/ui/button";
 
 // libs
 import Link from "next/link";
+
+// utils
+import { cn } from "@/lib/utils";
 
 export default function Pricing() {
   return (
@@ -19,7 +23,10 @@ export default function Pricing() {
         </p>
         <Link
           href="/langganan"
-          className="self-start rounded-full bg-emerald-400 px-5 py-3 font-500 text-white"
+          className={cn(
+            buttonVariants({ variant: "bsPrimary", size: "lg" }),
+            "self-start",
+          )}
         >
           Lihat semua langganan
         </Link>
@@ -30,7 +37,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Pemula</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-gray-800"
                 fill="fill-gray-800"
               />
@@ -48,7 +55,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Setia</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-emerald-600"
                 fill="fill-emerald-600"
               />
@@ -65,7 +72,7 @@ export default function Pricing() {
             <div className="flex justify-between">
               <h3 className="text-center text-xl font-500">Pelajar Ambis</h3>
               <Logo
-                className="h-8 w-8"
+                className="size-8"
                 stroke="stroke-gray-800"
                 fill="fill-gray-800"
               />

@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,11 +14,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useGetAllPTNQuery } from "@/redux/api/ptnApi";
 import { useOnboardingMutation } from "@/redux/api/usersApi";
 import { onboardingFormSchema } from "@/types/schema/auth";
+import { useState } from "react";
 
 import SearchableDropdown from "@/components/ui/searchable-dropdown";
 import { PTN } from "@/types";
@@ -284,7 +284,8 @@ export const Onboarding = () => {
                 <div className="mb-4 flex flex-row justify-end pt-8">
                   <Button
                     type="submit"
-                    className="w-40 items-end rounded-full bg-emerald-400 !font-600 text-white hover:bg-emerald-400/70"
+                    variant={"bsPrimary"}
+                    className="w-40 items-end"
                   >
                     Next
                   </Button>

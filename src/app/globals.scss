@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+i {
+  @apply shrink-0;
+}
+
 @layer components {
   #gradient-canvas {
     width: 100%;

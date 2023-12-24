@@ -1,7 +1,5 @@
 // components
 import ComingSoon from "./components/ComingSoon";
-import Footer from "./components/Footer";
-import Nav from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
 // libs
@@ -9,13 +7,16 @@ import type { Metadata } from "next";
 
 // styles
 import { Quicksand } from "next/font/google";
-import "./globals.scss";
 import "react-virtualized/styles.css";
+import "./globals.scss";
 
 // providers
 import Providers from "./providers";
-import { MainLayout } from "./components/MainLayout";
+
 import { Toaster } from "react-hot-toast";
+import { MainLayout } from "./components/MainLayout";
+
+import Script from "next/script";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -33,6 +34,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light">
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-M8NGWXK801" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-M8NGWXK801');
+        `}
+      </Script>
       <body className={`${quicksand.className} relative bg-surface-100`}>
         <Toaster />
         <Providers>
