@@ -15,11 +15,10 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import { SigninFormSchema } from "@/types/schema/auth";
 import { redirect } from "next/navigation";
-
-import * as z from "zod";
 
 export default function SignUp() {
   const form = useForm<z.infer<typeof SigninFormSchema>>({

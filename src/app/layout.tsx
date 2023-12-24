@@ -11,12 +11,11 @@ import "react-virtualized/styles.css";
 import "./globals.scss";
 
 // providers
+import Script from "next/script";
 import Providers from "./providers";
 
 import { Toaster } from "react-hot-toast";
 import { MainLayout } from "./components/MainLayout";
-
-import Script from "next/script";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
