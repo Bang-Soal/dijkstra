@@ -87,7 +87,7 @@ export const Onboarding = () => {
     });
   }
   return (
-    <div className="flex h-full items-center justify-center gap-10 lg:mx-16">
+    <div className="flex h-full items-center justify-center gap-10 pt-10 lg:mx-16">
       <div className="-mb-16 overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg">
         <div className="w-full rounded-2xl bg-white">
           <div className="relative z-10 flex flex-col items-center justify-center px-10 py-4">

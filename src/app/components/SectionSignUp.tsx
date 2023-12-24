@@ -18,47 +18,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRegisterMutation } from "@/redux/api/authApi";
 import { redirect } from "next/navigation";
-
-const formSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  password: z
-    .string()
-    .min(8, {
-      message: "Password must be at least 8 characters.",
-    })
-    .refine((value) => !/\s/.test(value), {
-      message: "Password cannot contain spaces.",
-    })
-    .refine((value) => /\d/.test(value), {
-      message: "Password must contain at least one digit.",
-    })
-    .refine((value) => /[a-z]/.test(value), {
-      message: "Password must contain at least one lowercase letter.",
-    })
-    .refine((value) => /[A-Z]/.test(value), {
-      message: "Password must contain at least one uppercase letter.",
-    }),
-});
+import { SigninFormSchema } from "@/types/schema/auth";
 
 export default function SignUp() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof SigninFormSchema>>({
+    resolver: zodResolver(SigninFormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      phone_number: "",
     },
   });
 
-  const [register, { isSuccess, isLoading }] = useRegisterMutation();
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    register(values).then(() => {
-      if (isSuccess) {
-        redirect("/signup?onboard=true");
-      }
-    });
+  function onSubmit(values: z.infer<typeof SigninFormSchema>) {
+    redirect("/signup?login=true");
   }
 
   return (
@@ -111,29 +82,12 @@ export default function SignUp() {
               <div className="flex flex-col gap-1">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="phone_number"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <Input
-                          placeholder="Email"
-                          className="border-none bg-emerald-400 font-600 text-white placeholder:text-emerald-100"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="Password"
+                          placeholder="Phone number"
                           className="border-none bg-emerald-400 font-600 text-white placeholder:text-emerald-100"
                           {...field}
                         />

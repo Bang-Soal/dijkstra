@@ -2,9 +2,13 @@ export type LoginResponse = {
   token: string;
 };
 
-export type LoginRequest = {
-  email: string;
-  password: string;
+export type SigninRequest = {
+  phone_number: string;
+  otp: string;
 };
 
 export type RegisterResponse = {};
+
+export type SendOTPRequest = {
+  phone_number: string;
+};

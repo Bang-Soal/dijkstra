@@ -23,6 +23,15 @@ export const signupFormSchema = z.object({
     }),
 });
 
+export const SigninFormSchema = z.object({
+  phone_number: z
+    .string()
+    .min(8, { message: "Invalid phone number" })
+    .max(14, { message: "Invalid phone number" })
+    .refine((value) => /^[0-9]+$/.test(value), {
+      message: "Phone number must be digit",
+    }),
+});
 export const onboardingFormSchema = z.object({
   full_name: z.string().min(1, "Full name is required"),
   highschool: z.string().min(1, "High school name is required"),

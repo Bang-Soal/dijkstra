@@ -15,6 +15,7 @@ import "react-virtualized/styles.css";
 // providers
 import Providers from "./providers";
 import { MainLayout } from "./components/MainLayout";
+import { Toaster } from "react-hot-toast";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -33,8 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={`${quicksand.className} relative bg-surface-100`}>
+        <Toaster />
         <Providers>
-          <ComingSoon />
+          {/* <ComingSoon /> */}
           <Sidebar />
           <MainLayout>{children}</MainLayout>
         </Providers>

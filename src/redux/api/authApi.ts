@@ -1,18 +1,25 @@
-import { LoginRequest, LoginResponse, User } from "@/types";
+import { SigninRequest, LoginResponse, SendOTPRequest, User } from "@/types";
 import { baseApi } from "./baseApi";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<LoginResponse, LoginRequest>({
-      query: (body: LoginRequest) => ({
+    login: builder.mutation<LoginResponse, SigninRequest>({
+      query: (body) => ({
         url: "/auth/login",
         method: "POST",
         body,
       }),
     }),
-    register: builder.mutation<void, LoginRequest>({
-      query: (body: LoginRequest) => ({
+    register: builder.mutation<void, SigninRequest>({
+      query: (body) => ({
         url: "/auth/register",
+        method: "POST",
+        body,
+      }),
+    }),
+    sendOTP: builder.mutation<void, SendOTPRequest>({
+      query: (body) => ({
+        url: "/auth/send-otp",
         method: "POST",
         body,
       }),
@@ -26,4 +33,9 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useSendOTPMutation,
+  useGetProfileQuery,
+} = authApi;

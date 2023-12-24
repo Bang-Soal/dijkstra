@@ -6,7 +6,13 @@ import { toast } from "react-hot-toast";
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
-      toast.error(`${action?.payload?.error?.message || action.error.message}`);
+      toast.error(
+        `${
+          action.payload.data?.error?.message[0] ||
+          action.payload.data?.message ||
+          action.error.message
+        }`,
+      );
     }
 
     return next(action);

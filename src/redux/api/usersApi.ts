@@ -4,7 +4,7 @@ import { baseApi } from "./baseApi";
 export const usersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     onboarding: builder.mutation<void, OnboardRequest>({
-      query: (body: OnboardRequest) => ({
+      query: (body) => ({
         url: "/users/onboarding",
         method: "POST",
         body,

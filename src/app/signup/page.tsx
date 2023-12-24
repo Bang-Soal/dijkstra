@@ -1,5 +1,3 @@
-// components
-// libs
 import type { Metadata } from "next";
 import { Authentication } from "./Authentication";
 
