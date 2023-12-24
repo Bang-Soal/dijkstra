@@ -72,20 +72,20 @@ export const SignupForm = () => {
   }, [isLoginSucess, isRegisterSuccess, isOTPSucess]);
 
   return (
-    <div className="mx-5 flex h-full flex-col justify-center gap-10 md:mx-16 md:pt-10 lg:flex-row lg:items-center">
-      <div className="-mx-4 hidden w-full md:block lg:w-1/2">
+    <div className="mx-5 flex h-full flex-col justify-center gap-10 md:mx-16 lg:flex-row lg:items-center lg:pt-10">
+      <div className="-mx-4 hidden w-full lg:block lg:w-1/2">
         <InfiniteSlider images={UNI_LOGOS} />
       </div>
 
       <div className="-mx-10 -mb-8 overflow-hidden md:overflow-visible lg:w-1/2 lg:self-end">
         <div className="w-full min-w-[380px] -skew-x-12 overflow-hidden rounded-2xl bg-emerald-100/50 p-4 shadow-lg">
           <div className="rounded-2xl bg-white py-8 md:py-16">
-            <div className="flex skew-x-12 flex-col items-center justify-center px-10 py-4">
-              <div className="flex flex-col gap-2 text-center">
-                <p className="ml-8 text-2xl font-bold text-gray-950 md:ml-6">
+            <div className="flex min-h-[420px] skew-x-12 flex-col items-center justify-center gap-3 px-10 py-4 md:h-auto md:gap-6 lg:min-h-[550px] lg:gap-10">
+              <div className="flex flex-col gap-2 text-center lg:-mt-20">
+                <p className="ml-8 text-2xl font-bold text-gray-950 md:ml-6 lg:text-4xl">
                   {SIGNUP_COPYWRITING[isLogin ? "login" : "register"].header}
                 </p>
-                <p className="ml-6 text-gray-500 md:ml-6">
+                <p className="ml-6 text-gray-500 md:ml-6 lg:text-lg">
                   {SIGNUP_COPYWRITING[isLogin ? "login" : "register"].caption}
                 </p>
                 <a

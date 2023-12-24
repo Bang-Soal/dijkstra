@@ -14,7 +14,7 @@ export const AuthGuard: FC<{ children: ReactNode }> = ({ children }) => {
   const user = useAppSelector((state: RootState) => state.user);
 
   useGetProfileQuery(undefined, {
-    skip: !!user.profile || (isAuthPath && !!onboard),
+    skip: !!user.profile || isAuthPath,
   });
   if (!user.token && !isAuthPath) {
     redirect("/signin");
