@@ -2,6 +2,7 @@
 
 // components
 import Logo from "@/components/Logo";
+import { buttonVariants } from "@/components/ui/button";
 import NavMenuDesktop from "./NavMenuDesktop";
 import NavMenuMobile from "./NavMenuMobile";
 
@@ -43,7 +44,7 @@ export default function Nav() {
         className={cn(
           "fixed z-20 flex w-full items-center gap-3 transition-[height,padding,top] duration-700",
           atTop
-            ? "top-0 h-20 px-2 sm:px-6 lg:px-16"
+            ? "top-0 h-20 px-5 sm:px-10 lg:px-16"
             : "top-3 h-12 px-5 sm:px-10 lg:px-20",
         )}
       >
@@ -52,24 +53,39 @@ export default function Nav() {
             "flex h-full grow items-center justify-between rounded-full border bg-surface-100/60 backdrop-blur-lg transition-[border-color,padding] duration-700",
             atTop
               ? "border-surface-400/0 px-0 py-4"
-              : "border-surface-400/50 px-8 py-1",
+              : "border-surface-400/50 px-5 py-1 sm:px-8",
           )}
         >
           <Link
             className="flex items-center gap-1 font-700 text-content-200"
             href="/"
           >
-            <Logo className="h-8 w-8" />
+            <Logo className="size-8" />
             BangSoal
           </Link>
           <NavMenuDesktop />
-          <NavMenuMobile />
+          <div className="flex items-center gap-2 lg:hidden">
+            <Link
+              href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
+              className={cn(
+                buttonVariants({ variant: "bsPrimary" }),
+                "w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:hidden",
+              )}
+            >
+              <i className="i-bi-whatsapp size-4" />
+              <p className="hidden sm:flex">Masuk grup WA</p>
+            </Link>
+            <NavMenuMobile />
+          </div>
         </div>
         <Link
           href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
-          className="hidden h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-emerald-400 px-5 text-sm font-500 text-white transition-transform hover:scale-105 lg:flex"
+          className={cn(
+            buttonVariants({ variant: "bsPrimary" }),
+            "hidden h-12 w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:flex",
+          )}
         >
-          <i className="i-bi-whatsapp h-4 w-4" />
+          <i className="i-bi-whatsapp size-4" />
           <p>Masuk grup WA</p>
         </Link>
       </nav>

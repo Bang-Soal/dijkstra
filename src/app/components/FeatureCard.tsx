@@ -32,15 +32,15 @@ export default function FeatureCard({
 
   const colorMapping: { [key: string]: string } = {
     emerald:
-      "border-emerald-200 bg-emerald-600 text-emerald-50 after:shadow-emerald-400/80 children:after:shadow-emerald-600",
-    cyan: "border-cyan-200 bg-cyan-600 text-cyan-50 after:shadow-cyan-400/80 children:after:shadow-cyan-600",
+      "border-emerald-200 bg-emerald-600 text-emerald-50 after:shadow-emerald-400/80 *:after:shadow-emerald-600",
+    cyan: "border-cyan-200 bg-cyan-600 text-cyan-50 after:shadow-cyan-400/80 *:after:shadow-cyan-600",
     indigo:
-      "border-indigo-600 bg-indigo-900 text-indigo-50 after:shadow-indigo-700/80 children:after:shadow-indigo-900",
+      "border-indigo-600 bg-indigo-900 text-indigo-50 after:shadow-indigo-700/80 *:after:shadow-indigo-900",
     fuchsia:
-      "border-fuchsia-300 bg-fuchsia-700 text-fuchsia-50 after:shadow-fuchsia-500/80 children:after:shadow-fuchsia-700",
+      "border-fuchsia-300 bg-fuchsia-700 text-fuchsia-50 after:shadow-fuchsia-500/80 *:after:shadow-fuchsia-700",
     orange:
-      "border-orange-200 bg-orange-500 text-orange-50 after:shadow-orange-300/80 children:after:shadow-orange-500",
-    rose: "border-rose-300 bg-rose-500 text-rose-50 after:shadow-rose-300/80 children:after:shadow-rose-500",
+      "border-orange-200 bg-orange-500 text-orange-50 after:shadow-orange-300/80 *:after:shadow-orange-500",
+    rose: "border-rose-300 bg-rose-500 text-rose-50 after:shadow-rose-300/80 *:after:shadow-rose-500",
   };
 
   function handleChange(value: string[]) {
@@ -52,7 +52,7 @@ export default function FeatureCard({
   }
 
   return (
-    <div className="flex flex-col-reverse gap-2 rounded-3xl border border-surface-300 bg-surface-100 p-3 shadow @container sm:flex-row">
+    <div className="group flex flex-col-reverse gap-2 rounded-3xl border border-surface-300 bg-surface-100 p-3 shadow @container sm:flex-row">
       <div className="flex flex-col gap-5 px-4 py-2 sm:basis-1/2 sm:justify-evenly">
         <p className="text-lg font-700 text-content-200 @xl:text-3xl">
           {title}
@@ -66,9 +66,12 @@ export default function FeatureCard({
           disabled={answered}
           className="flex flex-col gap-0.5"
         >
-          <p className="self-start pb-2 text-left font-500 text-content-300">
-            Pilih jawaban yang tepat:
-          </p>
+          <div className=" flex items-center gap-1 self-start pb-2 text-surface-400 transition-colors group-hover:text-surface-600">
+            <i className="i-ph-hand-tap-duotone size-4" />
+            <p className="text-left text-sm font-500">
+              Pilih jawaban yang tepat:
+            </p>
+          </div>
           {choices.map((choice) => (
             <ToggleGroupItem
               key={choice}

@@ -47,7 +47,7 @@ export default function ComingSoon() {
           <h1 className="text-center text-3xl font-bold sm:text-4xl">
             Sabar dulu bang!
           </h1>
-          <p className="text-balance max-w-lg text-center text-sm text-content-300 sm:text-base">
+          <p className="max-w-lg text-balance text-center text-sm text-content-300 sm:text-base">
             Fitur ini akan segera datang! Sambil menunggu, ayo join grup WA
             BangSoal! Dengan join grupnya, kamu akan mendapatkan benefit:
           </p>
@@ -74,7 +74,7 @@ export default function ComingSoon() {
               href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
               className="flex items-center justify-center gap-1.5 rounded-full bg-emerald-400 px-5 py-2 font-500 text-white transition-transform hover:scale-105"
             >
-              <i className="i-bi-whatsapp h-4 w-4" />
+              <i className="i-bi-whatsapp size-4" />
               <p>Masuk grup WA</p>
             </Link>
             <Link

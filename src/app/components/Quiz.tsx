@@ -32,7 +32,7 @@ function handleExplanation(explanation: string): JSX.Element[] {
         elements.push(
           <i
             key={part}
-            className="i-ph-arrow-right-bold mx-1 h-4 w-4 translate-y-[3px]"
+            className="i-ph-arrow-right-bold mx-1 size-4 translate-y-[3px]"
           />,
         );
       }
@@ -145,11 +145,11 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
           </div>
           <div className="-mt-24 flex flex-col items-center gap-3 text-emerald-900">
             {remainingTime === 0 && value.length === 0 ? (
-              <i className="i-ph-timer-bold h-12 w-12 text-content-300" />
+              <i className="i-ph-timer-bold size-12 text-content-300" />
             ) : value.length === 1 ? (
-              <i className="i-ph-check-bold h-12 w-12 text-emerald-500" />
+              <i className="i-ph-check-bold size-12 text-emerald-500" />
             ) : value.length === 2 ? (
-              <i className="i-ph-x-bold h-12 w-12 text-rose-500" />
+              <i className="i-ph-x-bold size-12 text-rose-500" />
             ) : (
               <p className="text-5xl font-700">{remainingTime}</p>
             )}
@@ -203,7 +203,7 @@ export default function Quiz({ topic }: Readonly<{ topic: string }>) {
         )}
       >
         <div className="flex items-center gap-1 text-content-100">
-          <i className="i-ph-info-bold h-4 w-4" />
+          <i className="i-ph-info-bold size-4" />
           <p className="text-base font-500">Pembahasan</p>
         </div>
         {handleExplanation(data.explanation)}
