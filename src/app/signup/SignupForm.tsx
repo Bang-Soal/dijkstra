@@ -48,11 +48,7 @@ export const SignupForm = () => {
   const onSubmitForm = (values: z.infer<typeof SigninFormSchema>) => {
     values.phone_number = `+62${values.phone_number.slice(1)}`;
     if (!showOTPInput) {
-      sendOTP({ phone_number: values.phone_number }).then(() => {
-        if (isOTPSucess) {
-          setShowOTPInput(true);
-        }
-      });
+      sendOTP({ phone_number: values.phone_number }).then(() => {});
     } else {
       const body = { ...values, otp: otpValue };
       if (isLogin) {
@@ -64,10 +60,13 @@ export const SignupForm = () => {
   };
 
   useEffect(() => {
+    if (isOTPSucess) {
+      setShowOTPInput(true);
+    }
     if (isLoginSucess || isRegisterSuccess) {
       redirect("/");
     }
-  }, [isLoginSucess, isRegisterSuccess]);
+  }, [isLoginSucess, isRegisterSuccess, isOTPSucess]);
 
   return (
     <div className="mx-5 flex h-full flex-col justify-center gap-10 md:mx-16 md:pt-10 lg:flex-row lg:items-center">

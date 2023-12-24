@@ -26,10 +26,15 @@ export const signupFormSchema = z.object({
 export const SigninFormSchema = z.object({
   phone_number: z
     .string()
-    .min(8, { message: "Invalid phone number" })
-    .max(14, { message: "Invalid phone number" })
+    .min(10, { message: "Invalid phone number. Too short." })
+    .max(13, { message: "Invalid phone number. Too long." })
     .refine((value) => /^[0-9]+$/.test(value), {
-      message: "Phone number must be digit",
+      message: "Phone number must be digits only.",
+    })
+    .refine((value) => /^08[0-9]{8,11}$/.test(value), {
+      // Regex for Indonesian phone numbers
+      message:
+        "Invalid format. Indonesian phone numbers should start with '08'.",
     }),
 });
 export const onboardingFormSchema = z.object({
