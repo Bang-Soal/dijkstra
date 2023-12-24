@@ -6,17 +6,22 @@ import { toast } from "react-hot-toast";
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
-      const errorData =
-        action.payload.data?.error?.message ||
-        action.payload.data?.message ||
-        action.error.message;
+      if (action.meta.arg.endpointName == "getProfile") {
+        window.location.href = "/signup?onboard=true";
+        return;
+      } else {
+        const errorData =
+          action.payload.data?.error?.message ||
+          action.payload.data?.message ||
+          action.error.message;
 
-      if (Array.isArray(errorData)) {
-        errorData.forEach((message) => {
-          toast.error(message);
-        });
-      } else if (typeof errorData === "string") {
-        toast.error(errorData);
+        if (Array.isArray(errorData)) {
+          errorData.forEach((message) => {
+            toast.error(message);
+          });
+        } else if (typeof errorData === "string") {
+          toast.error(errorData);
+        }
       }
     }
 

@@ -15,20 +15,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { AVAILABLE_PATHS } from "./constants";
 
 export default function ComingSoon() {
   const path = usePathname();
 
   useEffect(() => {
-    if (path !== "/" && path !== "/langganan") {
+    if (!AVAILABLE_PATHS.includes(path)) {
       document.body.classList.add("h-screen", "overflow-hidden");
-    }
-    if (path === "/" || path === "/langganan") {
+    } else {
       document.body.classList.remove("h-screen", "overflow-hidden");
     }
   }, [path]);
 
-  if (path === "/" || path === "/langganan") {
+  if (AVAILABLE_PATHS.includes(path)) {
     return null;
   }
 

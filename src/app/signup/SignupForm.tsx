@@ -63,8 +63,11 @@ export const SignupForm = () => {
     if (isOTPSucess) {
       setShowOTPInput(true);
     }
-    if (isLoginSucess || isRegisterSuccess) {
+    if (isLoginSucess) {
       redirect("/");
+    }
+    if (isRegisterSuccess) {
+      redirect("/signup?onboard=true");
     }
   }, [isLoginSucess, isRegisterSuccess, isOTPSucess]);
 

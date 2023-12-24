@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { OnboardRequest } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
@@ -37,7 +37,14 @@ const SearchableDropdown = ({
       <div
         key={key}
         style={style}
-        className={cn("cursor-pointer px-4 py-2")}
+        className={cn(
+          "text-wrap flex cursor-pointer items-center px-4 py-2 text-sm leading-snug md:text-base",
+          index == 0
+            ? "border-b"
+            : index == options.length - 1
+              ? "border-t"
+              : "border",
+        )}
         onClick={() => {
           setValue(field, item);
           setSearchTerm(item);
@@ -49,6 +56,7 @@ const SearchableDropdown = ({
   };
   const dropdownHeight = Math.min(160, filteredOptions.length * 40);
 
+  const ref = useRef(null);
   return (
     <div className="pt-2">
       <Input
@@ -77,14 +85,18 @@ const SearchableDropdown = ({
           }}
         >
           <div className="mt-2">
-            <AutoSizer>
+            <AutoSizer disableHeight>
               {({ width }) => (
                 <List
                   className="items-center rounded-lg border-2 border-gray-900 bg-white py-1"
                   height={dropdownHeight}
                   overscanRowCount={5}
                   rowCount={options.length}
-                  rowHeight={30}
+                  rowHeight={({ index }) => {
+                    return (
+                      40 + Math.floor((options[index].length * 10) / width) * 25
+                    );
+                  }}
                   rowRenderer={rowRenderer}
                   width={width}
                 />

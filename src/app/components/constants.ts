@@ -12,3 +12,5 @@ export const infiniteSliderVariants = (minWidth: number, n: number) => ({
 });
 
 export const AUTH_PATHS = ["/signup"];
+
+export const AVAILABLE_PATHS = [...AUTH_PATHS, "/", "/langganan"];

@@ -36,7 +36,7 @@ export default function RootLayout({
       <body className={`${quicksand.className} relative bg-surface-100`}>
         <Toaster />
         <Providers>
-          {/* <ComingSoon /> */}
+          <ComingSoon />
           <Sidebar />
           <MainLayout>{children}</MainLayout>
         </Providers>

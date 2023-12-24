@@ -13,7 +13,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { DUMMY_PTN as ptnList } from "./constants";
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -32,6 +31,7 @@ export const Onboarding = () => {
       full_name: "",
       highschool: "",
       highschool_year: "",
+      email: "",
       phone_number: "",
       referral_code: "",
       source: "",
@@ -45,7 +45,8 @@ export const Onboarding = () => {
   });
 
   const { setValue, watch, getValues } = form;
-  // const { data: ptnList } = useGetAllPTNQuery();
+  const { data: ptnData } = useGetAllPTNQuery();
+  const ptnList: PTN[] = ptnData?.data ?? [];
   const ptnOptions = ptnList?.map(({ name }) => name) ?? [];
   const uniOne = watch("choosen_university_one");
   const uniTwo = watch("choosen_university_two");
@@ -87,11 +88,11 @@ export const Onboarding = () => {
     });
   }
   return (
-    <div className="flex h-full items-center justify-center gap-10 pt-10 lg:mx-16">
+    <div className="mx-0 flex h-full items-center justify-center gap-10 pt-10 lg:mx-16">
       <div className="-mb-16 overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg">
         <div className="w-full rounded-2xl bg-white">
-          <div className="relative z-10 flex flex-col items-center justify-center px-10 py-4">
-            <p className="mt-6 text-center text-2xl font-bold md:mx-20 md:mt-12 md:text-3xl">
+          <div className="relative z-10 flex flex-col items-center justify-center px-4 py-4 md:px-10">
+            <p className="relative z-10 mt-6 text-center text-2xl font-bold md:mx-20 md:mt-12 md:text-3xl">
               Let&apos;s get your UTBK journey started
             </p>
             <div className="absolute inset-x-0 top-[6%] h-24 w-full rounded-[50%] bg-gradient-to-b from-transparent to-white shadow-[0_6px_10px_-5px_rgba(0,0,0,0.2)] md:top-[8%]" />
@@ -99,7 +100,7 @@ export const Onboarding = () => {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="hide-scrollbar mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll px-4 py-8"
+                className="hide-scrollbar mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll py-8 md:px-4"
               >
                 <div className="flex flex-col gap-4">
                   <FormField
@@ -126,6 +127,21 @@ export const Onboarding = () => {
                           <>
                             <FormLabel>What&apos;s your high school</FormLabel>
                             <Input placeholder="High School" {...field} />
+                          </>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <>
+                            <FormLabel>Could we get your email?</FormLabel>
+                            <Input placeholder="Email" {...field} />
                           </>
                         </FormControl>
                         <FormMessage />
@@ -265,7 +281,7 @@ export const Onboarding = () => {
                     <FormMessage />
                   </FormItem>
                 </div>
-                <div className="flex flex-row justify-end pt-8">
+                <div className="mb-4 flex flex-row justify-end pt-8">
                   <Button
                     type="submit"
                     className="w-40 items-end rounded-full bg-emerald-400 !font-600 text-white hover:bg-emerald-400/70"

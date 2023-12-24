@@ -12,14 +12,14 @@ export const InfiniteSlider = ({ images, className }: InfiniteSliderI) => {
   const minWidth = images.length * 150;
   const sliderVariants = infiniteSliderVariants(minWidth, images.length);
   return (
-    <div className="mt-2 w-full min-w-[350px] skew-x-12 overflow-hidden rounded-2xl bg-gray-800 md:mt-0 md:-skew-x-12">
-      <div className="flex h-full w-full -skew-x-12 flex-col items-center justify-center px-10 py-2 md:skew-x-12 lg:py-10">
-        <p className="-translate-x-6 text-center text-xl font-bold text-white md:transform-none md:text-2xl">
+    <div className="-mx-6 w-full min-w-[100vw] overflow-hidden bg-gray-800 md:min-w-[380px] md:-skew-x-12 md:rounded-2xl">
+      <div className="flex h-full w-full flex-col items-center justify-center px-10 py-2 md:skew-x-12 lg:py-10">
+        <p className="text-md text-center font-bold text-white md:text-2xl">
           Enabling students to get into top PTNs
         </p>
         <motion.div
           className={cn(
-            "flex skew-x-12 flex-row items-center gap-10 overflow-hidden py-4",
+            "flex skew-x-12 flex-row items-center gap-10 overflow-hidden md:py-4",
           )}
           variants={sliderVariants}
           animate="animate"

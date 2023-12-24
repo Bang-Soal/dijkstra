@@ -5,7 +5,7 @@ export const ptnApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllPTN: builder.query<PTNResponse, void>({
       query: () => ({
-        url: "/users/onboarding",
+        url: "/ptn",
         method: "GET",
       }),
     }),

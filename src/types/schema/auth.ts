@@ -43,6 +43,9 @@ export const onboardingFormSchema = z.object({
   choosen_university_one: z
     .string()
     .min(1, "First chosen university is required"),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
   phone_number: z.string().min(1, "Phone number is required"),
   referral_code: z.string().optional(),
   source: z.string().min(1, "Source is required"),
