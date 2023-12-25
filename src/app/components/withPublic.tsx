@@ -3,28 +3,23 @@ import { RootState, useAppSelector } from "@/redux/store";
 import { redirect } from "next/navigation";
 import { ComponentType } from "react";
 
-const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
-  const Auth: ComponentType<P> = (props: P) => {
+const withPublic = <P extends object>(WrappedComponent: ComponentType<P>) => {
+  const Public: ComponentType<P> = (props: P) => {
     const user = useAppSelector((state: RootState) => state.user);
 
     useGetProfileQuery(undefined, {
       skip: !!user.profile,
     });
-
-    if (!user.token) {
-      redirect("/signup");
-    }
-
-    if (!user.profile) {
-      redirect("/onboarding");
+    if (!!user.profile) {
+      redirect("/");
     }
 
     return <WrappedComponent {...props} />;
   };
 
-  Auth.displayName = `Auth(${getDisplayName(WrappedComponent)})`;
+  Public.displayName = `Public(${getDisplayName(WrappedComponent)})`;
 
-  return Auth;
+  return Public;
 };
 
 // Function to get the display name of a component
@@ -32,4 +27,4 @@ function getDisplayName(WrappedComponent: ComponentType<any>): string {
   return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
-export default withAuth;
+export default withPublic;

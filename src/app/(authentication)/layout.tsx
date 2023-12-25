@@ -1,7 +1,7 @@
 "use client";
 import heroBgMesh from "@public/hero-bg-mesh.webp";
 import Image from "next/image";
-import withAuth from "../components/withAuth";
+import withPublic from "../components/withPublic";
 
 function AuthLayout({
   children,
@@ -18,4 +18,4 @@ function AuthLayout({
   );
 }
 
-export default withAuth(AuthLayout);
+export default withPublic(AuthLayout);
