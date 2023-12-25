@@ -11,7 +11,7 @@ import Link from "next/link";
 import CatatanCard from "./components/CatatanCard";
 
 export const metadata: Metadata = {
-  title: "Bang Catatan | Bang Soal",
+  title: "Bang Catatan | BangSoal",
   description: "Catatan pribadi dan publik",
 };
 
