@@ -1,5 +1,7 @@
 "use client";
 
+import { RootState, useAppSelector } from "@/redux/store";
+
 // components
 import { Button } from "@/components/ui/button";
 import {
@@ -31,6 +33,11 @@ export default function SignUp() {
 
   function onSubmit(values: z.infer<typeof SigninFormSchema>) {
     router.push(`/signup?number=${values.phone_number}`);
+  }
+  const user = useAppSelector((state: RootState) => state.user);
+
+  if (!!user.profile) {
+    return <></>; // hide if user is logged in
   }
 
   return (
