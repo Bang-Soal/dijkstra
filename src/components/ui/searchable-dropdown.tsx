@@ -33,17 +33,21 @@ const SearchableDropdown = ({
   const rowRenderer = ({ key, index, style }: any) => {
     const item = filteredOptions[index];
 
+    let borderStyle = "border";
+
+    if (index === 0) {
+      borderStyle = "border-b";
+    } else if (index === options.length - 1) {
+      borderStyle = "border-t";
+    }
+
     return (
       <div
         key={key}
         style={style}
         className={cn(
           "flex cursor-pointer items-center text-wrap px-4 py-2 text-sm leading-snug md:text-base",
-          index == 0
-            ? "border-b"
-            : index == options.length - 1
-              ? "border-t"
-              : "border",
+          borderStyle,
         )}
         onClick={() => {
           setValue(field, item);
