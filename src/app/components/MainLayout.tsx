@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
 import Nav from "./Navbar";
-import { AUTH_PATHS } from "./constants";
+import { AUTH_PATHS } from "./path";
 
 interface MainLayoutI {
   children: React.ReactNode;

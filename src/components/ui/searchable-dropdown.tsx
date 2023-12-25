@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { OnboardRequest } from "@/types";
-import { UseFormSetValue } from "react-hook-form";
+import { UserOnboardRequest } from "@/types";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { UseFormSetValue } from "react-hook-form";
 
-import { Input } from "./input";
 import { AutoSizer, List } from "react-virtualized";
+import { Input } from "./input";
 
 interface SearchableDropdownI {
   options: string[];
-  setValue: UseFormSetValue<OnboardRequest>;
-  field: keyof OnboardRequest;
+  setValue: UseFormSetValue<UserOnboardRequest>;
+  field: keyof UserOnboardRequest;
   placeholder?: string;
 }
 const SearchableDropdown = ({
@@ -38,7 +38,7 @@ const SearchableDropdown = ({
         key={key}
         style={style}
         className={cn(
-          "text-wrap flex cursor-pointer items-center px-4 py-2 text-sm leading-snug md:text-base",
+          "flex cursor-pointer items-center text-wrap px-4 py-2 text-sm leading-snug md:text-base",
           index == 0
             ? "border-b"
             : index == options.length - 1

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Authentication } from "./Authentication";
+import { AuthenticationContainer } from "./AuthenticationContainer";
 
 export const metadata: Metadata = {
   title: "Bang Soal",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function SignupPage() {
-  return <Authentication />;
+  return <AuthenticationContainer />;
 }

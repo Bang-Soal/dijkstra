@@ -1,4 +1,4 @@
-export type OnboardRequest = {
+export type UserOnboardRequest = {
   full_name: string;
   highschool: string;
   highschool_year: string;
@@ -14,7 +14,7 @@ export type OnboardRequest = {
   choosen_major_three?: string;
 };
 
-export type User = OnboardRequest & {
+export type User = UserOnboardRequest & {
   id: string;
   onboard_date: string;
 };

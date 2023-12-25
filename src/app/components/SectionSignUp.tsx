@@ -18,9 +18,10 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { SigninFormSchema } from "@/types/schema/auth";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof SigninFormSchema>>({
     resolver: zodResolver(SigninFormSchema),
     defaultValues: {
@@ -29,7 +30,7 @@ export default function SignUp() {
   });
 
   function onSubmit(values: z.infer<typeof SigninFormSchema>) {
-    redirect("/signup?login=true");
+    router.push(`/signup?number=${values.phone_number}`);
   }
 
   return (
@@ -105,21 +106,6 @@ export default function SignUp() {
               </Button>
             </form>
           </Form>
-          <div className="flex items-center justify-center gap-2 font-600 text-white">
-            <div className="h-0.5 grow rounded-full bg-emerald-200" />
-            atau
-            <div className="h-0.5 grow rounded-full bg-emerald-200" />
-          </div>
-          <Button
-            type="submit"
-            className="rounded-full bg-white !font-600 text-emerald-700 hover:bg-emerald-100"
-            onClick={() => {
-              window.open(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`);
-            }}
-          >
-            <i className="i-logos-google-icon mr-2 size-4" />
-            <p className="">Daftar dengan Google</p>
-          </Button>
         </div>
       </div>
     </section>

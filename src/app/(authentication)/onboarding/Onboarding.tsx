@@ -1,3 +1,4 @@
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
@@ -22,7 +23,7 @@ import { useState } from "react";
 
 import SearchableDropdown from "@/components/ui/searchable-dropdown";
 import { PTN } from "@/types";
-import { PTNChoices } from "./interface";
+import { PTNChoices } from "../signup/interface";
 
 export const Onboarding = () => {
   const form = useForm<z.infer<typeof onboardingFormSchema>>({

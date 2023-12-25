@@ -15,20 +15,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { AVAILABLE_PATHS } from "./constants";
+import { AVAILABLE_PATHS } from "./path";
 
 export default function ComingSoon() {
-  const path = usePathname();
+  const pathname = usePathname();
 
+  const isAvailablePath = AVAILABLE_PATHS.some((path) => {
+    if (path instanceof RegExp) {
+      return path.test(pathname);
+    }
+    return path === path;
+  });
   useEffect(() => {
-    if (!AVAILABLE_PATHS.includes(path)) {
+    if (!isAvailablePath) {
       document.body.classList.add("h-screen", "overflow-hidden");
     } else {
       document.body.classList.remove("h-screen", "overflow-hidden");
     }
-  }, [path]);
+  }, [pathname, isAvailablePath]);
 
-  if (AVAILABLE_PATHS.includes(path)) {
+  if (isAvailablePath) {
     return null;
   }
 

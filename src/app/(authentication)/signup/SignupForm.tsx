@@ -1,4 +1,4 @@
-"use client ";
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,20 +19,21 @@ import { redirect, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { InfiniteSlider } from "../components/InfiniteSlider";
-import { OTPInput } from "../components/OTPInput";
+import { InfiniteSlider } from "../../components/InfiniteSlider";
+import { OTPInput } from "../../components/OTPInput";
 import { SIGNUP_COPYWRITING, UNI_LOGOS } from "./constants";
 
 export const SignupForm = () => {
   const searchParams = useSearchParams();
   const login = searchParams.get("login");
+  const phoneNumber = searchParams.get("number");
   const [isLogin, setIsLogin] = useState<boolean>(!!login);
   const [otpValue, setOtpValue] = useState<string>("");
   const [showOTPInput, setShowOTPInput] = useState<boolean>(false);
   const form = useForm<z.infer<typeof SigninFormSchema>>({
     resolver: zodResolver(SigninFormSchema),
     defaultValues: {
-      phone_number: "",
+      phone_number: phoneNumber ?? "",
     },
   });
   const { handleSubmit } = form;
@@ -45,16 +46,16 @@ export const SignupForm = () => {
   const [loginUser, { isSuccess: isLoginSucess, isLoading: isLoginLoading }] =
     useLoginMutation();
 
-  const onSubmitForm = (values: z.infer<typeof SigninFormSchema>) => {
+  const onSubmitForm = async (values: z.infer<typeof SigninFormSchema>) => {
     values.phone_number = `+62${values.phone_number.slice(1)}`;
     if (!showOTPInput) {
-      sendOTP({ phone_number: values.phone_number }).then(() => {});
+      await sendOTP({ phone_number: values.phone_number });
     } else {
       const body = { ...values, otp: otpValue };
       if (isLogin) {
-        loginUser(body);
+        await loginUser(body);
       } else {
-        register(body);
+        await register(body);
       }
     }
   };
@@ -67,7 +68,7 @@ export const SignupForm = () => {
       redirect("/");
     }
     if (isRegisterSuccess) {
-      redirect("/signup?onboard=true");
+      redirect("/onboarding");
     }
   }, [isLoginSucess, isRegisterSuccess, isOTPSucess]);
 
