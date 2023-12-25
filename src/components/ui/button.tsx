@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { CircularProgress } from "./circular-progress";
 
 const buttonVariants = cva(
   "relative inline-flex shrink-0 items-center justify-center whitespace-nowrap font-medium ring-offset-white transition after:absolute after:inset-0 after:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
@@ -20,6 +21,8 @@ const buttonVariants = cva(
         ghost:
           "rounded-md hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-50",
         link: "text-gray-900 underline-offset-4 hover:underline dark:text-gray-50",
+        emerald:
+          "bg-emerald-400 text-surface-100 hover:bg-emerald-300/70 hover:text-gray-500",
         bsPrimary:
           "rounded-full border border-emerald-500 bg-emerald-400 text-white shadow after:rounded-full after:shadow-highlight after:shadow-white/25 hover:scale-105 hover:border-emerald-600 hover:bg-emerald-500 active:scale-95",
       },
@@ -41,17 +44,32 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, loading = false, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, className }), {
+          relative: loading,
+          "cursor-not-allowed": loading,
+        })}
         ref={ref}
         {...props}
-      />
+      >
+        {loading && (
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+            <CircularProgress />
+          </div>
+        )}
+
+        {!loading && props.children}
+      </Comp>
     );
   },
 );

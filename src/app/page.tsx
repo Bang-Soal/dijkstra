@@ -1,7 +1,6 @@
-import Hero from "./components/SectionHero";
-import Features from "./components/SectionFeatures";
 import Comparison from "./components/SectionComparison";
-import Testimonials from "./components/SectionTestimonials";
+import Features from "./components/SectionFeatures";
+import Hero from "./components/SectionHero";
 import Pricing from "./components/SectionPricing";
 import SignUp from "./components/SectionSignUp";
 
@@ -13,7 +12,7 @@ export default function Home() {
       <Comparison />
       {/* <Testimonials /> */}
       <Pricing />
-      {/* <SignUp /> */}
+      <SignUp />
     </main>
   );
 }

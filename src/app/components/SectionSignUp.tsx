@@ -17,42 +17,20 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-const formSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  password: z
-    .string()
-    .min(8, {
-      message: "Password must be at least 8 characters.",
-    })
-    .refine((value) => !/\s/.test(value), {
-      message: "Password cannot contain spaces.",
-    })
-    .refine((value) => !/\d/.test(value), {
-      message: "Password must contain at least one digit.",
-    })
-    .refine((value) => !/[a-z]/.test(value), {
-      message: "Password must contain at least one lowercase letter.",
-    })
-    .refine((value) => !/[A-Z]/.test(value), {
-      message: "Password must contain at least one uppercase letter.",
-    }),
-});
+import { SigninFormSchema } from "@/types/schema/auth";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const router = useRouter();
+  const form = useForm<z.infer<typeof SigninFormSchema>>({
+    resolver: zodResolver(SigninFormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      phone_number: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  function onSubmit(values: z.infer<typeof SigninFormSchema>) {
+    router.push(`/signup?number=${values.phone_number}`);
   }
 
   return (
@@ -105,28 +83,12 @@ export default function SignUp() {
               <div className="flex flex-col gap-1">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="phone_number"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <Input
-                          placeholder="Email"
-                          className="border-none bg-emerald-400 font-600 text-white placeholder:text-emerald-100"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          placeholder="Password"
+                          placeholder="Phone number"
                           className="border-none bg-emerald-400 font-600 text-white placeholder:text-emerald-100"
                           {...field}
                         />
@@ -144,18 +106,6 @@ export default function SignUp() {
               </Button>
             </form>
           </Form>
-          <div className="flex items-center justify-center gap-2 font-600 text-white">
-            <div className="h-0.5 grow rounded-full bg-emerald-200" />
-            atau
-            <div className="h-0.5 grow rounded-full bg-emerald-200" />
-          </div>
-          <Button
-            type="submit"
-            className="rounded-full bg-white !font-600 text-emerald-700 hover:bg-emerald-100"
-          >
-            <i className="i-logos-google-icon mr-2 size-4" />
-            <p className="">Daftar dengan Google</p>
-          </Button>
         </div>
       </div>
     </section>

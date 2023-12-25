@@ -29,3 +29,15 @@ i {
 .skeleton {
   @apply relative -z-10 overflow-hidden before:absolute before:inset-0 before:-z-10 before:animate-slide-right before:bg-gradient-to-r;
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
+  /* for Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
+}
