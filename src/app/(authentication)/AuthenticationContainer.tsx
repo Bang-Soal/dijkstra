@@ -1,4 +1,4 @@
-import { SignupForm } from "./SignupForm";
+import { SignupForm } from "./signup/SignupForm";
 
 export const AuthenticationContainer = () => {
   return (

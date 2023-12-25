@@ -15,7 +15,12 @@ import {
 } from "@/redux/api/authApi";
 import { SigninFormSchema } from "@/types/schema/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useSearchParams } from "next/navigation";
+import {
+  redirect,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,10 +29,11 @@ import { OTPInput } from "../../components/OTPInput";
 import { SIGNUP_COPYWRITING, UNI_LOGOS } from "./constants";
 
 export const SignupForm = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const login = searchParams.get("login");
+  const pathname = usePathname();
   const phoneNumber = searchParams.get("number");
-  const [isLogin, setIsLogin] = useState<boolean>(!!login);
+  const isLogin = pathname == "/login";
   const [otpValue, setOtpValue] = useState<string>("");
   const [showOTPInput, setShowOTPInput] = useState<boolean>(false);
   const form = useForm<z.infer<typeof SigninFormSchema>>({
@@ -90,8 +96,14 @@ export const SignupForm = () => {
                   {SIGNUP_COPYWRITING[isLogin ? "login" : "register"].caption}
                 </p>
                 <a
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="ml-4 text-emerald-600 underline md:ml-6"
+                  onClick={() => {
+                    if (isLogin) {
+                      router.replace("/signup");
+                    } else {
+                      router.replace("/login");
+                    }
+                  }}
+                  className="ml-4 cursor-pointer text-emerald-600 underline md:ml-6"
                 >
                   {SIGNUP_COPYWRITING[isLogin ? "login" : "register"].anchor}
                 </a>

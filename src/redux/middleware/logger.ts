@@ -7,7 +7,6 @@ export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
       if (action.meta.arg.endpointName == "getProfile") {
-        window.location.href = "/onboarding";
         return;
       } else {
         const errorData =

@@ -12,7 +12,7 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
     });
 
     if (!user.token) {
-      redirect("/signup?login=true");
+      redirect("/login");
     }
 
     if (!user.profile) {
