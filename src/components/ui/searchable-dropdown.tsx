@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { UserOnboardRequest } from "@/types";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
 import { AutoSizer, List } from "react-virtualized";
@@ -60,7 +60,6 @@ const SearchableDropdown = ({
   };
   const dropdownHeight = Math.min(160, filteredOptions.length * 40);
 
-  const ref = useRef(null);
   return (
     <div className="pt-2">
       <Input
@@ -95,10 +94,12 @@ const SearchableDropdown = ({
                   className="items-center rounded-lg border-2 border-gray-900 bg-white py-1"
                   height={dropdownHeight}
                   overscanRowCount={5}
-                  rowCount={options.length}
+                  rowCount={filteredOptions.length}
                   rowHeight={({ index }) => {
                     return (
-                      40 + Math.floor((options[index].length * 10) / width) * 25
+                      40 +
+                      Math.floor((filteredOptions[index].length * 10) / width) *
+                        25
                     );
                   }}
                   rowRenderer={rowRenderer}

@@ -13,14 +13,17 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
     const user = useAppSelector((state: RootState) => state.user);
 
     useGetProfileQuery(undefined, {
-      skip: !!user.profile || isAuthPath,
+      skip: !!user.profile || pathname == "/signup",
     });
 
     if (!user.token && !isAuthPath) {
       redirect("/signup");
     }
 
-    if (isAuthPath && !!user.token) {
+    if (
+      (isAuthPath && !!user.profile) ||
+      (pathname == "/signup" && !!user.token)
+    ) {
       redirect("/");
     }
 

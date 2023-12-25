@@ -1,4 +1,9 @@
-import { SigninRequest, SigninResponse, SendOTPRequest, User } from "@/types";
+import {
+  ProfileResponse,
+  SendOTPRequest,
+  SigninRequest,
+  SigninResponse,
+} from "@/types";
 import { baseApi } from "./baseApi";
 
 export const authApi = baseApi.injectEndpoints({
@@ -24,7 +29,7 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    getProfile: builder.query<User, void>({
+    getProfile: builder.query<ProfileResponse, void>({
       query: () => ({
         url: "/auth/me",
         method: "GET",

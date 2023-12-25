@@ -1,40 +1,17 @@
 import { z } from "zod";
 
-export const signupFormSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  password: z
-    .string()
-    .min(8, {
-      message: "Password must be at least 8 characters.",
-    })
-    .refine((value) => !/\s/.test(value), {
-      message: "Password cannot contain spaces.",
-    })
-    .refine((value) => /\d/.test(value), {
-      message: "Password must contain at least one digit.",
-    })
-    .refine((value) => /[a-z]/.test(value), {
-      message: "Password must contain at least one lowercase letter.",
-    })
-    .refine((value) => /[A-Z]/.test(value), {
-      message: "Password must contain at least one uppercase letter.",
-    }),
-});
-
 export const SigninFormSchema = z.object({
   phone_number: z
     .string()
-    .min(10, { message: "Invalid phone number. Too short." })
-    .max(13, { message: "Invalid phone number. Too long." })
+    .min(10, { message: "Invalid phone number. Too short" })
+    .max(13, { message: "Invalid phone number. Too long" })
     .refine((value) => /^[0-9]+$/.test(value), {
-      message: "Phone number must be digits only.",
+      message: "Phone number must be digits only",
     })
     .refine((value) => /^08[0-9]{8,11}$/.test(value), {
       // Regex for Indonesian phone numbers
       message:
-        "Invalid format. Indonesian phone numbers should start with '08'.",
+        "Invalid format. Indonesian phone numbers should start with '08'",
     }),
 });
 export const onboardingFormSchema = z.object({
@@ -44,13 +21,18 @@ export const onboardingFormSchema = z.object({
     .string()
     .min(1, "First chosen university is required"),
   email: z.string().email({
-    message: "Please enter a valid email address.",
+    message: "Please enter a valid email address",
   }),
-  phone_number: z.string().min(1, "Phone number is required"),
   referral_code: z.string().optional(),
   source: z.string().min(1, "Source is required"),
   choosen_major_one: z.string().min(1, "First chosen major is required"),
-  highschool_year: z.string().min(1, "High school year is required"),
+  highschool_year: z
+    .string()
+    .min(4, { message: "Invalid year" })
+    .max(4, { message: "Invalid year" })
+    .refine((value) => /^[0-9]+$/.test(value), {
+      message: "Year must be digits only",
+    }),
   choosen_university_two: z.string().optional(),
   choosen_major_two: z.string().optional(),
   choosen_university_three: z.string().optional(),

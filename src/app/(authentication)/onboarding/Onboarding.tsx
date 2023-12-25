@@ -33,7 +33,6 @@ export const Onboarding = () => {
       highschool: "",
       highschool_year: "",
       email: "",
-      phone_number: "",
       referral_code: "",
       source: "",
       choosen_university_one: "",
@@ -45,7 +44,7 @@ export const Onboarding = () => {
     },
   });
 
-  const { setValue, watch, getValues } = form;
+  const { setValue, watch, getValues, handleSubmit } = form;
   const { data: ptnData } = useGetAllPTNQuery();
   const ptnList: PTN[] = ptnData?.data ?? [];
   const ptnOptions = ptnList?.map(({ name }) => name) ?? [];
@@ -63,11 +62,6 @@ export const Onboarding = () => {
     two: null,
     three: null,
   });
-  const [selectedMajor, setSelectedMajor] = useState({
-    one: "",
-    two: "",
-    three: "",
-  });
 
   useEffect(() => {
     if (ptnList) {
@@ -81,8 +75,8 @@ export const Onboarding = () => {
 
   const [onboard, { isSuccess, isLoading }] = useOnboardingMutation();
 
-  function onSubmit(values: z.infer<typeof onboardingFormSchema>) {
-    onboard(values).then(() => {
+  function onSubmit(data: z.infer<typeof onboardingFormSchema>) {
+    onboard(data).then(() => {
       if (isSuccess) {
         redirect("/");
       }
@@ -99,10 +93,7 @@ export const Onboarding = () => {
             <div className="absolute inset-x-0 top-[6%] h-24 w-full rounded-[50%] bg-gradient-to-b from-transparent to-white shadow-[0_6px_10px_-5px_rgba(0,0,0,0.2)] md:top-[8%]" />
 
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="hide-scrollbar mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll py-8 md:px-4"
-              >
+              <form className="hide-scrollbar mt-10 flex h-[70vh] w-full flex-col gap-3 overflow-scroll py-8 md:px-4">
                 <div className="flex flex-col gap-4">
                   <FormField
                     control={form.control}
@@ -136,6 +127,23 @@ export const Onboarding = () => {
                   />
                   <FormField
                     control={form.control}
+                    name="highschool_year"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <>
+                            <FormLabel>
+                              When is your expected graduation year?
+                            </FormLabel>
+                            <Input placeholder="High School Year" {...field} />
+                          </>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
@@ -149,17 +157,19 @@ export const Onboarding = () => {
                       </FormItem>
                     )}
                   />
+
                   <FormField
                     control={form.control}
-                    name="phone_number"
+                    name="source"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
                           <>
-                            <FormLabel>
-                              Could we get your phone number?
-                            </FormLabel>
-                            <Input placeholder="Phone Number" {...field} />
+                            <FormLabel>How do you know BangSoal?</FormLabel>
+                            <Input
+                              placeholder="Website, Social Media, etc"
+                              {...field}
+                            />
                           </>
                         </FormControl>
                         <FormMessage />
@@ -284,9 +294,10 @@ export const Onboarding = () => {
                 </div>
                 <div className="mb-4 flex flex-row justify-end pt-8">
                   <Button
-                    type="submit"
+                    onClick={handleSubmit(onSubmit)}
                     variant={"bsPrimary"}
                     className="w-40 items-end"
+                    loading={isLoading}
                   >
                     Next
                   </Button>

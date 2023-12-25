@@ -1,9 +1,10 @@
+import { ResponseWrapper } from ".";
+
 export type UserOnboardRequest = {
   full_name: string;
   highschool: string;
   highschool_year: string;
   email: string;
-  phone_number: string;
   referral_code?: string;
   source: string;
   choosen_university_one: string;
@@ -18,3 +19,5 @@ export type User = UserOnboardRequest & {
   id: string;
   onboard_date: string;
 };
+
+export type ProfileResponse = ResponseWrapper<User>;

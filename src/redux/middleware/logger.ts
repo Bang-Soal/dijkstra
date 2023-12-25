@@ -1,13 +1,13 @@
 "use client";
+import type { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
 import { isRejectedWithValue } from "@reduxjs/toolkit";
-import type { MiddlewareAPI, Middleware } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
       if (action.meta.arg.endpointName == "getProfile") {
-        window.location.href = "/signup?onboard=true";
+        window.location.href = "/onboarding";
         return;
       } else {
         const errorData =
