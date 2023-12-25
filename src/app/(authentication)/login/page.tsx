@@ -3,9 +3,9 @@ import { AuthenticationContainer } from "../AuthenticationContainer";
 
 export const metadata: Metadata = {
   title: "BangSoal",
-  description: "Signup",
+  description: "Login",
 };
 
-export default function SignupPage() {
+export default function LoginPage() {
   return <AuthenticationContainer />;
 }
