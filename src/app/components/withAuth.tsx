@@ -17,13 +17,11 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
     });
 
     if (!user.token && !isAuthPath) {
-      redirect("/signin");
-      return null;
+      redirect("/signup");
     }
 
     if (isAuthPath && !!user.token) {
       redirect("/");
-      return null;
     }
 
     return <WrappedComponent {...props} />;
