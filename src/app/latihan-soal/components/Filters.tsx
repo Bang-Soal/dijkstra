@@ -1,22 +1,31 @@
-// atoms
-import { topicAtom, yearAtom } from "@/data/atoms";
-
 // components
 import Iconify from "@/components/Iconify";
 
 // data
-import { filter } from "@/data/latihan-soal";
 
 // libs
+import { useGetTopicsBySubjectQuery } from "@/redux/api/latihanSoalApi";
 import * as Label from "@radix-ui/react-label";
 import * as Select from "@radix-ui/react-select";
-import { useAtom } from "jotai";
+import { useState } from "react";
+import { FiltersI } from "./interface";
 
 export default function Filters({
+  subject_id,
   category,
-}: Readonly<{ category: "PU" | "PK" | "PPU" | "PBM" }>) {
-  const [currentTopic, setCurrentTopic] = useAtom(topicAtom);
-  const [currentYear, setCurrentYear] = useAtom(yearAtom);
+  currentTopic,
+  setCurrentTopic,
+}: FiltersI) {
+  const { data: topicData } = useGetTopicsBySubjectQuery({ subject_id });
+
+  const [currentYear, setCurrentYear] = useState({
+    PU: "Semua",
+    PKPM: "Semua",
+    PPU: "Semua",
+    PBM: "Semua",
+    "Bahasa Inggris": "Semua",
+    "Bahasa Indonesia": "Semua",
+  });
 
   return (
     <div className="flex flex-col rounded-lg bg-emerald-900/25 px-3 py-2">
@@ -30,9 +39,12 @@ export default function Filters({
           </Label.Root>
           <Select.Root
             value={currentTopic[category]}
-            onValueChange={(value) =>
-              setCurrentTopic((prev) => ({ ...prev, [category]: value }))
-            }
+            onValueChange={(value) => {
+              setCurrentTopic({
+                ...currentTopic,
+                [category]: value,
+              });
+            }}
           >
             <Select.Trigger
               id="topik"
@@ -50,13 +62,23 @@ export default function Filters({
                   <Iconify icon="ph:caret-up-bold" className="animate-bounce" />
                 </Select.ScrollUpButton>
                 <Select.Viewport>
-                  {filter[category].topics.map((topic) => (
+                  <Select.Item
+                    key="default"
+                    value="Semua"
+                    className="relative cursor-pointer select-none rounded-md px-5 py-1 pl-9 text-sm text-content-100 outline-none data-[state=checked]:bg-content-200 data-[state=unchecked]:data-[highlighted]:bg-surface-700/10 data-[state=checked]:text-white"
+                  >
+                    <Select.ItemText>Semua</Select.ItemText>
+                    <Select.ItemIndicator className="absolute left-2 top-1/2 inline-flex w-6 -translate-y-1/2 items-center justify-center">
+                      <Iconify icon="ph:check-bold" />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                  {topicData?.data.map(({ id, name }) => (
                     <Select.Item
-                      key={topic}
-                      value={topic}
+                      key={id}
+                      value={id}
                       className="relative cursor-pointer select-none rounded-md px-5 py-1 pl-9 text-sm text-content-100 outline-none data-[state=checked]:bg-content-200 data-[state=unchecked]:data-[highlighted]:bg-surface-700/10 data-[state=checked]:text-white"
                     >
-                      <Select.ItemText>{topic}</Select.ItemText>
+                      <Select.ItemText>{name}</Select.ItemText>
                       <Select.ItemIndicator className="absolute left-2 top-1/2 inline-flex w-6 -translate-y-1/2 items-center justify-center">
                         <Iconify icon="ph:check-bold" />
                       </Select.ItemIndicator>
@@ -74,7 +96,7 @@ export default function Filters({
             </Select.Portal>
           </Select.Root>
         </div>
-        <div className="flex items-center gap-2">
+        {/*  <div className="flex items-center gap-2">
           <Label.Root
             className="w-12 shrink-0 text-surface-100"
             htmlFor="tahun"
@@ -125,8 +147,8 @@ export default function Filters({
                 <Select.Arrow />
               </Select.Content>
             </Select.Portal>
-          </Select.Root>
-        </div>
+          </Select.Root> 
+        </div> */}
       </div>
     </div>
   );

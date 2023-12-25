@@ -1,14 +1,12 @@
 // data
-import { questions } from "@/data/latihan-soal";
 
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useRouter } from "next/navigation";
+import { SoalSelectorI } from "./interface";
 
-export default function SoalSelector({
-  category,
-}: Readonly<{ category: "PU" | "PK" | "PPU" | "PBM" }>) {
+export default function SoalSelector({ subject_id, category }: SoalSelectorI) {
   const router = useRouter();
 
   return (
@@ -16,7 +14,7 @@ export default function SoalSelector({
       <ScrollArea.Viewport className="grow rounded-lg">
         <Tabs.Root defaultValue="tab-1" orientation="vertical" className="grow">
           <Tabs.List className="flex flex-col gap-1">
-            {questions[category].map((question, index) => (
+            {/* {questions[category].map((question, index) => (
               <Tabs.Trigger
                 key={question.id}
                 value={`tab-${index + 1}`}
@@ -29,7 +27,7 @@ export default function SoalSelector({
               >
                 <p className="w-[110%]">{question.text}</p>
               </Tabs.Trigger>
-            ))}
+            ))} */}
           </Tabs.List>
         </Tabs.Root>
       </ScrollArea.Viewport>
@@ -37,7 +35,7 @@ export default function SoalSelector({
         className="absolute !-right-4 flex touch-none select-none transition-colors ease-out data-[orientation=vertical]:w-1 data-[orientation=horizontal]:flex-col"
         orientation="vertical"
       >
-        <ScrollArea.Thumb className="before:min-h-11 before:min-w-11 relative flex-1 rounded-full bg-surface-400 before:absolute before:left-1/2 before:top-1/2 before:h-full before:w-full before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']" />
+        <ScrollArea.Thumb className="relative flex-1 rounded-full bg-surface-400 before:absolute before:left-1/2 before:top-1/2 before:h-full before:min-h-11 before:w-full before:min-w-11 before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']" />
       </ScrollArea.Scrollbar>
       <ScrollArea.Corner />
     </ScrollArea.Root>

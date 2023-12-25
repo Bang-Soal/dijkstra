@@ -29,7 +29,7 @@ export const filter = {
       "2010",
     ],
   },
-  PK: {
+  PKPM: {
     topics: [
       "Semua",
       "Aljabar",
@@ -153,7 +153,7 @@ export const questions = {
       text: "Biaya inap mobil di suatu gedung parkir adalah sebesar Rp48.000,00 per hari. Setiap tambahan jam berikutnya akan dikenai tarif setengah dari tarif awal. Seseorang menitipkan mobilnya selama 2,5 hari. Biaya penitipan yang harus dibayar adalah",
     },
   ],
-  PK: [
+  PKPM: [
     {
       id: 1,
       text: "Semua murid pandai berhitung dan sopan. Dadidu tidak sopan, tetapi pandai berhitung.",
@@ -229,6 +229,18 @@ export const questions = {
     {
       id: 6,
       text: "Suku Kubu di Jambi terkenal dengan kebiasaan hidup terisolasi dari kehidupan dunia luar. Kebudayaan material Suku Kubu juga masih tergolong sederhana. Hal itu terlihat pada alatalat rumah tangga, alat-alat bercocok tanam dan berkebun serta berpakaian sehari-hari.",
+    },
+  ],
+  "Bahasa Inggris": [
+    {
+      id: 1,
+      text: "Jika suatu kolam diisi air melalui kran A, B , atau C saja, maka kolam tersebut akan penuh dalam waktu berturut-turut 12 menit, 15 menit, atau 20 menit. Jika ketiga kran digunakan bersama-selama 4 menit, maka kolam tersebut akan terisi sebanyak…",
+    },
+  ],
+  "Bahasa Indonesia": [
+    {
+      id: 1,
+      text: "Jika suatu kolam diisi air melalui kran A, B , atau C saja, maka kolam tersebut akan penuh dalam waktu berturut-turut 12 menit, 15 menit, atau 20 menit. Jika ketiga kran digunakan bersama-selama 4 menit, maka kolam tersebut akan terisi sebanyak…",
     },
   ],
 };

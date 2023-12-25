@@ -1,6 +1,5 @@
 // components
 import ComingSoon from "./components/ComingSoon";
-import Sidebar from "./components/Sidebar";
 
 // libs
 import type { Metadata } from "next";
@@ -47,7 +46,6 @@ export default function RootLayout({
         <Toaster />
         <Providers>
           <ComingSoon />
-          <Sidebar />
           <MainLayout>{children}</MainLayout>
         </Providers>
       </body>
