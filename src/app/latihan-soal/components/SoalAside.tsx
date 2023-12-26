@@ -73,7 +73,6 @@ export default function SoalAside() {
           type="single"
           defaultValue={`${slug[0] ?? "pu"}`}
           onValueChange={(value) => {
-            console.log(value);
             router.replace(`/latihan-soal/${value}`);
           }}
         >

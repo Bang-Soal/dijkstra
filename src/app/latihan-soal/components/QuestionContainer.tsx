@@ -5,18 +5,47 @@ import { categoryMap } from "../constants";
 import { useLatihanSoalContext } from "../context";
 
 // libs
-import { renderLatexContent } from "@/lib/utils";
+import { cn, renderLatexContent } from "@/lib/utils";
+import {
+  useAttemptLatihanSoalMutation,
+  useGetAttemptLatihanSoalQuery,
+} from "@/redux/api/latihanSoalApi";
+import { useState } from "react";
+import { OptionBoxVariants } from "./style";
 
 interface QuestionContainerI {
   slug: string[];
 }
 export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const category = categoryMap[slug[0]];
-  const question_id = slug[1];
+  const [choice, setChoice] = useState<string>("");
+
   const { question } = useLatihanSoalContext();
-  console.log(question);
+
+  const { data: attemptHistory } = useGetAttemptLatihanSoalQuery(
+    {
+      question_id: question?.id ?? "",
+    },
+    { skip: !question },
+  );
+
+  const [attemptSoal] = useAttemptLatihanSoalMutation();
+  const onClickOption = (
+    option_id: string,
+    choice_id: string,
+    content: string,
+  ) => {
+    if (!!question) {
+      attemptSoal({
+        question_id: question.id,
+        option_id,
+        choice_id,
+        answer_history: content,
+      });
+    }
+  };
   return (
-    <div>
+    <div className="px-10">
       <div className="flex flex-col gap-5 px-10">
         <div className="flex flex-col gap-1">
           <h1 className="text-3xl font-700 text-content-100">{category}</h1>
@@ -37,9 +66,34 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             __html: renderLatexContent(question?.content.content ?? ""),
           }}
         />
-        <div>
-          {question?.options.data.map((option) => (
-            <div key={option.choice_id}></div>
+        <div className="grid w-full grid-cols-2 gap-4">
+          {question?.options.data.map(({ choice_id, content, key }) => (
+            <div
+              key={choice_id}
+              onClick={() => {
+                setChoice(choice_id);
+                onClickOption(question.options.option_id, choice_id, content);
+              }}
+              className={cn(
+                OptionBoxVariants({
+                  variant: choice == choice_id ? "active" : "inactive",
+                }),
+              )}
+            >
+              <div
+                className={cn(
+                  "h-8 w-8 rounded-lg pt-1 text-center align-middle",
+                  choice == choice_id ? "bg-gray-60" : "bg-white",
+                )}
+              >
+                {key}
+              </div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: renderLatexContent(content),
+                }}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -10,9 +10,9 @@ function LatihanSoalLayout({
 }>) {
   return (
     <LatihanSoalProvider>
-      <div className="flex min-h-screen flex-row">
+      <div className="flex min-h-screen w-full flex-row">
         <SoalAside />
-        {children}
+        <div className="grow">{children}</div>
       </div>
     </LatihanSoalProvider>
   );

@@ -101,7 +101,7 @@ export const latihanSoal = baseApi.injectEndpoints({
       LatihanSoalAttemptRequest
     >({
       query: ({ question_id, ...body }) => ({
-        url: `latihan-soal/history/${question_id}`,
+        url: `latihan-soal/attempt/${question_id}`,
         method: "POST",
         body,
       }),

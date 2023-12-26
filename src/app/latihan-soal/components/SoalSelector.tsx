@@ -36,7 +36,6 @@ export default function SoalSelector({
       const currentQuestion = soalData?.data.questions
         .slice(0, 40)
         .find(({ id }) => id === slug[1]);
-      console.log(currentQuestion);
       setQuestion(currentQuestion ?? soalData?.data.questions[0]);
     }
   }, [isSuccess, soalData, slug]);

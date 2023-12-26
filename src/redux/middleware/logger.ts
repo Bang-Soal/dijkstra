@@ -1,13 +1,20 @@
 "use client";
-import type { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
+import type {
+  Middleware,
+  MiddlewareAPI,
+  UnknownAction,
+} from "@reduxjs/toolkit";
 import { isRejectedWithValue } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
+import { logout } from "../features/userSlice";
 
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => (action: any) => {
     if (isRejectedWithValue(action)) {
       if (action.meta.arg.endpointName == "getProfile") {
         return;
+      } else if (action?.payload.status == 401) {
+        api.dispatch(logout({}) as UnknownAction);
       } else {
         const errorData =
           action.payload.data?.error?.message ||
