@@ -3,35 +3,35 @@ import { z } from "zod";
 export const SigninFormSchema = z.object({
   phone_number: z
     .string()
-    .min(10, { message: "Invalid phone number. Too short" })
-    .max(13, { message: "Invalid phone number. Too long" })
+    .min(10, { message: "Nomor telepon tidak valid. Terlalu pendek" })
+    .max(13, { message: "Nomor telepon tidak valid. Terlalu panjang" })
     .refine((value) => /^[0-9]+$/.test(value), {
-      message: "Phone number must be digits only",
+      message: "Nomor telepon harus berupa angka saja",
     })
     .refine((value) => /^08[0-9]{8,11}$/.test(value), {
-      // Regex for Indonesian phone numbers
       message:
-        "Invalid format. Indonesian phone numbers should start with '08'",
+        "Format tidak valid. Nomor telepon Indonesia harus diawali dengan '08'",
     }),
 });
+
 export const onboardingFormSchema = z.object({
-  full_name: z.string().min(1, "Full name is required"),
-  highschool: z.string().min(1, "High school name is required"),
+  full_name: z.string().min(1, "Nama lengkap diperlukan"),
+  highschool: z.string().min(1, "Nama sekolah menengah atas diperlukan"),
   choosen_university_one: z
     .string()
-    .min(1, "First chosen university is required"),
+    .min(1, "Universitas pilihan pertama diperlukan"),
   email: z.string().email({
-    message: "Please enter a valid email address",
+    message: "Silakan masukkan alamat email yang valid",
   }),
   referral_code: z.string().optional(),
-  source: z.string().min(1, "Source is required"),
-  choosen_major_one: z.string().min(1, "First chosen major is required"),
+  source: z.string().min(1, "Sumber diperlukan"),
+  choosen_major_one: z.string().min(1, "Jurusan pilihan pertama diperlukan"),
   highschool_year: z
     .string()
-    .min(4, { message: "Invalid year" })
-    .max(4, { message: "Invalid year" })
+    .min(4, { message: "Tahun tidak valid" })
+    .max(4, { message: "Tahun tidak valid" })
     .refine((value) => /^[0-9]+$/.test(value), {
-      message: "Year must be digits only",
+      message: "Tahun harus berupa angka saja",
     }),
   choosen_university_two: z.string().optional(),
   choosen_major_two: z.string().optional(),

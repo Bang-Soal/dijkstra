@@ -1,3 +1,4 @@
+"use client";
 // components
 import { buttonVariants } from "@/components/ui/button";
 import HeroFooter from "./HeroFooter";

@@ -1,3 +1,4 @@
+"use client";
 // components
 import FeatureCard, { Feature } from "./FeatureCard";
 

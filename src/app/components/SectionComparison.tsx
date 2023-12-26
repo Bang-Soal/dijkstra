@@ -1,3 +1,4 @@
+"use client";
 // components
 import Logo from "@/components/Logo";
 import ComparisonScrollArea from "./ComparisonScrollArea";
