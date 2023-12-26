@@ -6,21 +6,18 @@ import { colorMapping } from "@/data/bang-catatan";
 
 // libs
 import * as ScrollArea from "@radix-ui/react-scroll-area";
-import * as Toggle from "@radix-ui/react-toggle";
-import * as Tooltip from "@radix-ui/react-tooltip";
 import Image from "next/image";
-import { useRef, useState } from "react";
 
 // types
-import { Catatan } from "./CatatanCard";
 
 // utils
 import { cn } from "@/lib/utils";
+import { BangCatatan } from "@/types";
 
 export default function BookmarkingWindow({
   isBookmarking,
   catatan,
-}: Readonly<{ isBookmarking: boolean; catatan: Catatan }>) {
+}: Readonly<{ isBookmarking: boolean; catatan: BangCatatan }>) {
   return (
     <div
       className={cn(
@@ -31,16 +28,17 @@ export default function BookmarkingWindow({
       <p
         className={cn(
           "pl-8 pr-16 text-xl font-600",
-          colorMapping[catatan.theme as keyof typeof colorMapping].statNumber,
+          colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+            .statNumber,
         )}
       >
         Save to your collections
       </p>
       <ScrollArea.Root className="relative h-10 grow rounded-t-xl">
         <ScrollArea.Viewport className="h-full pl-8 pr-16">
-          <div className="grid grid-cols-1 gap-2 py-3 @xs:grid-cols-2 children:cursor-pointer">
+          <div className="children:cursor-pointer grid grid-cols-1 gap-2 py-3 @xs:grid-cols-2">
             <div className="flex aspect-square flex-col gap-3 rounded-xl bg-gradient-to-b from-white/30 to-white/50 p-3 shadow-none transition-[transform,box-shadow] hover:scale-105 hover:shadow-xl active:scale-95">
-              <div className="grid aspect-square w-full grid-cols-2 gap-1 children:pointer-events-none children:h-full children:w-full children:select-none children:rounded children:object-cover">
+              <div className="children:pointer-events-none children:h-full children:w-full children:select-none children:rounded children:object-cover grid aspect-square w-full grid-cols-2 gap-1">
                 <Image
                   src="https://source.unsplash.com/random"
                   alt="Collection preview"
@@ -66,8 +64,9 @@ export default function BookmarkingWindow({
               <p
                 className={cn(
                   "text-sm font-500",
-                  colorMapping[catatan.theme as keyof typeof colorMapping]
-                    .statNumber,
+                  colorMapping[
+                    catatan.color_pallete as keyof typeof colorMapping
+                  ].statNumber,
                 )}
               >
                 Main Collection
@@ -83,8 +82,9 @@ export default function BookmarkingWindow({
               <p
                 className={cn(
                   "text-sm font-500",
-                  colorMapping[catatan.theme as keyof typeof colorMapping]
-                    .statNumber,
+                  colorMapping[
+                    catatan.color_pallete as keyof typeof colorMapping
+                  ].statNumber,
                 )}
               >
                 New collection
@@ -100,7 +100,8 @@ export default function BookmarkingWindow({
           <ScrollArea.Thumb
             className={cn(
               "relative flex-1 rounded-full",
-              colorMapping[catatan.theme as keyof typeof colorMapping].pills,
+              colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                .pills,
             )}
           />
         </ScrollArea.Scrollbar>

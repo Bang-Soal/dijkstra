@@ -14,30 +14,13 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 // utils
-import { cn } from "@/lib/utils";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { BangCatatan } from "@/types";
 import BookmarkingWindow from "./BookmarkingWindow";
-
-export type Catatan = {
-  id: string;
-  size: string;
-  title: string;
-  author: string;
-  avatar: string;
-  thumbnail: string;
-  description: string;
-  tags: {
-    kelas: string;
-    mapel: string;
-    tipe: string | null;
-  };
-  likes: number;
-  downloads: number;
-  theme: string;
-};
 
 export default function CatatanCard({
   catatan,
-}: Readonly<{ catatan: Catatan }>) {
+}: Readonly<{ catatan: BangCatatan }>) {
   const scrollAreaRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [isBookmarking, setIsBookmarking] = useState(false);
@@ -55,7 +38,8 @@ export default function CatatanCard({
       <div
         className={cn(
           "relative flex aspect-[16/10] w-full flex-col items-center overflow-hidden rounded-xl border",
-          colorMapping[catatan.theme as keyof typeof colorMapping].viewport,
+          colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+            .viewport,
         )}
       >
         <BookmarkingWindow isBookmarking={isBookmarking} catatan={catatan} />
@@ -69,7 +53,8 @@ export default function CatatanCard({
             aria-label="Toggle like"
             className={cn(
               "rounded-full bg-surface-100 p-3 text-content-300 shadow-xl transition-transform duration-300 hover:bg-surface-200 active:scale-90 active:delay-0 active:duration-150 data-[state=on]:text-white",
-              colorMapping[catatan.theme as keyof typeof colorMapping].button,
+              colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                .button,
             )}
           >
             <Iconify icon="ph:heart-bold" />
@@ -78,7 +63,8 @@ export default function CatatanCard({
             aria-label="Toggle like"
             className={cn(
               "rounded-full bg-surface-100 p-3 text-content-300 shadow-xl transition-transform duration-300 hover:bg-surface-200 active:scale-90 active:delay-0 active:duration-150 data-[state=on]:text-white",
-              colorMapping[catatan.theme as keyof typeof colorMapping].button,
+              colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                .button,
             )}
             pressed={false}
             onPressedChange={() => setIsBookmarking(!isBookmarking)}
@@ -103,7 +89,7 @@ export default function CatatanCard({
                   side="bottom"
                   sideOffset={6}
                 >
-                  {catatan.size}
+                  {/* {catatan.size} */}
                   <Tooltip.Arrow className="fill-content-200" />
                 </Tooltip.Content>
               </Tooltip.Portal>
@@ -131,44 +117,48 @@ export default function CatatanCard({
               )}
             >
               <div className="flex flex-wrap gap-1">
-                {catatan.tags.kelas && (
+                {/* {catatan && (
                   <div
                     className={cn(
                       "rounded-full px-3 py-1 text-xs font-500",
-                      colorMapping[catatan.theme as keyof typeof colorMapping]
+                      colorMapping[catatan.color_pallete as keyof typeof colorMapping]
                         .pills,
                     )}
                   >
                     {catatan.tags.kelas}
                   </div>
-                )}
-                {catatan.tags.mapel && (
+                )} */}
+                {catatan?.subject && (
                   <div
                     className={cn(
                       "rounded-full px-3 py-1 text-xs font-500",
-                      colorMapping[catatan.theme as keyof typeof colorMapping]
-                        .pills,
+                      colorMapping[
+                        catatan.color_pallete as keyof typeof colorMapping
+                      ].pills,
                     )}
                   >
-                    {catatan.tags.mapel}
+                    {catatan.subject}
                   </div>
                 )}
-                {catatan.tags.tipe && (
+                {catatan?.tipe && (
                   <div
                     className={cn(
                       "rounded-full px-3 py-1 text-xs font-500",
-                      colorMapping[catatan.theme as keyof typeof colorMapping]
-                        .pills,
+                      colorMapping[
+                        catatan.color_pallete as keyof typeof colorMapping
+                      ].pills,
                     )}
                   >
-                    {catatan.tags.tipe}
+                    {capitalizeFirstLetter(catatan.tipe)}
                   </div>
                 )}
               </div>
-              <p className="font-600">{catatan.description}</p>
+              <p className="max-w-[15rem] overflow-hidden text-ellipsis font-600">
+                {catatan.description}
+              </p>
             </div>
             <Image
-              src={catatan.thumbnail}
+              src={catatan?.thumbnail_url}
               alt="Catatan thumbnail"
               width={1096}
               height={1472}
@@ -186,7 +176,8 @@ export default function CatatanCard({
             <ScrollArea.Thumb
               className={cn(
                 "relative flex-1 rounded-full",
-                colorMapping[catatan.theme as keyof typeof colorMapping].pills,
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                  .pills,
               )}
             />
           </ScrollArea.Scrollbar>
@@ -197,23 +188,25 @@ export default function CatatanCard({
           <p
             className={cn(
               "line-clamp-1 font-600",
-              colorMapping[catatan.theme as keyof typeof colorMapping].title,
+              colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                .title,
             )}
           >
             {catatan.title}
           </p>
           <div className="flex items-center gap-1">
-            <Image
+            {/* <Image
               src={catatan.avatar}
               alt="Catatan avatar"
               width={800}
               height={800}
               className="size-4 rounded-full"
-            />
+            /> */}
             <p
               className={cn(
                 "text-sm font-500",
-                colorMapping[catatan.theme as keyof typeof colorMapping].author,
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
+                  .author,
               )}
             >
               {catatan.author}
@@ -225,34 +218,34 @@ export default function CatatanCard({
             <Iconify
               icon="ph:heart-fill"
               className={
-                colorMapping[catatan.theme as keyof typeof colorMapping]
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
                   .statIcon
               }
             />
             <p
               className={
-                colorMapping[catatan.theme as keyof typeof colorMapping]
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
                   .statNumber
               }
             >
-              {catatan.likes}
+              {catatan.like_count}
             </p>
           </div>
           <div className="flex items-center gap-1">
             <Iconify
               icon="ph:download-simple-bold"
               className={
-                colorMapping[catatan.theme as keyof typeof colorMapping]
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
                   .statIcon
               }
             />
             <p
               className={
-                colorMapping[catatan.theme as keyof typeof colorMapping]
+                colorMapping[catatan.color_pallete as keyof typeof colorMapping]
                   .statNumber
               }
             >
-              {catatan.downloads}
+              {catatan.download_count}
             </p>
           </div>
         </div>

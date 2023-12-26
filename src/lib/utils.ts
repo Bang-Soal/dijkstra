@@ -20,3 +20,7 @@ export function join(...inputs: ClassValue[]) {
 export function shuffle(array: any[]) {
   return array.sort(() => Math.random() - 0.5);
 }
+
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
