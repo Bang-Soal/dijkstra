@@ -10,40 +10,44 @@ import Iconify from "@/components/Iconify";
 import { useGetSubjectsQuery } from "@/redux/api/latihanSoalApi";
 import * as Accordion from "@radix-ui/react-accordion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { SelectedSubjectType, Subject } from "@/types";
+import { SelectedSubjectType } from "@/types";
+import { useParams, useRouter } from "next/navigation";
 import { SELECTED_SUBJECTS } from "../constants";
+import { useLatihanSoalContext } from "../context";
 import Filters from "./Filters";
 import SoalSelector from "./SoalSelector";
-import { TopicFilter } from "./interface";
 
 export default function SoalAside() {
+  const router = useRouter();
+  const { slug } = useParams();
   const { data: subjectsData } = useGetSubjectsQuery();
-  const [filteredSubjects, setFilteredSubjects] = useState<Subject[]>([]);
-  const [currentTopic, setCurrentTopic] = useState<TopicFilter>({
-    PU: "Semua",
-    PKPM: "Semua",
-    PPU: "Semua",
-    PBM: "Semua",
-    "Bahasa Inggris": "Semua",
-    "Bahasa Indonesia": "Semua",
-  });
+  const {
+    subjects,
+    setSubjects,
+    currentTopic,
+    setCurrentTopic,
+    yearRange,
+    setYearRange,
+  } = useLatihanSoalContext();
 
   useEffect(() => {
     if (!!subjectsData) {
-      const subjects = subjectsData.data.filter(({ alternate_name }) => {
-        return SELECTED_SUBJECTS.includes(alternate_name);
-      });
-      subjects.sort((a, b) => {
+      const filteredSubjects = subjectsData.data.filter(
+        ({ alternate_name }) => {
+          return SELECTED_SUBJECTS.includes(alternate_name);
+        },
+      );
+      filteredSubjects.sort((a, b) => {
         const orderA = SELECTED_SUBJECTS.indexOf(a.alternate_name);
         const orderB = SELECTED_SUBJECTS.indexOf(b.alternate_name);
         return orderA - orderB;
       });
 
-      setFilteredSubjects(subjects);
+      setSubjects(filteredSubjects);
     }
-  }, [subjectsData]);
+  }, [subjectsData, setSubjects]);
 
   return (
     <aside className="sticky bottom-0 flex h-screen w-80 shrink-0 flex-col gap-6 border-r border-surface-300 bg-surface-200">
@@ -67,17 +71,22 @@ export default function SoalAside() {
         <Accordion.Root
           className="flex grow flex-col"
           type="single"
-          defaultValue="item-1"
+          defaultValue={`${slug[0] ?? "pu"}`}
+          onValueChange={(value) => {
+            console.log(value);
+            router.replace(`/latihan-soal/${value}`);
+          }}
         >
-          {filteredSubjects.map(({ id, alternate_name, icon }, index) => {
+          {subjects.map(({ id, alternate_name, icon }, index) => {
             const subjectName = alternate_name.replace(
               "Literasi dalam ",
               "",
             ) as SelectedSubjectType;
+            const slugName = subjectName.toLowerCase().replace(" ", "-");
             return (
               <Accordion.Item
                 key={alternate_name}
-                value={`item-${index + 1}`}
+                value={`${slugName}`}
                 className="group relative flex flex-col rounded-xl bg-cover data-[state=closed]:h-11 data-[state=open]:grow data-[state=closed]:animate-slide-up-item data-[state=open]:animate-slide-down-item data-[state=closed]:overflow-hidden data-[state=open]:overflow-visible"
               >
                 <Accordion.Trigger className="group z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-xl font-[650] text-content-300 outline-none transition-colors data-[state=open]:cursor-default data-[state=open]:text-surface-100 data-[state=closed]:focus-within:text-content-100 data-[state=closed]:hover:text-content-100">
@@ -103,10 +112,15 @@ export default function SoalAside() {
                     category={subjectName as SelectedSubjectType}
                     currentTopic={currentTopic}
                     setCurrentTopic={setCurrentTopic}
+                    yearRange={yearRange}
+                    setYearRange={setYearRange}
                   />
                   <SoalSelector
                     subject_id={id}
+                    min_year={yearRange[subjectName][0]}
+                    max_year={yearRange[subjectName][1]}
                     category={subjectName as SelectedSubjectType}
+                    topic_id={currentTopic[subjectName]}
                   />
                 </Accordion.Content>
                 <Image

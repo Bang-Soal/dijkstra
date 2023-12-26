@@ -1,6 +1,7 @@
 "use client";
 import withAuth from "../components/withAuth";
 import SoalAside from "./components/SoalAside";
+import { LatihanSoalProvider } from "./context";
 
 function LatihanSoalLayout({
   children,
@@ -8,10 +9,12 @@ function LatihanSoalLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex min-h-screen flex-row">
-      <SoalAside />
-      {children}
-    </div>
+    <LatihanSoalProvider>
+      <div className="flex min-h-screen flex-row">
+        <SoalAside />
+        {children}
+      </div>
+    </LatihanSoalProvider>
   );
 }
 

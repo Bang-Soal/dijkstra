@@ -19,10 +19,10 @@ export async function generateMetadata({
 
 export default function LatihanSoal({
   params,
-}: Readonly<{ params: { slug: string } }>) {
+}: Readonly<{ params: { slug: string[] } }>) {
   return (
     <main className="min-h-screen py-10">
-      <QuestionContainer slug={params.slug[0]} />
+      <QuestionContainer slug={params.slug} />
     </main>
   );
 }

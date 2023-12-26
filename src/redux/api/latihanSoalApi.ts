@@ -75,6 +75,16 @@ export const latihanSoal = baseApi.injectEndpoints({
         method: "GET",
         params: { params },
       }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result?.data?.questions?.map(({ id }) => ({
+                type: "LatihanSoal" as const,
+                id,
+              })),
+              { type: "LatihanSoal" },
+            ]
+          : ["LatihanSoal"],
     }),
     getLatihanSoalHistory: builder.query<
       LatihanSoalBySubjectResponse,
@@ -95,6 +105,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: (result, error, { question_id }) => [
+        { type: "LatihanSoal", id: question_id },
+      ],
     }),
     getAttemptLatihanSoal: builder.query<
       LatihanSoalAttemptResponse,
@@ -104,6 +117,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         url: `latihan-soal/attempt/${question_id}`,
         method: "GET",
       }),
+      providesTags: (result, error, { question_id }) => [
+        { type: "LatihanSoal", id: question_id },
+      ],
     }),
 
     deleteAttemptLatihanSoal: builder.query<
@@ -114,6 +130,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         url: `latihan-soal/attempt/${question_id}`,
         method: "DELETE",
       }),
+      providesTags: (result, error, { question_id }) => [
+        { type: "LatihanSoal", id: question_id },
+      ],
     }),
     getPembahasan: builder.query<
       LatihanSoalAttemptResponse,
