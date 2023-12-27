@@ -19,7 +19,9 @@ export const rtkQueryErrorLogger: Middleware =
             toast.error(message);
           });
         } else if (typeof errorData === "string") {
-          toast.error(errorData);
+          if (!errorData.includes("like")) {
+            toast.error(errorData);
+          }
         }
       }
     }

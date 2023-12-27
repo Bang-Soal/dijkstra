@@ -6,6 +6,7 @@ import { authApi } from "../api/authApi";
 interface UserSliceState {
   token: string | null;
   profile: User | null;
+  isLoggedIn?: boolean;
 }
 
 const initialState: UserSliceState = {
@@ -22,6 +23,7 @@ const userSlice: Slice<UserSliceState> = createSlice({
       window.localStorage.removeItem("token");
       state.profile = null;
       state.token = null;
+      state.isLoggedIn = false;
       window.location.pathname = "/signin";
     },
   },
@@ -34,6 +36,7 @@ const userSlice: Slice<UserSliceState> = createSlice({
       (state, { payload }: PayloadAction<SigninResponse>) => {
         const token = payload.data.token;
         state.token = token;
+        state.isLoggedIn = true;
       },
     ),
       builder.addMatcher(

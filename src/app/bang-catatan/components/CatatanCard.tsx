@@ -11,12 +11,18 @@ import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Toggle from "@radix-ui/react-toggle";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // utils
 import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { RootState, useAppSelector } from "@/redux/store";
 import { BangCatatan } from "@/types";
 import BookmarkingWindow from "./BookmarkingWindow";
+
+import {
+  useLikeBangCatatanMutation,
+  useUnlikeBangCatatanMutation,
+} from "@/redux/api/bangCatatanApi";
 
 export default function CatatanCard({
   catatan,
@@ -24,6 +30,18 @@ export default function CatatanCard({
   const scrollAreaRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [isBookmarking, setIsBookmarking] = useState(false);
+  const user = useAppSelector((state: RootState) => state.user);
+  const [isLiked, setIsLiked] = useState(false);
+  const [mutateLike] = useLikeBangCatatanMutation();
+  const [mutateUnlike] = useUnlikeBangCatatanMutation();
+
+  useEffect(() => {
+    if (isLiked) {
+      mutateLike({ id: catatan.id });
+    } else {
+      mutateUnlike({ id: catatan.id });
+    }
+  }, [isLiked]);
 
   return (
     <div
@@ -51,6 +69,8 @@ export default function CatatanCard({
         >
           <Toggle.Root
             aria-label="Toggle like"
+            pressed={isLiked}
+            onPressedChange={() => setIsLiked(!isLiked)}
             className={cn(
               "rounded-full bg-surface-100 p-3 text-content-300 shadow-xl transition-transform duration-300 hover:bg-surface-200 active:scale-90 active:delay-0 active:duration-150 data-[state=on]:text-white",
               colorMapping[catatan.color_pallete as keyof typeof colorMapping]
@@ -60,7 +80,7 @@ export default function CatatanCard({
             <Iconify icon="ph:heart-bold" />
           </Toggle.Root>
           <Toggle.Root
-            aria-label="Toggle like"
+            aria-label="Toggle Bookmark"
             className={cn(
               "rounded-full bg-surface-100 p-3 text-content-300 shadow-xl transition-transform duration-300 hover:bg-surface-200 active:scale-90 active:delay-0 active:duration-150 data-[state=on]:text-white",
               colorMapping[catatan.color_pallete as keyof typeof colorMapping]
@@ -79,6 +99,7 @@ export default function CatatanCard({
                 <button
                   aria-label="Button download"
                   className="rounded-full bg-surface-100 p-3 text-content-300 shadow-xl transition-transform duration-300 hover:bg-surface-200 active:scale-90 active:delay-0 active:duration-150"
+                  onClick={() => {}}
                 >
                   <Iconify icon="ph:download-simple-bold" />
                 </button>

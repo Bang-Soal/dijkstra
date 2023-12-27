@@ -23,7 +23,23 @@ export const bangCatatanApi = baseApi.injectEndpoints({
         },
       }),
     }),
+    likeBangCatatan: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
+        url: `/catatan/like/${id}`,
+        method: "PUT",
+      }),
+    }),
+    unlikeBangCatatan: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
+        url: `/catatan/like/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllBangCatatanQuery } = bangCatatanApi;
+export const {
+  useGetAllBangCatatanQuery,
+  useLikeBangCatatanMutation,
+  useUnlikeBangCatatanMutation,
+} = bangCatatanApi;
