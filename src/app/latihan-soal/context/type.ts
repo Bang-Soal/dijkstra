@@ -10,10 +10,9 @@ export interface FilterState {
 export interface QuestionState {
   question: SoalQuestion | null;
 }
-export interface LatihanSoalState extends FilterState, QuestionState {}
+export interface LatihanSoalState extends FilterState {}
 
 export interface LatihanSoalContextType extends LatihanSoalState {
-  setQuestion: (value: SoalQuestion | null) => void;
   setSubjects: (subjects: Subject[]) => void;
   setCurrentTopic: (topic: TopicFilter) => void;
   setYearRange: (range: YearRangeFilter) => void;

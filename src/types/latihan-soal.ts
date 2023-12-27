@@ -42,6 +42,17 @@ export type SoalQuestion = {
   content: string;
 };
 
+export type SoalQuestionDetail = {
+  id: string;
+  topic: string;
+  label: string;
+  content: {
+    content: string;
+    asset_url: string;
+  };
+  options: SoalOption;
+};
+export type SoalQuestionDetailResponse = ResponseWrapper<SoalQuestionDetail>;
 export type SubjectResponse = ResponseWrapper<Subject[]>;
 export type TopicResponse = ResponseWrapper<Topic[]>;
 

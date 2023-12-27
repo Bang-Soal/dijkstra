@@ -4,6 +4,7 @@ import {
   LatihanSoalAttemptResponse,
   LatihanSoalBySubjectRequest,
   LatihanSoalBySubjectResponse,
+  SoalQuestionDetailResponse,
   SubjectDetailRequest,
   SubjectResponse,
   SubmitNotesLatihanSoalRequest,
@@ -77,6 +78,18 @@ export const latihanSoal = baseApi.injectEndpoints({
       }),
       providesTags: (result, error, { subject_id }) => [
         { type: "LatihanSoal", id: subject_id },
+      ],
+    }),
+    getLatihanSoalDetail: builder.query<
+      SoalQuestionDetailResponse,
+      { id: string }
+    >({
+      query: ({ id }) => ({
+        url: `/latihan-soal/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, { id }) => [
+        { type: "LatihanSoalDetail", id },
       ],
     }),
     getLatihanSoalHistory: builder.query<
@@ -160,4 +173,5 @@ export const {
   useGetLatihanSoalHistoryQuery,
   useGetPembahasanQuery,
   useSubmitNotesLatihanSoalMutation,
+  useGetLatihanSoalDetailQuery,
 } = latihanSoal;

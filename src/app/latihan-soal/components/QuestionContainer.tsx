@@ -2,15 +2,15 @@
 // components
 import Iconify from "@/components/Iconify";
 import { categoryMap } from "../constants";
-import { useLatihanSoalContext } from "../context";
 
 // libs
 import { cn, renderLatexContent } from "@/lib/utils";
 import {
   useAttemptLatihanSoalMutation,
-  useGetAttemptLatihanSoalQuery,
+  useGetLatihanSoalDetailQuery,
 } from "@/redux/api/latihanSoalApi";
-import { useState } from "react";
+import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
+import { useEffect, useState } from "react";
 import { OptionBoxVariants } from "./style";
 
 interface QuestionContainerI {
@@ -20,14 +20,21 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const category = categoryMap[slug[0]];
   const [choice, setChoice] = useState<string>("");
 
-  const { question } = useLatihanSoalContext();
-
-  const { data: attemptHistory } = useGetAttemptLatihanSoalQuery(
+  const { data, isSuccess } = useGetLatihanSoalDetailQuery(
     {
-      question_id: question?.id ?? "",
+      id: slug[1],
     },
-    { skip: !question },
+    {
+      skip: !slug[1],
+    },
   );
+  const [question, setQuestion] = useState(data?.data ?? null);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setQuestion(data?.data ?? null);
+    }
+  }, [isSuccess]);
 
   const [attemptSoal] = useAttemptLatihanSoalMutation();
   const onClickOption = (
@@ -44,6 +51,19 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       });
     }
   };
+
+  useEffect(() => {
+    return () => {
+      const elStyle = document.getElementById("Mathpix-styles");
+      if (!elStyle) {
+        const style = document.createElement("style");
+        style.setAttribute("id", "Mathpix-styles");
+        style.innerHTML = MM.getMathpixFontsStyle() + MM.getMathpixStyle(true);
+        document.head.appendChild(style);
+      }
+    };
+  }, []);
+
   return (
     <div className="px-10">
       <div className="flex flex-col gap-5 px-10">
@@ -51,14 +71,16 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
           <h1 className="text-3xl font-700 text-content-100">{category}</h1>
           <div className="flex items-center gap-1">
             <h2 className="text-xl font-600 text-content-300">
-              Barisan Bilangan
+              {question?.topic}
             </h2>
             <button className="group inline-flex items-center gap-1 rounded-full px-2 text-sm font-500 text-surface-400 hover:bg-emerald-400 hover:text-emerald-100">
               <Iconify icon="ph:download-simple-bold" />
               <p className="hidden group-hover:block">Download</p>
             </button>
           </div>
-          <h2 className="text-xl font-600 text-content-300">UTBK 2022</h2>
+          <h2 className="text-xl font-600 text-content-300">
+            {question?.label}
+          </h2>
         </div>
         <div
           className="w-[100%] font-quicksand"

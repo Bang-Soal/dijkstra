@@ -3,7 +3,7 @@ import { useGetLatihanSoalQuery } from "@/redux/api/latihanSoalApi";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useParams, useRouter } from "next/navigation";
-import { Suspense, lazy, useMemo } from "react";
+import { Suspense, lazy, useEffect, useMemo } from "react";
 import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import { SoalSelectorI } from "./interface";
 
@@ -39,14 +39,17 @@ export default function SoalSelector({
       skip: categoryParam !== slug[0],
     },
   );
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     const currentQuestion = soalData?.data.questions
-  //       .slice(0, 40)
-  //       .find(({ id }) => id === slug[1]);
-  //     setQuestion(currentQuestion ?? soalData?.data.questions[0]);
-  //   }
-  // }, [isSuccess, soalData, slug]);
+  useEffect(() => {
+    if (isSuccess) {
+      let id = soalData?.data?.questions?.[0]?.id ?? "";
+
+      if (slug[1]) {
+        id = slug[1];
+      }
+
+      router.push(`/latihan-soal/${categoryParam}/${id}`);
+    }
+  }, [isSuccess]);
 
   const renderTile = useMemo(() => {
     return soalData?.data?.questions?.map(({ id, content }, index) => (

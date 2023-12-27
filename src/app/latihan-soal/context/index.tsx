@@ -1,4 +1,4 @@
-import { SelectedSubjectType, SoalQuestion, Subject } from "@/types";
+import { SelectedSubjectType, Subject } from "@/types";
 import { useParams } from "next/navigation";
 import React, { ReactNode, createContext, useMemo, useState } from "react";
 import { TopicFilter, YearRangeFilter } from "../components/interface";
@@ -6,7 +6,6 @@ import { LatihanSoalContextType, LatihanSoalState } from "./type";
 
 const defaultState: LatihanSoalState = {
   subjects: [],
-  question: null,
   currentTopic: {
     PU: "Semua",
     PKPM: "Semua",
@@ -45,9 +44,6 @@ type Props = {
 export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
   const { slug } = useParams();
 
-  const [question, setQuestion] = useState<SoalQuestion | null>(
-    defaultState.question,
-  );
   const [subjects, setSubjects] = useState<Subject[]>(defaultState.subjects);
   const [currentTopic, setCurrentTopic] = useState<TopicFilter>(
     defaultState.currentTopic,
@@ -66,8 +62,6 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
       setCurrentTopic,
       yearRange,
       setYearRange,
-      question,
-      setQuestion,
       selectedSubject,
       setSelectedSubject,
     }),
