@@ -7,6 +7,7 @@ import Iconify from "@/components/Iconify";
 import { useGetTopicsBySubjectQuery } from "@/redux/api/latihanSoalApi";
 import * as Label from "@radix-ui/react-label";
 import * as Select from "@radix-ui/react-select";
+import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import { YearRangeSlider } from "./YearRangeSlider";
 import { FiltersI } from "./interface";
 
@@ -18,7 +19,13 @@ export default function Filters({
   yearRange,
   setYearRange,
 }: FiltersI) {
-  const { data: topicData } = useGetTopicsBySubjectQuery({ subject_id });
+  const { selectedSubject } = useLatihanSoalContext();
+  const { data: topicData } = useGetTopicsBySubjectQuery(
+    { subject_id },
+    {
+      skip: SELECTED_SUBJECT_MAPPING[category] !== selectedSubject,
+    },
+  );
 
   return (
     <div className="flex flex-col rounded-lg bg-emerald-900/25 px-3 py-2">

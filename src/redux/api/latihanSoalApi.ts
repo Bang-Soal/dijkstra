@@ -75,16 +75,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         method: "GET",
         params: { params },
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result?.data?.questions?.map(({ id }) => ({
-                type: "LatihanSoal" as const,
-                id,
-              })),
-              { type: "LatihanSoal" },
-            ]
-          : ["LatihanSoal"],
+      providesTags: (result, error, { subject_id }) => [
+        { type: "LatihanSoal", id: subject_id },
+      ],
     }),
     getLatihanSoalHistory: builder.query<
       LatihanSoalBySubjectResponse,

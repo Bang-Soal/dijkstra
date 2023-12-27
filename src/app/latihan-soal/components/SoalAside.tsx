@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import { SelectedSubjectType } from "@/types";
 import { useParams, useRouter } from "next/navigation";
 import { SELECTED_SUBJECTS } from "../constants";
-import { useLatihanSoalContext } from "../context";
+import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import Filters from "./Filters";
 import SoalSelector from "./SoalSelector";
 
@@ -30,6 +30,8 @@ export default function SoalAside() {
     setCurrentTopic,
     yearRange,
     setYearRange,
+    setSelectedSubject,
+    selectedSubject,
   } = useLatihanSoalContext();
 
   useEffect(() => {
@@ -39,15 +41,10 @@ export default function SoalAside() {
           return SELECTED_SUBJECTS.includes(alternate_name);
         },
       );
-      filteredSubjects.sort((a, b) => {
-        const orderA = SELECTED_SUBJECTS.indexOf(a.alternate_name);
-        const orderB = SELECTED_SUBJECTS.indexOf(b.alternate_name);
-        return orderA - orderB;
-      });
 
       setSubjects(filteredSubjects);
     }
-  }, [subjectsData, setSubjects]);
+  }, [subjectsData]);
 
   return (
     <aside className="sticky bottom-0 flex h-screen w-80 shrink-0 flex-col gap-6 border-r border-surface-300 bg-surface-200">
@@ -73,6 +70,7 @@ export default function SoalAside() {
           type="single"
           defaultValue={`${slug[0] ?? "pu"}`}
           onValueChange={(value) => {
+            setSelectedSubject(value as SelectedSubjectType);
             router.replace(`/latihan-soal/${value}`);
           }}
         >
@@ -96,7 +94,7 @@ export default function SoalAside() {
                     height={20}
                     className="w-5 text-black"
                   />
-                  <p className="grow truncate text-left">{subjectName}</p>
+                  <p className="mb-0 grow truncate text-left">{subjectName}</p>
                   <Iconify
                     icon="ph:caret-down-bold"
                     className="transition-transform duration-500 group-data-[state=open]:rotate-180"
@@ -114,13 +112,16 @@ export default function SoalAside() {
                     yearRange={yearRange}
                     setYearRange={setYearRange}
                   />
-                  <SoalSelector
-                    subject_id={id}
-                    min_year={yearRange[subjectName][0]}
-                    max_year={yearRange[subjectName][1]}
-                    category={subjectName as SelectedSubjectType}
-                    topic_id={currentTopic[subjectName]}
-                  />
+                  {SELECTED_SUBJECT_MAPPING[subjectName] ===
+                    selectedSubject && (
+                    <SoalSelector
+                      subject_id={id}
+                      min_year={yearRange[subjectName][0]}
+                      max_year={yearRange[subjectName][1]}
+                      category={subjectName as SelectedSubjectType}
+                      topic_id={currentTopic[subjectName]}
+                    />
+                  )}
                 </Accordion.Content>
                 <Image
                   src={bgMeshVertical}

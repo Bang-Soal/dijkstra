@@ -17,4 +17,6 @@ export interface LatihanSoalContextType extends LatihanSoalState {
   setSubjects: (subjects: Subject[]) => void;
   setCurrentTopic: (topic: TopicFilter) => void;
   setYearRange: (range: YearRangeFilter) => void;
+  setSelectedSubject: (subjectType: string) => void;
+  selectedSubject: string;
 }

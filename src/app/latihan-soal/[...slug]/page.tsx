@@ -1,6 +1,5 @@
 // libs
 import type { Metadata } from "next";
-import { QuestionContainer } from "../components/QuestionContainer";
 import { categoryMap } from "../constants";
 
 export async function generateMetadata({
@@ -22,7 +21,7 @@ export default function LatihanSoal({
 }: Readonly<{ params: { slug: string[] } }>) {
   return (
     <main className="min-h-screen py-10">
-      <QuestionContainer slug={params.slug} />
+      {/* <QuestionContainer slug={params.slug} /> */}
     </main>
   );
 }

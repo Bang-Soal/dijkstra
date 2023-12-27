@@ -39,8 +39,7 @@ export type SoalOption = {
 
 export type SoalQuestion = {
   id: string;
-  content: SoalContent;
-  options: SoalOption;
+  content: string;
 };
 
 export type SubjectResponse = ResponseWrapper<Subject[]>;

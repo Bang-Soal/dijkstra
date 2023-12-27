@@ -1,5 +1,6 @@
-import { SoalQuestion, Subject } from "@/types";
-import React, { ReactNode, createContext, useState } from "react";
+import { SelectedSubjectType, SoalQuestion, Subject } from "@/types";
+import { useParams } from "next/navigation";
+import React, { ReactNode, createContext, useMemo, useState } from "react";
 import { TopicFilter, YearRangeFilter } from "../components/interface";
 import { LatihanSoalContextType, LatihanSoalState } from "./type";
 
@@ -24,6 +25,15 @@ const defaultState: LatihanSoalState = {
   },
 };
 
+export const SELECTED_SUBJECT_MAPPING: Record<SelectedSubjectType, string> = {
+  "Bahasa Indonesia": "bahasa-indonesia",
+  "Bahasa Inggris": "bahasa-inggris",
+  PBM: "pbm",
+  PU: "pu",
+  PKPM: "pkpm",
+  PPU: "ppu",
+};
+
 export const LatihanSoalContext = createContext<
   LatihanSoalContextType | undefined
 >(undefined);
@@ -33,6 +43,8 @@ type Props = {
 };
 
 export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
+  const { slug } = useParams();
+
   const [question, setQuestion] = useState<SoalQuestion | null>(
     defaultState.question,
   );
@@ -44,19 +56,26 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
     defaultState.yearRange,
   );
 
+  const [selectedSubject, setSelectedSubject] = useState<string>(slug[0]);
+
+  const value = useMemo(
+    () => ({
+      subjects,
+      setSubjects,
+      currentTopic,
+      setCurrentTopic,
+      yearRange,
+      setYearRange,
+      question,
+      setQuestion,
+      selectedSubject,
+      setSelectedSubject,
+    }),
+    [yearRange, selectedSubject, currentTopic, subjects],
+  );
+
   return (
-    <LatihanSoalContext.Provider
-      value={{
-        subjects,
-        setSubjects,
-        currentTopic,
-        setCurrentTopic,
-        yearRange,
-        setYearRange,
-        question,
-        setQuestion,
-      }}
-    >
+    <LatihanSoalContext.Provider value={value}>
       {children}
     </LatihanSoalContext.Provider>
   );

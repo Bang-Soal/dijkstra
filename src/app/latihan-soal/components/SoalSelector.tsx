@@ -1,12 +1,19 @@
 "use client";
-import { renderLatexContent } from "@/lib/utils";
 import { useGetLatihanSoalQuery } from "@/redux/api/latihanSoalApi";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useLatihanSoalContext } from "../context";
+import { Suspense, lazy, useMemo } from "react";
+import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import { SoalSelectorI } from "./interface";
+
+function loading(promise: any) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  }).then(() => promise);
+}
+
+const MarkdownPreview = lazy(() => loading(import("./RenderMarkdown"))); // Lazy load markdown for better performance
 
 export default function SoalSelector({
   subject_id,
@@ -17,8 +24,9 @@ export default function SoalSelector({
 }: SoalSelectorI) {
   const router = useRouter();
   const { slug } = useParams();
-  const { setQuestion } = useLatihanSoalContext();
   const categoryParam = category.toLowerCase().replace(" ", "-");
+
+  const { selectedSubject } = useLatihanSoalContext();
 
   const { data: soalData, isSuccess } = useGetLatihanSoalQuery(
     {
@@ -31,39 +39,47 @@ export default function SoalSelector({
       skip: categoryParam !== slug[0],
     },
   );
-  useEffect(() => {
-    if (isSuccess) {
-      const currentQuestion = soalData?.data.questions
-        .slice(0, 40)
-        .find(({ id }) => id === slug[1]);
-      setQuestion(currentQuestion ?? soalData?.data.questions[0]);
-    }
-  }, [isSuccess, soalData, slug]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     const currentQuestion = soalData?.data.questions
+  //       .slice(0, 40)
+  //       .find(({ id }) => id === slug[1]);
+  //     setQuestion(currentQuestion ?? soalData?.data.questions[0]);
+  //   }
+  // }, [isSuccess, soalData, slug]);
+
+  const renderTile = useMemo(() => {
+    return soalData?.data?.questions?.map(({ id, content }, index) => (
+      <Tabs.Trigger
+        key={id}
+        value={`tab-${index + 1}`}
+        className="relative h-16 overflow-hidden rounded-lg bg-surface-100 p-3 text-left text-xs font-500 text-content-100 transition-[opacity] before:absolute before:inset-0 before:shadow-[inset_-24px_-24px_32px_0_rgba(0,0,0,1)] before:shadow-surface-100 data-[state=active]:cursor-default data-[state=active]:opacity-100 data-[state=inactive]:opacity-30 data-[state=inactive]:hover:opacity-60"
+        onClick={() => router.push(`/latihan-soal/${categoryParam}/${id}`)}
+      >
+        <MarkdownPreview markdown={content} />
+      </Tabs.Trigger>
+    ));
+  }, [soalData?.data?.questions]);
 
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">
       <ScrollArea.Viewport className="grow rounded-lg">
         <Tabs.Root defaultValue="tab-1" orientation="vertical" className="grow">
           <Tabs.List className="flex flex-col gap-1">
-            {soalData?.data?.questions
-              .slice(0, 40)
-              .map(({ id, content: { content, asset_url } }, index) => (
-                <Tabs.Trigger
-                  key={id}
-                  value={`tab-${index + 1}`}
-                  className="relative h-16 overflow-hidden rounded-lg bg-surface-100 p-3 text-left text-xs font-500 text-content-100 transition-[opacity] before:absolute before:inset-0 before:shadow-[inset_-24px_-24px_32px_0_rgba(0,0,0,1)] before:shadow-surface-100 data-[state=active]:cursor-default data-[state=active]:opacity-100 data-[state=inactive]:opacity-30 data-[state=inactive]:hover:opacity-60"
-                  onClick={() =>
-                    router.push(`/latihan-soal/${categoryParam}/${id}`)
-                  }
-                >
-                  <div
-                    className="w-[90%]"
-                    dangerouslySetInnerHTML={{
-                      __html: renderLatexContent(content),
-                    }}
-                  />
-                </Tabs.Trigger>
-              ))}
+            {SELECTED_SUBJECT_MAPPING[category] === selectedSubject && (
+              <Suspense
+                fallback={Array.from([1, 2, 3]).map((el) => {
+                  return (
+                    <div
+                      key={el}
+                      className="skeleton relative h-16 w-full bg-surface-300 from-surface-300 via-surface-100 to-surface-300"
+                    ></div>
+                  );
+                })}
+              >
+                {renderTile}
+              </Suspense>
+            )}
           </Tabs.List>
         </Tabs.Root>
       </ScrollArea.Viewport>
