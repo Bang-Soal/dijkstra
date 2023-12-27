@@ -40,3 +40,21 @@ $scrollbar-style: none;
     display: $scrollbar-style; // Chrome, Safari, Opera
   }
 }
+
+#preview {
+  font-family: var(--font-quicksand) !important;
+  padding: 0px !important;
+  justify-content: start !important;
+  margin: 0px !important;
+}
+
+#preview > #setText > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.math-inline {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
