@@ -23,9 +23,9 @@ function LatihanSoalLayout({
   }, []);
   return (
     <LatihanSoalProvider>
-      <div className="flex min-h-screen w-full flex-row">
+      <div className="flex w-full flex-row lg:h-screen">
         <SoalAside />
-        <div className="grow">{children}</div>
+        <div className="grow lg:overflow-y-scroll">{children}</div>
       </div>
     </LatihanSoalProvider>
   );
