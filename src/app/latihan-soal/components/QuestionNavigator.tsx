@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+  useGetAttemptLatihanSoalQuery,
+  useSubmitLatihanSoalMutation,
+} from "@/redux/api/latihanSoalApi";
 import { QuestionNavigation } from "@/types";
 import * as Separator from "@radix-ui/react-separator";
 import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const QuestionNavigator = ({
   questionNavigation,
@@ -10,6 +15,17 @@ const QuestionNavigator = ({
 }) => {
   const router = useRouter();
   const { slug } = useParams();
+  const [openPembahasan, setOpenPembahasan] = useState<boolean>(false);
+
+  const [submitMutation] = useSubmitLatihanSoalMutation();
+  const { data } = useGetAttemptLatihanSoalQuery(
+    {
+      question_id: slug[1],
+    },
+    {
+      skip: !slug[1],
+    },
+  );
 
   return (
     <div className="flex items-center gap-x-2">
@@ -41,9 +57,21 @@ const QuestionNavigator = ({
         orientation="horizontal"
         className="h-[2px] flex-grow bg-gray-100"
       />
-      <Button variant="emerald" className="rounded-full">
-        Cek Jawaban
-      </Button>
+      {data && (
+        <Button
+          disabled={data?.data?.submitted ? true : false}
+          onClick={() => {
+            submitMutation({
+              attempt_id: data?.data.id,
+              question_id: slug[1],
+            });
+          }}
+          variant="emerald"
+          className="rounded-full disabled:bg-gray-200 disabled:text-gray-400"
+        >
+          Cek Jawaban
+        </Button>
+      )}
     </div>
   );
 };

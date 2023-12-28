@@ -9,6 +9,7 @@ import {
   useAttemptLatihanSoalMutation,
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
+  useGetPembahasanQuery,
   useLazyGetQuestionNavigationQuery,
 } from "@/redux/api/latihanSoalApi";
 
@@ -17,7 +18,7 @@ import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
 import { useLatihanSoalContext } from "../context";
 import QuestionNavigator from "./QuestionNavigator";
-import { OptionBoxVariants } from "./style";
+import { OptionBoxVariants, correctChoice, wrongChoice } from "./style";
 
 interface QuestionContainerI {
   slug: string[];
@@ -28,15 +29,31 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const [questionNavigation, setQuestionNavigation] =
     useState<QuestionNavigation>();
 
+  const [disableChoice, setDisableChoide] = useState<boolean>(false);
+
   const { subjects, currentTopic } = useLatihanSoalContext();
-  const { data: attemptQuestionData } = useGetAttemptLatihanSoalQuery(
-    {
-      question_id: slug[1],
-    },
-    {
-      skip: !slug[1],
-    },
-  );
+  const { data: attemptQuestionData, isSuccess: finishedGetAttempt } =
+    useGetAttemptLatihanSoalQuery(
+      {
+        question_id: slug[1],
+      },
+      {
+        skip: !slug[1],
+      },
+    );
+
+  const { data: pembahasan, isSuccess: pembahasanFetched } =
+    useGetPembahasanQuery(
+      {
+        question_id: slug[1],
+      },
+      {
+        skip: !finishedGetAttempt || !attemptQuestionData?.data?.submitted,
+      },
+    );
+
+  console.log(!attemptQuestionData?.data?.submitted);
+
   const [navigate] = useLazyGetQuestionNavigationQuery();
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
@@ -104,6 +121,9 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
     if (attemptQuestionData?.data) {
       setChoice(attemptQuestionData?.data?.choice_id);
     }
+    if (attemptQuestionData?.data?.submitted) {
+      setDisableChoide(true);
+    }
   }, [attemptQuestionData]);
 
   return (
@@ -132,8 +152,9 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
         />
         <div className="mb-8 grid w-full grid-cols-2 gap-4">
           {question?.options.data.map(({ choice_id, content, key }) => (
-            <div
+            <button
               key={choice_id}
+              disabled={disableChoice}
               onClick={() => {
                 setChoice(choice_id);
                 onClickOption(question.options.option_id, choice_id, content);
@@ -142,12 +163,31 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
                 OptionBoxVariants({
                   variant: choice == choice_id ? "active" : "inactive",
                 }),
+                pembahasanFetched &&
+                  choice == choice_id &&
+                  pembahasan.data?.is_correct &&
+                  correctChoice,
+                pembahasanFetched &&
+                  choice == choice_id &&
+                  !pembahasan.data?.is_correct &&
+                  wrongChoice,
               )}
             >
               <div
                 className={cn(
-                  "flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg text-center align-middle group-hover:!bg-gray-600",
+                  "flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg text-center align-middle group-hover:bg-gray-600",
                   choice == choice_id ? "bg-gray-600" : "bg-white",
+                  disableChoice &&
+                    !(choice == choice_id) &&
+                    "group-hover:bg-white",
+                  pembahasanFetched &&
+                    choice == choice_id &&
+                    pembahasan.data?.is_correct &&
+                    "bg-emerald-50 group-hover:bg-emerald-50",
+                  pembahasanFetched &&
+                    choice == choice_id &&
+                    !pembahasan.data?.is_correct &&
+                    "bg-red-50 group-hover:bg-red-50",
                 )}
               >
                 {key}
@@ -159,7 +199,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
                   __html: renderLatexContent(content),
                 }}
               />
-            </div>
+            </button>
           ))}
         </div>
         {questionNavigation && (

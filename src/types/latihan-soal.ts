@@ -89,6 +89,7 @@ export type LatihanSoalAttemptResponse = ResponseWrapper<{
   submission_img: string;
   submission_text: string;
   user_id: string;
+  submitted?: string;
 }>;
 
 export type SubmitNotesLatihanSoalRequest = GetLatihanSoalAttemptRequest & {
@@ -112,3 +113,22 @@ export type QuestionNavigationRequest = {
   current_question_id: string;
   topic_id?: string;
 };
+
+export type PembahasanQuestion = {
+  is_correct: boolean;
+  correct_answer:
+    | "You are not premium account"
+    | {
+        answer: {
+          content: string;
+        };
+        choice: {
+          id: string;
+          content: string;
+          is_true: boolean;
+          key: string;
+        } | null;
+      };
+};
+
+export type PembahasanQuestionResponse = ResponseWrapper<PembahasanQuestion>;

@@ -4,6 +4,7 @@ import {
   LatihanSoalAttemptResponse,
   LatihanSoalBySubjectRequest,
   LatihanSoalBySubjectResponse,
+  PembahasanQuestionResponse,
   QuestionNavigationRequest,
   QuestionNavigationResponse,
   SoalQuestionDetailResponse,
@@ -116,7 +117,7 @@ export const latihanSoal = baseApi.injectEndpoints({
         body,
       }),
       invalidatesTags: (result, error, { question_id }) => [
-        { type: "LatihanSoal", id: question_id },
+        { type: "LatihanSoalAttempt", id: question_id },
       ],
     }),
     getAttemptLatihanSoal: builder.query<
@@ -128,10 +129,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         method: "GET",
       }),
       providesTags: (result, error, { question_id }) => [
-        { type: "LatihanSoal", id: question_id },
+        { type: "LatihanSoalAttempt", id: question_id },
       ],
     }),
-
     deleteAttemptLatihanSoal: builder.query<
       LatihanSoalAttemptResponse,
       GetLatihanSoalAttemptRequest
@@ -140,12 +140,9 @@ export const latihanSoal = baseApi.injectEndpoints({
         url: `latihan-soal/attempt/${question_id}`,
         method: "DELETE",
       }),
-      providesTags: (result, error, { question_id }) => [
-        { type: "LatihanSoal", id: question_id },
-      ],
     }),
     getPembahasan: builder.query<
-      LatihanSoalAttemptResponse,
+      PembahasanQuestionResponse,
       GetLatihanSoalAttemptRequest
     >({
       query: ({ question_id }) => ({
@@ -176,15 +173,23 @@ export const latihanSoal = baseApi.injectEndpoints({
           topic_id: topic_id ?? undefined,
         },
       }),
-      providesTags: (
-        result,
-        error,
-        { current_question_id, subject_id, topic_id },
-      ) => [
+      providesTags: (_, __, { current_question_id, subject_id, topic_id }) => [
         {
           type: "QuestionNavigation",
           id: `${current_question_id}:${subject_id}:${topic_id}`,
         },
+      ],
+    }),
+    submitLatihanSoal: builder.mutation<
+      LatihanSoalAttemptResponse,
+      { attempt_id: string; question_id: string }
+    >({
+      query: ({ attempt_id, question_id }) => ({
+        url: `latihan-soal/submit/${attempt_id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: (result, error, { attempt_id, question_id }) => [
+        { type: "LatihanSoalAttempt", id: question_id },
       ],
     }),
   }),
@@ -205,4 +210,5 @@ export const {
   useLazyGetLatihanSoalQuery,
   useGetQuestionNavigationQuery,
   useLazyGetQuestionNavigationQuery,
+  useSubmitLatihanSoalMutation,
 } = latihanSoal;
