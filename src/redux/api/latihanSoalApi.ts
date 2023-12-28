@@ -74,7 +74,9 @@ export const latihanSoal = baseApi.injectEndpoints({
       query: ({ subject_id, ...params }) => ({
         url: `/latihan-soal/subject/${subject_id}`,
         method: "GET",
-        params: { params },
+        params: {
+          topic_id: params.topic_id,
+        },
       }),
       providesTags: (result, error, { subject_id }) => [
         { type: "LatihanSoal", id: subject_id },
@@ -174,4 +176,5 @@ export const {
   useGetPembahasanQuery,
   useSubmitNotesLatihanSoalMutation,
   useGetLatihanSoalDetailQuery,
+  useLazyGetLatihanSoalQuery,
 } = latihanSoal;

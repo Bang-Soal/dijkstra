@@ -46,10 +46,11 @@ $scrollbar-style: none;
   padding: 0px !important;
   justify-content: start !important;
   margin: 0px !important;
+  font-weight: 500 !important;
 }
 
 #preview > #setText > div {
-  line-height: 2rem;
+  line-height: 1.75rem;
 }
 
 .math-inline {
@@ -64,4 +65,9 @@ h4,
 h5,
 h6 {
   margin: 0 !important;
+}
+
+#option-content > #preview > #setText > div > span {
+  display: flex;
+  flex-wrap: wrap;
 }

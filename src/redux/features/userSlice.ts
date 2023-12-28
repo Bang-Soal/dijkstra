@@ -34,6 +34,7 @@ const userSlice: Slice<UserSliceState> = createSlice({
       (state, { payload }: PayloadAction<SigninResponse>) => {
         const token = payload.data.token;
         state.token = token;
+        state.profile = payload.data.user;
       },
     ),
       builder.addMatcher(

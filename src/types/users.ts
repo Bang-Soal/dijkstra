@@ -15,8 +15,14 @@ export type UserOnboardRequest = {
   choosen_major_three?: string;
 };
 
-export type User = UserOnboardRequest & {
-  id: string;
+export type User = {
+  email: string;
+  full_name: string;
+  highschool: string;
+  highschool_year: string;
+  choosen_university_one: string;
+  choosen_major_one: string;
+  phone_number: string;
   onboard_date: string;
 };
 

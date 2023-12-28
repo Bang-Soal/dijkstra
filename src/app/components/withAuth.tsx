@@ -15,7 +15,7 @@ const withAuth = <P extends object>(WrappedComponent: ComponentType<P>) => {
       redirect("/login");
     }
 
-    if (!user.profile) {
+    if (!user.profile?.onboard_date) {
       redirect("/onboarding");
     }
 

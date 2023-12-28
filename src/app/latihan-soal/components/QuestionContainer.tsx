@@ -10,8 +10,10 @@ import {
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
 } from "@/redux/api/latihanSoalApi";
+
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
+import QuestionNavigator from "./QuestionNavigator";
 import { OptionBoxVariants } from "./style";
 
 interface QuestionContainerI {
@@ -104,7 +106,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             __html: renderLatexContent(question?.content.content ?? ""),
           }}
         />
-        <div className="grid w-full grid-cols-2 gap-4">
+        <div className="mb-8 grid w-full grid-cols-2 gap-4">
           {question?.options.data.map(({ choice_id, content, key }) => (
             <div
               key={choice_id}
@@ -128,6 +130,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
               </div>
               <div
                 className="leading-8"
+                id="option-content"
                 dangerouslySetInnerHTML={{
                   __html: renderLatexContent(content),
                 }}
@@ -135,6 +138,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             </div>
           ))}
         </div>
+        <QuestionNavigator />
       </div>
     </div>
   );
