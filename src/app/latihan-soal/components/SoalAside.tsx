@@ -54,17 +54,6 @@ export default function SoalAside() {
         <p className="font-[550]">Latihan Soal</p>
       </div>
       <div className="flex grow flex-col gap-5 px-5 pb-5 text-content-300">
-        <div className="relative w-full">
-          <Iconify
-            icon="ph:magnifying-glass-bold"
-            className="absolute left-5 top-1/2 -translate-y-1/2"
-          />
-          <input
-            type="text"
-            placeholder="Cari soal"
-            className="flex h-10 w-full items-center rounded-full border border-surface-300 bg-surface-100 pl-11 font-500"
-          />
-        </div>
         <Accordion.Root
           className="flex grow flex-col"
           type="single"
