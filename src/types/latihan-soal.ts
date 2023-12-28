@@ -97,3 +97,18 @@ export type SubmitNotesLatihanSoalRequest = GetLatihanSoalAttemptRequest & {
   submission_text: string;
 };
 export type SubmitNotesLatihanSoalResponse = {};
+
+export type QuestionNavigation = {
+  next_question: string | null;
+  prev_question: string | null;
+  has_next: boolean;
+  has_prev: boolean;
+};
+
+export type QuestionNavigationResponse = ResponseWrapper<QuestionNavigation>;
+
+export type QuestionNavigationRequest = {
+  subject_id: string;
+  current_question_id: string;
+  topic_id?: string;
+};

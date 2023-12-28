@@ -4,6 +4,8 @@ import {
   LatihanSoalAttemptResponse,
   LatihanSoalBySubjectRequest,
   LatihanSoalBySubjectResponse,
+  QuestionNavigationRequest,
+  QuestionNavigationResponse,
   SoalQuestionDetailResponse,
   SubjectDetailRequest,
   SubjectResponse,
@@ -161,6 +163,20 @@ export const latihanSoal = baseApi.injectEndpoints({
         body,
       }),
     }),
+    getQuestionNavigation: builder.mutation<
+      QuestionNavigationResponse,
+      QuestionNavigationRequest
+    >({
+      query: ({ current_question_id, subject_id, topic_id }) => ({
+        url: `latihan-soal/navigation`,
+        method: "POST",
+        body: {
+          current_question_id,
+          subject_id,
+          topic_id: topic_id ?? undefined,
+        },
+      }),
+    }),
   }),
 });
 
@@ -177,4 +193,5 @@ export const {
   useSubmitNotesLatihanSoalMutation,
   useGetLatihanSoalDetailQuery,
   useLazyGetLatihanSoalQuery,
+  useGetQuestionNavigationMutation,
 } = latihanSoal;

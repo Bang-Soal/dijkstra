@@ -9,10 +9,13 @@ import {
   useAttemptLatihanSoalMutation,
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
+  useGetQuestionNavigationMutation,
 } from "@/redux/api/latihanSoalApi";
 
+import { QuestionNavigation, ResponseWrapper } from "@/types";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
+import { useLatihanSoalContext } from "../context";
 import QuestionNavigator from "./QuestionNavigator";
 import { OptionBoxVariants } from "./style";
 
@@ -22,7 +25,10 @@ interface QuestionContainerI {
 export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const category = categoryMap[slug[0]];
   const [choice, setChoice] = useState<string>("");
+  const [questionNavigation, setQuestionNavigation] =
+    useState<QuestionNavigation>();
 
+  const { subjects, currentTopic } = useLatihanSoalContext();
   const { data: attemptQuestionData } = useGetAttemptLatihanSoalQuery(
     {
       question_id: slug[1],
@@ -31,6 +37,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       skip: !slug[1],
     },
   );
+  const [navigate] = useGetQuestionNavigationMutation();
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
     {
@@ -75,6 +82,22 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const subjectId = subjects.find((subject) =>
+      subject.name.includes(categoryMap[slug[0]]),
+    )?.id;
+
+    if (subjectId && slug[1]) {
+      navigate({
+        subject_id: subjectId,
+        current_question_id: slug[1],
+      }).then((res: any) => {
+        const { data } = res.data as ResponseWrapper<QuestionNavigation>;
+        setQuestionNavigation(data);
+      });
+    }
+  }, [subjects, currentTopic, slug[1]]);
 
   useEffect(() => {
     if (attemptQuestionData?.data) {
@@ -138,7 +161,9 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             </div>
           ))}
         </div>
-        <QuestionNavigator />
+        {questionNavigation && (
+          <QuestionNavigator questionNavigation={questionNavigation} />
+        )}
       </div>
     </div>
   );
