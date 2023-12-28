@@ -17,7 +17,7 @@ import { useParams, useRouter } from "next/navigation";
 import { SELECTED_SUBJECTS } from "../constants";
 import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import Filters from "./Filters";
-import SoalSelector from "./SoalSelector";
+import SoalSelector, { SoalCardSkeleton } from "./SoalSelector";
 
 export default function SoalAside() {
   const router = useRouter();
@@ -101,8 +101,7 @@ export default function SoalAside() {
                     yearRange={yearRange}
                     setYearRange={setYearRange}
                   />
-                  {SELECTED_SUBJECT_MAPPING[subjectName] ===
-                    selectedSubject && (
+                  {SELECTED_SUBJECT_MAPPING[subjectName] === selectedSubject ? (
                     <SoalSelector
                       subject_id={id}
                       min_year={yearRange[subjectName][0]}
@@ -110,6 +109,8 @@ export default function SoalAside() {
                       category={subjectName as SelectedSubjectType}
                       topic_id={currentTopic[subjectName]}
                     />
+                  ) : (
+                    <SoalCardSkeleton />
                   )}
                 </Accordion.Content>
                 <Image

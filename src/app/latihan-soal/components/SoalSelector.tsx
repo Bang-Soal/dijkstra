@@ -28,7 +28,11 @@ export default function SoalSelector({
 
   const { selectedSubject } = useLatihanSoalContext();
 
-  const { data: soalData, isSuccess } = useGetLatihanSoalQuery(
+  const {
+    data: soalData,
+    isSuccess,
+    refetch,
+  } = useGetLatihanSoalQuery(
     {
       subject_id,
       topic_id: topic_id != "Semua" ? topic_id : undefined,
@@ -64,24 +68,21 @@ export default function SoalSelector({
     ));
   }, [soalData?.data?.questions]);
 
+  useEffect(() => {
+    if (isSuccess && soalData?.data?.questions === undefined) {
+      refetch();
+    }
+  }, [soalData]);
+
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">
       <ScrollArea.Viewport className="grow rounded-lg">
         <Tabs.Root defaultValue="tab-1" orientation="vertical" className="grow">
           <Tabs.List className="flex flex-col gap-1">
-            {SELECTED_SUBJECT_MAPPING[category] === selectedSubject && (
-              <Suspense
-                fallback={Array.from([1, 2, 3]).map((el) => {
-                  return (
-                    <div
-                      key={el}
-                      className="skeleton relative h-16 w-full bg-surface-300 from-surface-300 via-surface-100 to-surface-300"
-                    ></div>
-                  );
-                })}
-              >
-                {renderTile}
-              </Suspense>
+            {SELECTED_SUBJECT_MAPPING[category] === selectedSubject ? (
+              <Suspense fallback={<SoalCardSkeleton />}>{renderTile}</Suspense>
+            ) : (
+              <SoalCardSkeleton />
             )}
           </Tabs.List>
         </Tabs.Root>
@@ -96,3 +97,14 @@ export default function SoalSelector({
     </ScrollArea.Root>
   );
 }
+
+export const SoalCardSkeleton = () => {
+  return Array.from([1, 2, 3]).map((el) => {
+    return (
+      <div
+        key={el}
+        className="skeleton relative h-16 w-full bg-surface-300 from-surface-300 via-surface-100 to-surface-300"
+      ></div>
+    );
+  });
+};

@@ -59,7 +59,7 @@ const QuestionNavigator = ({
       />
       {data && (
         <Button
-          disabled={data?.data?.submitted ? true : false}
+          disabled={openPembahasan}
           onClick={() => {
             submitMutation({
               attempt_id: data?.data.id,

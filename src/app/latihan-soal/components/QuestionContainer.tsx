@@ -52,8 +52,6 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       },
     );
 
-  console.log(!attemptQuestionData?.data?.submitted);
-
   const [navigate] = useLazyGetQuestionNavigationQuery();
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
