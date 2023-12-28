@@ -9,10 +9,10 @@ import {
   useAttemptLatihanSoalMutation,
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
-  useGetQuestionNavigationMutation,
+  useLazyGetQuestionNavigationQuery,
 } from "@/redux/api/latihanSoalApi";
 
-import { QuestionNavigation, ResponseWrapper } from "@/types";
+import { QuestionNavigation } from "@/types";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
 import { useLatihanSoalContext } from "../context";
@@ -37,7 +37,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       skip: !slug[1],
     },
   );
-  const [navigate] = useGetQuestionNavigationMutation();
+  const [navigate] = useLazyGetQuestionNavigationQuery();
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
     {
@@ -92,9 +92,10 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       navigate({
         subject_id: subjectId,
         current_question_id: slug[1],
-      }).then((res: any) => {
-        const { data } = res.data as ResponseWrapper<QuestionNavigation>;
-        setQuestionNavigation(data);
+      }).then(({ data }) => {
+        if (data) {
+          setQuestionNavigation(data.data);
+        }
       });
     }
   }, [subjects, currentTopic, slug[1]]);

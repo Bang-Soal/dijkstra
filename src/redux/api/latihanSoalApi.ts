@@ -163,19 +163,29 @@ export const latihanSoal = baseApi.injectEndpoints({
         body,
       }),
     }),
-    getQuestionNavigation: builder.mutation<
+    getQuestionNavigation: builder.query<
       QuestionNavigationResponse,
       QuestionNavigationRequest
     >({
       query: ({ current_question_id, subject_id, topic_id }) => ({
         url: `latihan-soal/navigation`,
-        method: "POST",
-        body: {
+        method: "GET",
+        params: {
           current_question_id,
           subject_id,
           topic_id: topic_id ?? undefined,
         },
       }),
+      providesTags: (
+        result,
+        error,
+        { current_question_id, subject_id, topic_id },
+      ) => [
+        {
+          type: "QuestionNavigation",
+          id: `${current_question_id}:${subject_id}:${topic_id}`,
+        },
+      ],
     }),
   }),
 });
@@ -193,5 +203,6 @@ export const {
   useSubmitNotesLatihanSoalMutation,
   useGetLatihanSoalDetailQuery,
   useLazyGetLatihanSoalQuery,
-  useGetQuestionNavigationMutation,
+  useGetQuestionNavigationQuery,
+  useLazyGetQuestionNavigationQuery,
 } = latihanSoal;

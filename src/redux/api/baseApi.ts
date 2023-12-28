@@ -3,7 +3,14 @@ import { RootState } from "../store";
 import { apiConfig } from "./config";
 
 export const baseApi = createApi({
-  tagTypes: ["Profile", "Subject", "Topic", "LatihanSoal", "LatihanSoalDetail"],
+  tagTypes: [
+    "Profile",
+    "Subject",
+    "Topic",
+    "LatihanSoal",
+    "LatihanSoalDetail",
+    "QuestionNavigation",
+  ],
   baseQuery: fetchBaseQuery({
     baseUrl: apiConfig.baseUrl,
     prepareHeaders: (headers, { getState }) => {
