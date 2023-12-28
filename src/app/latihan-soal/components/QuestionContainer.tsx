@@ -7,6 +7,7 @@ import { categoryMap } from "../constants";
 import { cn, renderLatexContent } from "@/lib/utils";
 import {
   useAttemptLatihanSoalMutation,
+  useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
 } from "@/redux/api/latihanSoalApi";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
@@ -19,6 +20,15 @@ interface QuestionContainerI {
 export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const category = categoryMap[slug[0]];
   const [choice, setChoice] = useState<string>("");
+
+  const { data: attemptQuestionData } = useGetAttemptLatihanSoalQuery(
+    {
+      question_id: slug[1],
+    },
+    {
+      skip: !slug[1],
+    },
+  );
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
     {
@@ -64,10 +74,16 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (attemptQuestionData?.data) {
+      setChoice(attemptQuestionData?.data?.choice_id);
+    }
+  }, [attemptQuestionData]);
+
   return (
     <div className="px-10">
       <div className="flex flex-col gap-5 px-10">
-        <div className="flex flex-col gap-1">
+        <div className="mb-4 flex flex-col gap-1">
           <h1 className="text-3xl font-700 text-content-100">{category}</h1>
           <div className="flex items-center gap-1">
             <h2 className="text-xl font-600 text-content-300">
@@ -104,13 +120,14 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             >
               <div
                 className={cn(
-                  "h-8 w-8 rounded-lg pt-1 text-center align-middle",
-                  choice == choice_id ? "bg-gray-60" : "bg-white",
+                  "flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg text-center align-middle group-hover:!bg-gray-600",
+                  choice == choice_id ? "bg-gray-600" : "bg-white",
                 )}
               >
                 {key}
               </div>
               <div
+                className="leading-8"
                 dangerouslySetInnerHTML={{
                   __html: renderLatexContent(content),
                 }}

@@ -79,7 +79,17 @@ export type LatihanSoalAttemptRequest = GetLatihanSoalAttemptRequest & {
   choice_id: string;
   answer_history: string;
 };
-export type LatihanSoalAttemptResponse = {};
+export type LatihanSoalAttemptResponse = ResponseWrapper<{
+  id: string;
+  question_id: string;
+  options_id: string;
+  choice_id: string;
+  answer_history: string;
+  timestamp: string;
+  submission_img: string;
+  submission_text: string;
+  user_id: string;
+}>;
 
 export type SubmitNotesLatihanSoalRequest = GetLatihanSoalAttemptRequest & {
   attempt_id: string;
