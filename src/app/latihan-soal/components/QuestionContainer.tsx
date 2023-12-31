@@ -148,7 +148,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             __html: renderLatexContent(question?.content.content ?? ""),
           }}
         />
-        <div className="mb-8 grid w-full grid-cols-2 gap-4">
+        <div className="mb-8 grid w-full grid-flow-col grid-cols-2 grid-rows-3 gap-4">
           {question?.options.data.map(({ choice_id, content, key }) => (
             <button
               key={choice_id}
