@@ -64,7 +64,7 @@ export default function Hero() {
         </h1>
         <div className="flex items-center gap-3">
           <Link
-            href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
+            href="/latihan-soal/pu"
             className={buttonVariants({ variant: "bsPrimary", size: "lg" })}
           >
             Ajarin bang!

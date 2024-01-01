@@ -12,9 +12,7 @@ import {
   useGetPembahasanQuery,
 } from "@/redux/api/latihanSoalApi";
 
-import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
-import { useLatihanSoalContext } from "../context";
 import PembahasanContainer from "./PembahasanContainer";
 import QuestionNavigator from "./QuestionNavigator";
 import { OptionBoxVariants, correctChoice, wrongChoice } from "./style";
@@ -28,7 +26,6 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
 
   const [disableChoice, setDisableChoice] = useState<boolean>(false);
 
-  const { soalData } = useLatihanSoalContext();
   const { data: attemptQuestionData, isSuccess: finishedGetAttempt } =
     useGetAttemptLatihanSoalQuery(
       {
@@ -80,18 +77,6 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       });
     }
   };
-
-  useEffect(() => {
-    return () => {
-      const elStyle = document.getElementById("Mathpix-styles");
-      if (!elStyle) {
-        const style = document.createElement("style");
-        style.setAttribute("id", "Mathpix-styles");
-        style.innerHTML = MM.getMathpixFontsStyle() + MM.getMathpixStyle(true);
-        document.head.appendChild(style);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     if (attemptQuestionData?.data) {

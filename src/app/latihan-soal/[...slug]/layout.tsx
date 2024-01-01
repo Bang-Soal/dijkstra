@@ -1,16 +1,23 @@
 "use client";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
+import { redirect, useParams } from "next/navigation";
 import { useEffect } from "react";
-import withAuth from "../components/withAuth";
-import SoalAside from "./components/SoalAside";
-import { LatihanSoalProvider } from "./context";
+import withAuth from "../../components/withAuth";
+import SoalAside from "../components/SoalAside";
+import { LatihanSoalProvider } from "../context";
 
 function LatihanSoalLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { slug } = useParams();
+
   useEffect(() => {
+    if (!slug) {
+      redirect("/latihan-soal/pu");
+    }
+
     return () => {
       const elStyle = document.getElementById("Mathpix-styles");
       if (!elStyle) {

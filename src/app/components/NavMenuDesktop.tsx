@@ -36,17 +36,17 @@ const topics: {
   {
     title: "Pengetahuan Kuantitatif",
     icon: "/icons/MathOperations.svg",
-    href: "/latihan-soal/pk",
+    href: "/latihan-soal/pkpm",
   },
   {
     title: "Bahasa Indonesia",
     icon: "/icons/Indonesia.svg",
-    href: "/latihan-soal/bindo",
+    href: "/latihan-soal/bahasa-indonesia",
   },
   {
     title: "Bahasa Inggris",
     icon: "/icons/England.svg",
-    href: "/latihan-soal/bing",
+    href: "/latihan-soal/bahasa-inggris",
   },
 ];
 

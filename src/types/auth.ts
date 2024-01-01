@@ -14,6 +14,7 @@ export type SigninResponse = ResponseWrapper<{
     onboard_date: string;
   };
 }>;
+export type SignupResponse = ResponseWrapper<string>;
 
 export type SigninRequest = {
   phone_number: string;

@@ -1,4 +1,4 @@
-import { ProfileResponse, SigninResponse, User } from "@/types";
+import { ProfileResponse, SigninResponse, SignupResponse, User } from "@/types";
 import { PayloadAction, Slice, createSlice } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { authApi } from "../api/authApi";
@@ -44,8 +44,8 @@ const userSlice: Slice<UserSliceState> = createSlice({
       ),
       builder.addMatcher(
         authApi.endpoints.register.matchFulfilled,
-        (state, { payload }: PayloadAction<SigninResponse>) => {
-          state.token = payload.data.token;
+        (state, { payload }: PayloadAction<SignupResponse>) => {
+          state.token = payload.data;
         },
       );
   },

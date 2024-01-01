@@ -76,13 +76,16 @@ const Onboarding = () => {
 
   const [onboard, { isSuccess, isLoading }] = useOnboardingMutation();
 
-  function onSubmit(data: z.infer<typeof onboardingFormSchema>) {
-    onboard(data).then(() => {
-      if (isSuccess) {
-        redirect("/");
-      }
-    });
-  }
+  const onSubmit = async (data: z.infer<typeof onboardingFormSchema>) => {
+    await onboard(data);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      redirect("/");
+    }
+  }, [isSuccess]);
+
   return (
     <div className="mx-0 flex h-full items-center justify-center gap-10 pt-10 lg:mx-16">
       <div className="-mb-16 overflow-hidden rounded-2xl bg-emerald-300 p-4 shadow-lg">
@@ -300,7 +303,7 @@ const Onboarding = () => {
                     className="w-40 items-end"
                     loading={isLoading}
                   >
-                    Next
+                    Kirim
                   </Button>
                 </div>
               </form>

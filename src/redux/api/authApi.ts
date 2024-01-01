@@ -3,6 +3,7 @@ import {
   SendOTPRequest,
   SigninRequest,
   SigninResponse,
+  SignupResponse,
 } from "@/types";
 import { baseApi } from "./baseApi";
 
@@ -15,7 +16,7 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    register: builder.mutation<SigninResponse, SigninRequest>({
+    register: builder.mutation<SignupResponse, SigninRequest>({
       query: (body) => ({
         url: "/auth/register",
         method: "POST",
