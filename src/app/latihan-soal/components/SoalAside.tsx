@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 
 import { SelectedSubjectType } from "@/types";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { SELECTED_SUBJECTS } from "../constants";
 import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
@@ -49,7 +50,9 @@ export default function SoalAside() {
   return (
     <aside className="sticky bottom-0 flex h-screen w-80 shrink-0 flex-col gap-6 border-r border-surface-300 bg-surface-200">
       <div className="flex h-16 items-center justify-center gap-2 pt-4 text-xl font-700 text-content-200">
-        <p className="">BangSoal</p>
+        <Link href="/" className="text-gray-700 hover:text-gray-700">
+          <p className="">BangSoal</p>
+        </Link>
         <p className="text-surface-400">|</p>
         <p className="font-[550]">Latihan Soal</p>
       </div>
