@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function OnboardPage() {
   return (
-    <div className="h-screen">
+    <div className="h-screen w-full">
       <Onboarding />
     </div>
   );
