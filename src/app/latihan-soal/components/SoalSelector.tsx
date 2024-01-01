@@ -3,7 +3,7 @@ import { useGetLatihanSoalQuery } from "@/redux/api/latihanSoalApi";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useParams, useRouter } from "next/navigation";
-import { Suspense, lazy, useEffect, useMemo } from "react";
+import { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import { SELECTED_SUBJECT_MAPPING, useLatihanSoalContext } from "../context";
 import { SoalSelectorI } from "./interface";
 
@@ -27,6 +27,8 @@ export default function SoalSelector({
   const categoryParam = category.toLowerCase().replace(" ", "-");
 
   const { selectedSubject, setSoalData } = useLatihanSoalContext();
+
+  const [defaultValueTabIndex, setDefaultValueTabIndex] = useState<number>(0);
 
   const { data: soalData, isSuccess } = useGetLatihanSoalQuery(
     {
@@ -53,6 +55,15 @@ export default function SoalSelector({
     }
   }, [isSuccess, soalData?.data?.questions]);
 
+  useEffect(() => {
+    if (soalData?.data?.questions) {
+      const currentNumber = soalData?.data?.questions?.findIndex(
+        (item) => item.id === slug[1],
+      );
+      setDefaultValueTabIndex(currentNumber ?? 0);
+    }
+  }, [soalData?.data?.questions]);
+
   const renderTile = useMemo(() => {
     return soalData?.data?.questions?.map(({ id, content }, index) => (
       <Tabs.Trigger
@@ -66,16 +77,14 @@ export default function SoalSelector({
     ));
   }, [soalData?.data?.questions]);
 
-  // useEffect(() => {
-  //   if (isSuccess && soalData?.data?.questions === undefined) {
-  //     refetch();
-  //   }
-  // }, [soalData]);
-
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">
       <ScrollArea.Viewport className="grow rounded-lg">
-        <Tabs.Root defaultValue="tab-1" orientation="vertical" className="grow">
+        <Tabs.Root
+          value={`tab-${defaultValueTabIndex + 1}`}
+          orientation="vertical"
+          className="grow"
+        >
           <Tabs.List className="flex flex-col gap-1">
             {SELECTED_SUBJECT_MAPPING[category] === selectedSubject ? (
               <Suspense fallback={<SoalCardSkeleton />}>{renderTile}</Suspense>

@@ -10,10 +10,8 @@ import {
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
   useGetPembahasanQuery,
-  useLazyGetQuestionNavigationQuery,
 } from "@/redux/api/latihanSoalApi";
 
-import { QuestionNavigation } from "@/types";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
 import { useLatihanSoalContext } from "../context";
@@ -27,12 +25,10 @@ interface QuestionContainerI {
 export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const category = categoryMap[slug[0]];
   const [choice, setChoice] = useState<string>("");
-  const [questionNavigation, setQuestionNavigation] =
-    useState<QuestionNavigation>();
 
   const [disableChoice, setDisableChoice] = useState<boolean>(false);
 
-  const { subjects, currentTopic, soalData } = useLatihanSoalContext();
+  const { soalData } = useLatihanSoalContext();
   const { data: attemptQuestionData, isSuccess: finishedGetAttempt } =
     useGetAttemptLatihanSoalQuery(
       {
@@ -52,8 +48,6 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
         skip: !finishedGetAttempt || !attemptQuestionData?.data?.submitted,
       },
     );
-
-  const [navigate] = useLazyGetQuestionNavigationQuery();
 
   const { data, isSuccess } = useGetLatihanSoalDetailQuery(
     {
@@ -98,23 +92,6 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       }
     };
   }, []);
-
-  useEffect(() => {
-    const subjectId = subjects.find((subject) =>
-      subject.name.includes(categoryMap[slug[0]]),
-    )?.id;
-
-    if (subjectId && slug[1] && !!soalData.length) {
-      navigate({
-        subject_id: subjectId,
-        current_question_id: slug[1],
-      }).then(({ data }) => {
-        if (data) {
-          setQuestionNavigation(data.data);
-        }
-      });
-    }
-  }, [subjects, currentTopic, slug[1], soalData]);
 
   useEffect(() => {
     if (attemptQuestionData?.data) {
@@ -204,12 +181,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
         <div className="pt-6">
           {pembahasanFetched && <PembahasanContainer data={pembahasan.data} />}
         </div>
-        {questionNavigation && (
-          <QuestionNavigator
-            disableCekJawaban={pembahasanFetched}
-            questionNavigation={questionNavigation}
-          />
-        )}
+        {data && <QuestionNavigator disableCekJawaban={pembahasanFetched} />}
       </div>
     </div>
   );

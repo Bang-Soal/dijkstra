@@ -1,6 +1,12 @@
 import { SelectedSubjectType, SoalQuestion, Subject } from "@/types";
 import { useParams } from "next/navigation";
-import React, { ReactNode, createContext, useMemo, useState } from "react";
+import React, {
+  ReactNode,
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { TopicFilter, YearRangeFilter } from "../components/interface";
 import { LatihanSoalContextType, LatihanSoalState } from "./type";
 
@@ -41,6 +47,10 @@ type Props = {
   children: ReactNode;
 };
 
+export type PembahasanPanelState = {
+  [key: string]: boolean;
+};
+
 export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
   const { slug } = useParams();
 
@@ -48,6 +58,10 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
   const [currentTopic, setCurrentTopic] = useState<TopicFilter>(
     defaultState.currentTopic,
   );
+
+  const [currentPembahasanPanel, setCurrentPembahasanPanel] =
+    useState<PembahasanPanelState>({} as PembahasanPanelState);
+
   const [yearRange, setYearRange] = useState<YearRangeFilter>(
     defaultState.yearRange,
   );
@@ -55,6 +69,16 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
   const [soalData, setSoalData] = useState<SoalQuestion[]>([]);
 
   const [selectedSubject, setSelectedSubject] = useState<string>(slug[0]);
+
+  useEffect(() => {
+    if (soalData.length > 0) {
+      const temp = {} as PembahasanPanelState;
+      soalData.forEach((item) => {
+        temp[item.id] = false;
+      });
+      setCurrentPembahasanPanel(temp);
+    }
+  }, [soalData]);
 
   const value = useMemo(
     () => ({
@@ -68,8 +92,17 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
       setSelectedSubject,
       soalData,
       setSoalData,
+      currentPembahasanPanel,
+      setCurrentPembahasanPanel,
     }),
-    [yearRange, selectedSubject, currentTopic, subjects, soalData],
+    [
+      yearRange,
+      selectedSubject,
+      currentTopic,
+      subjects,
+      soalData,
+      currentPembahasanPanel,
+    ],
   );
 
   return (

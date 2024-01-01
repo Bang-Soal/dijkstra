@@ -1,4 +1,5 @@
 import { SoalQuestion, Subject } from "@/types";
+import { PembahasanPanelState } from ".";
 import { TopicFilter, YearRangeFilter } from "../components/interface";
 
 export interface FilterState {
@@ -20,4 +21,6 @@ export interface LatihanSoalContextType extends LatihanSoalState {
   selectedSubject: string;
   soalData: SoalQuestion[];
   setSoalData: (data: SoalQuestion[]) => void;
+  currentPembahasanPanel: PembahasanPanelState;
+  setCurrentPembahasanPanel: (panel: PembahasanPanelState) => void;
 }
