@@ -36,7 +36,7 @@ export default function SoalSelector({
       topic_id: topic_id != "Semua" ? topic_id : undefined,
       min_year: `${min_year}`,
       max_year: `${max_year}`,
-      question_id: slug[1] ?? undefined,
+      question_id: topic_id == "Semua" && slug[1] ? slug[1] : undefined,
     },
     {
       skip: categoryParam !== slug[0],
@@ -46,8 +46,11 @@ export default function SoalSelector({
     if (isSuccess) {
       setSoalData(soalData?.data?.questions ?? []);
       let id = soalData?.data?.questions?.[0]?.id ?? "";
+      const isIdExist = soalData?.data?.questions?.findIndex(
+        ({ id }) => id === slug[1],
+      );
 
-      if (slug[1]) {
+      if (slug[1] && isIdExist !== -1) {
         id = slug[1];
       }
 
@@ -62,7 +65,7 @@ export default function SoalSelector({
       );
       setDefaultValueTabIndex(currentNumber ?? 0);
     }
-  }, [soalData?.data?.questions]);
+  }, [soalData?.data?.questions, slug[1]]);
 
   const renderTile = useMemo(() => {
     return soalData?.data?.questions?.map(({ id, content }, index) => (
@@ -75,7 +78,7 @@ export default function SoalSelector({
         <MarkdownPreview markdown={content} />
       </Tabs.Trigger>
     ));
-  }, [soalData?.data?.questions]);
+  }, [soalData?.data?.questions, defaultValueTabIndex]);
 
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">
