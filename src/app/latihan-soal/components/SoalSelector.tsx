@@ -26,18 +26,15 @@ export default function SoalSelector({
   const { slug } = useParams();
   const categoryParam = category.toLowerCase().replace(" ", "-");
 
-  const { selectedSubject } = useLatihanSoalContext();
+  const { selectedSubject, setSoalData } = useLatihanSoalContext();
 
-  const {
-    data: soalData,
-    isSuccess,
-    refetch,
-  } = useGetLatihanSoalQuery(
+  const { data: soalData, isSuccess } = useGetLatihanSoalQuery(
     {
       subject_id,
       topic_id: topic_id != "Semua" ? topic_id : undefined,
       min_year: `${min_year}`,
       max_year: `${max_year}`,
+      question_id: slug[1] ?? undefined,
     },
     {
       skip: categoryParam !== slug[0],
@@ -45,6 +42,7 @@ export default function SoalSelector({
   );
   useEffect(() => {
     if (isSuccess) {
+      setSoalData(soalData?.data?.questions ?? []);
       let id = soalData?.data?.questions?.[0]?.id ?? "";
 
       if (slug[1]) {
@@ -53,7 +51,7 @@ export default function SoalSelector({
 
       router.push(`/latihan-soal/${categoryParam}/${id}`);
     }
-  }, [isSuccess]);
+  }, [isSuccess, soalData?.data?.questions]);
 
   const renderTile = useMemo(() => {
     return soalData?.data?.questions?.map(({ id, content }, index) => (
@@ -68,11 +66,11 @@ export default function SoalSelector({
     ));
   }, [soalData?.data?.questions]);
 
-  useEffect(() => {
-    if (isSuccess && soalData?.data?.questions === undefined) {
-      refetch();
-    }
-  }, [soalData]);
+  // useEffect(() => {
+  //   if (isSuccess && soalData?.data?.questions === undefined) {
+  //     refetch();
+  //   }
+  // }, [soalData]);
 
   return (
     <ScrollArea.Root className="relative mt-1 flex h-1 grow flex-col">

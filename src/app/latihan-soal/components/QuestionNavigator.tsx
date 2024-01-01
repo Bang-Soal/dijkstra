@@ -5,14 +5,17 @@ import {
 } from "@/redux/api/latihanSoalApi";
 import { QuestionNavigation } from "@/types";
 import * as Separator from "@radix-ui/react-separator";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const QuestionNavigator = ({
   questionNavigation,
+  disableCekJawaban,
 }: {
   questionNavigation: QuestionNavigation;
+  disableCekJawaban: boolean;
 }) => {
+  const { get: getParams } = useSearchParams();
   const router = useRouter();
   const { slug } = useParams();
   const [openPembahasan, setOpenPembahasan] = useState<boolean>(false);
@@ -59,7 +62,7 @@ const QuestionNavigator = ({
       />
       {data && (
         <Button
-          disabled={!data.data}
+          disabled={!data.data || disableCekJawaban}
           onClick={() => {
             submitMutation({
               attempt_id: data?.data.id,

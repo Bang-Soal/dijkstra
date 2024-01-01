@@ -18,4 +18,6 @@ export interface LatihanSoalContextType extends LatihanSoalState {
   setYearRange: (range: YearRangeFilter) => void;
   setSelectedSubject: (subjectType: string) => void;
   selectedSubject: string;
+  soalData: SoalQuestion[];
+  setSoalData: (data: SoalQuestion[]) => void;
 }

@@ -17,6 +17,7 @@ import { QuestionNavigation } from "@/types";
 import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { useEffect, useState } from "react";
 import { useLatihanSoalContext } from "../context";
+import PembahasanContainer from "./PembahasanContainer";
 import QuestionNavigator from "./QuestionNavigator";
 import { OptionBoxVariants, correctChoice, wrongChoice } from "./style";
 
@@ -29,9 +30,9 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const [questionNavigation, setQuestionNavigation] =
     useState<QuestionNavigation>();
 
-  const [disableChoice, setDisableChoide] = useState<boolean>(false);
+  const [disableChoice, setDisableChoice] = useState<boolean>(false);
 
-  const { subjects, currentTopic } = useLatihanSoalContext();
+  const { subjects, currentTopic, soalData } = useLatihanSoalContext();
   const { data: attemptQuestionData, isSuccess: finishedGetAttempt } =
     useGetAttemptLatihanSoalQuery(
       {
@@ -103,7 +104,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
       subject.name.includes(categoryMap[slug[0]]),
     )?.id;
 
-    if (subjectId && slug[1]) {
+    if (subjectId && slug[1] && !!soalData.length) {
       navigate({
         subject_id: subjectId,
         current_question_id: slug[1],
@@ -113,14 +114,14 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
         }
       });
     }
-  }, [subjects, currentTopic, slug[1]]);
+  }, [subjects, currentTopic, slug[1], soalData]);
 
   useEffect(() => {
     if (attemptQuestionData?.data) {
       setChoice(attemptQuestionData?.data?.choice_id);
     }
     if (attemptQuestionData?.data?.submitted) {
-      setDisableChoide(true);
+      setDisableChoice(true);
     }
   }, [attemptQuestionData]);
 
@@ -200,8 +201,14 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             </button>
           ))}
         </div>
+        <div className="pt-6">
+          {pembahasanFetched && <PembahasanContainer data={pembahasan.data} />}
+        </div>
         {questionNavigation && (
-          <QuestionNavigator questionNavigation={questionNavigation} />
+          <QuestionNavigator
+            disableCekJawaban={pembahasanFetched}
+            questionNavigation={questionNavigation}
+          />
         )}
       </div>
     </div>

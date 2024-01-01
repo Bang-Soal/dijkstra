@@ -64,10 +64,10 @@ export type LatihanSoalBySubjectRequest = {
   topic_id?: string;
   min_year?: string;
   max_year?: string;
+  question_id?: string;
 };
 
 export type LatihanSoalBySubjectResponse = ResponseWrapper<{
-  count: number;
   questions: SoalQuestion[];
 }>;
 
@@ -114,21 +114,21 @@ export type QuestionNavigationRequest = {
   topic_id?: string;
 };
 
+export type Pembahasan = {
+  answer: {
+    content: string;
+  };
+  choice: {
+    id: string;
+    content: string;
+    is_true: boolean;
+    key: string;
+  } | null;
+};
+
 export type PembahasanQuestion = {
   is_correct: boolean;
-  correct_answer:
-    | "You are not premium account"
-    | {
-        answer: {
-          content: string;
-        };
-        choice: {
-          id: string;
-          content: string;
-          is_true: boolean;
-          key: string;
-        } | null;
-      };
+  correct_answer: "You are not premium account" | Pembahasan;
 };
 
 export type PembahasanQuestionResponse = ResponseWrapper<PembahasanQuestion>;
