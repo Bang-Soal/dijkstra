@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  redirects: async () => {
+    return [
+      {
+        source: "/latihan-soal",
+        destination: "/latihan-soal/pu",
+        permanent: true,
+      },
+    ];
+  },
   experimental: {
     swcPlugins: [["@swc-jotai/react-refresh", {}]],
   },
