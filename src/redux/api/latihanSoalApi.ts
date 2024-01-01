@@ -80,6 +80,8 @@ export const latihanSoal = baseApi.injectEndpoints({
         params: {
           topic_id: params.topic_id,
           question_id: params.question_id,
+          min_year: params.min_year ?? undefined,
+          max_year: params.max_year ?? undefined,
         },
       }),
       providesTags: (result, error, { subject_id }) => [
