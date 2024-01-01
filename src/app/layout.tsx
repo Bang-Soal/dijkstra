@@ -1,6 +1,5 @@
 // components
 import ComingSoon from "./components/ComingSoon";
-import Sidebar from "./components/Sidebar";
 
 // libs
 import type { Metadata } from "next";
@@ -17,7 +16,10 @@ import Providers from "./providers";
 import { Toaster } from "react-hot-toast";
 import { MainLayout } from "./components/MainLayout";
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
+});
 
 export const metadata: Metadata = {
   title: "BangSoal",
@@ -47,7 +49,6 @@ export default function RootLayout({
         <Toaster />
         <Providers>
           <ComingSoon />
-          <Sidebar />
           <MainLayout>{children}</MainLayout>
         </Providers>
       </body>

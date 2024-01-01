@@ -22,7 +22,7 @@ const userSlice: Slice<UserSliceState> = createSlice({
       window.localStorage.removeItem("token");
       state.profile = null;
       state.token = null;
-      window.location.pathname = "/signin";
+      window.location.pathname = "/login";
     },
   },
   extraReducers: (builder) => {
@@ -34,6 +34,7 @@ const userSlice: Slice<UserSliceState> = createSlice({
       (state, { payload }: PayloadAction<SigninResponse>) => {
         const token = payload.data.token;
         state.token = token;
+        state.profile = payload.data.user;
       },
     ),
       builder.addMatcher(

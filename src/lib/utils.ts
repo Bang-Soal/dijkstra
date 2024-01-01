@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { MathpixMarkdownModel as MM } from "mathpix-markdown-it";
 import { extendTailwindMerge, twJoin } from "tailwind-merge";
 
 const customTwMerge = extendTailwindMerge({
@@ -20,3 +21,7 @@ export function join(...inputs: ClassValue[]) {
 export function shuffle(array: any[]) {
   return array.sort(() => Math.random() - 0.5);
 }
+
+export const renderLatexContent = (content: string) => {
+  return MM.render(content);
+};

@@ -1,9 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { apiConfig } from "./config";
 import { RootState } from "../store";
+import { apiConfig } from "./config";
 
 export const baseApi = createApi({
-  tagTypes: [],
+  tagTypes: [
+    "Profile",
+    "Subject",
+    "Topic",
+    "LatihanSoal",
+    "LatihanSoalDetail",
+    "QuestionNavigation",
+    "LatihanSoalAttempt",
+  ],
   baseQuery: fetchBaseQuery({
     baseUrl: apiConfig.baseUrl,
     prepareHeaders: (headers, { getState }) => {

@@ -21,11 +21,12 @@ import { useOnboardingMutation } from "@/redux/api/usersApi";
 import { onboardingFormSchema } from "@/types/schema/auth";
 import { useState } from "react";
 
+import withAuth from "@/app/components/withAuth";
 import SearchableDropdown from "@/components/ui/searchable-dropdown";
 import { PTN } from "@/types";
 import { PTNChoices } from "../signup/interface";
 
-export const Onboarding = () => {
+const Onboarding = () => {
   const form = useForm<z.infer<typeof onboardingFormSchema>>({
     resolver: zodResolver(onboardingFormSchema),
     defaultValues: {
@@ -310,3 +311,5 @@ export const Onboarding = () => {
     </div>
   );
 };
+
+export default withAuth(Onboarding);

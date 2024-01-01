@@ -1,13 +1,14 @@
+"use client";
 // components
 import Logo from "@/components/Logo";
 import MeshGradient from "@/components/MeshGradient";
 import { buttonVariants } from "@/components/ui/button";
-
-// libs
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
+// libs
+
 // utils
-import { cn } from "@/lib/utils";
 
 export default function Pricing() {
   return (
