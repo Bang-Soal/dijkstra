@@ -1,24 +1,16 @@
 // libs
 import { Metadata } from "next";
-import Image from "next/image";
+import { LeaderboardHero } from "./Hero";
 
 export const metadata: Metadata = {
-  title: "Leaderboard | Bang Soal",
-  description: "Catatan pribadi dan publik",
+  title: "Leaderboard | BangSoal",
+  description: "Ranking Terbaik",
 };
 
-export default function Leaderboard() {
+export default function LeaderboardPage() {
   return (
     <main>
-      <div className="-mt-16 bg-[url('/bg-mesh-hero.webp')] pt-32">
-        <div className="flex flex-col gap-3 px-20">
-          <h1 className="text-3xl font-600 text-surface-100">Leaderboard</h1>
-          <div className="flex rounded-xl bg-emerald-900/30 p-10"></div>
-        </div>
-        <div className="flex flex-col pt-10">
-          <Image src="/curve-bottom.svg" alt="" width={1440} height={57} />
-        </div>
-      </div>
+      <LeaderboardHero />
     </main>
   );
 }
