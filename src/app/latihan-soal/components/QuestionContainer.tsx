@@ -127,7 +127,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             {question?.label}
           </h2>
         </div>
-        <RenderMarkdown markdown={question?.content.content ?? ""} />
+        {question && <RenderMarkdown markdown={question.content.content} />}
         <div className="mb-8 grid w-full grid-flow-col grid-cols-2 grid-rows-3 gap-4">
           {question?.options.data.map(({ choice_id, content, key }) => (
             <button
