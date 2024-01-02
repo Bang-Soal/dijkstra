@@ -17,7 +17,7 @@ const RenderMarkdown = ({ markdown }: { markdown: string }) => {
 
   return (
     <div
-      className="w-[90%]"
+      className="w-[100%] font-quicksand"
       dangerouslySetInnerHTML={{
         __html: renderLatexContent(markdown),
       }}

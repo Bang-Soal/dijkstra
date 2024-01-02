@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useLatihanSoalContext } from "../context";
 import PembahasanContainer from "./PembahasanContainer";
 import QuestionNavigator from "./QuestionNavigator";
+import RenderMarkdown from "./RenderMarkdown";
 import { OptionBoxVariants, correctChoice, wrongChoice } from "./style";
 
 interface QuestionContainerI {
@@ -126,12 +127,7 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             {question?.label}
           </h2>
         </div>
-        <div
-          className="w-[100%] font-quicksand"
-          dangerouslySetInnerHTML={{
-            __html: renderLatexContent(question?.content.content ?? ""),
-          }}
-        />
+        <RenderMarkdown markdown={question?.content.content ?? ""} />
         <div className="mb-8 grid w-full grid-flow-col grid-cols-2 grid-rows-3 gap-4">
           {question?.options.data.map(({ choice_id, content, key }) => (
             <button
