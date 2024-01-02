@@ -5,11 +5,10 @@ import { PointsInfo } from "./PointsInfo";
 
 export const LeaderboardHero = () => {
   return (
-    <div className="relative overflow-y-hidden pt-20 lg:pt-32">
+    <div className=" overflow-y-hidden pt-20 lg:pt-32">
       <div className="absolute inset-0 -z-10 flex items-center justify-center">
         <Image src={heroBgMesh} alt={""} className="h-full w-full" />
       </div>
-      <div className="absolute -bottom-20 h-40 w-full rounded-[50%] bg-white"></div>
 
       <div className="mx-auto grid w-2/3 grid-cols-1 gap-8 py-10 text-center text-white">
         <p className="text-4xl font-bold">Leaderboard</p>
@@ -31,8 +30,6 @@ export const LeaderboardHero = () => {
           <PointsInfo />
         </div>
       </div>
-
-      <div className="h-72 "></div>
     </div>
   );
 };
