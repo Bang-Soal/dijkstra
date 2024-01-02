@@ -7,12 +7,14 @@ import { categoryMap } from "../constants";
 import { cn, renderLatexContent } from "@/lib/utils";
 import {
   useAttemptLatihanSoalMutation,
+  useDownloadPdfLatihanSoalMutation,
   useGetAttemptLatihanSoalQuery,
   useGetLatihanSoalDetailQuery,
   useGetPembahasanQuery,
 } from "@/redux/api/latihanSoalApi";
 
 import { useEffect, useState } from "react";
+import { useLatihanSoalContext } from "../context";
 import PembahasanContainer from "./PembahasanContainer";
 import QuestionNavigator from "./QuestionNavigator";
 import { OptionBoxVariants, correctChoice, wrongChoice } from "./style";
@@ -25,6 +27,9 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
   const [choice, setChoice] = useState<string>("");
 
   const [disableChoice, setDisableChoice] = useState<boolean>(false);
+  const { selectedTopicId, subjects } = useLatihanSoalContext();
+  const [downloadPdf, { isSuccess: successDownload, data: dataPdf }] =
+    useDownloadPdfLatihanSoalMutation();
 
   const { data: attemptQuestionData, isSuccess: finishedGetAttempt } =
     useGetAttemptLatihanSoalQuery(
@@ -87,6 +92,12 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
     }
   }, [attemptQuestionData]);
 
+  useEffect(() => {
+    if (successDownload) {
+      window.open(dataPdf?.data.url, "_blank");
+    }
+  }, [successDownload]);
+
   return (
     <div className="px-10">
       <div className="flex flex-col gap-5 px-10">
@@ -96,9 +107,19 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
             <h2 className="text-xl font-600 text-content-300">
               {question?.topic}
             </h2>
-            <button className="group inline-flex items-center gap-1 rounded-full px-2 text-sm font-500 text-surface-400 hover:bg-emerald-400 hover:text-emerald-100">
+            <button
+              onClick={() => {
+                downloadPdf({
+                  subject_id: subjects.filter(
+                    (subject) => subject.name === categoryMap[slug[0]],
+                  )[0].id,
+                  topic_id: selectedTopicId ? selectedTopicId : undefined,
+                });
+              }}
+              className="group ml-3 flex items-center gap-1 rounded-full px-2 text-sm font-500 text-surface-400 duration-200 hover:bg-emerald-400 hover:text-emerald-100"
+            >
               <Iconify icon="ph:download-simple-bold" />
-              <p className="hidden group-hover:block">Download</p>
+              <p className="mb-0 group-hover:block">Download</p>
             </button>
           </div>
           <h2 className="text-xl font-600 text-content-300">

@@ -19,7 +19,7 @@ export default function Filters({
   yearRange,
   setYearRange,
 }: FiltersI) {
-  const { selectedSubject } = useLatihanSoalContext();
+  const { selectedSubject, setSelectedTopicId } = useLatihanSoalContext();
   const { data: topicData } = useGetTopicsBySubjectQuery(
     { subject_id },
     {
@@ -44,6 +44,7 @@ export default function Filters({
                 ...currentTopic,
                 [category]: value,
               });
+              setSelectedTopicId(value);
             }}
           >
             <Select.Trigger

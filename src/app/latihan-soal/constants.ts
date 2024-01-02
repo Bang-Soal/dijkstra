@@ -9,7 +9,7 @@ export const SELECTED_SUBJECTS = [
 
 export const categoryMap: Record<string, string> = {
   pu: "Penalaran Umum",
-  pkpm: "Pengetahuan Kuantitatif",
+  pkpm: "Pengetahuan Kuantitatif & Penalaran Matematika",
   ppu: "Pengetahuan dan Pemahaman Umum",
   pbm: "Pemahaman Bacaan dan Menulis",
   "bahasa-inggris": "Bahasa Inggris",

@@ -65,7 +65,7 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
   const [yearRange, setYearRange] = useState<YearRangeFilter>(
     defaultState.yearRange,
   );
-
+  const [selectedTopicId, setSelectedTopicId] = useState<string>("");
   const [soalData, setSoalData] = useState<SoalQuestion[]>([]);
 
   const [selectedSubject, setSelectedSubject] = useState<string>(slug[0]);
@@ -94,6 +94,8 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
       setSoalData,
       currentPembahasanPanel,
       setCurrentPembahasanPanel,
+      selectedTopicId,
+      setSelectedTopicId,
     }),
     [
       yearRange,
@@ -102,6 +104,7 @@ export const LatihanSoalProvider: React.FC<Props> = ({ children }) => {
       subjects,
       soalData,
       currentPembahasanPanel,
+      selectedTopicId,
     ],
   );
 

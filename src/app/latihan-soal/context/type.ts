@@ -23,4 +23,6 @@ export interface LatihanSoalContextType extends LatihanSoalState {
   setSoalData: (data: SoalQuestion[]) => void;
   currentPembahasanPanel: PembahasanPanelState;
   setCurrentPembahasanPanel: (panel: PembahasanPanelState) => void;
+  setSelectedTopicId: (topic: string) => void;
+  selectedTopicId: string;
 }

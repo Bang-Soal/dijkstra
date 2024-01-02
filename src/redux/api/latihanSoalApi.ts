@@ -1,4 +1,6 @@
 import {
+  DownloadPDFRequest,
+  DownloadPDFResponse,
   GetLatihanSoalAttemptRequest,
   LatihanSoalAttemptRequest,
   LatihanSoalAttemptResponse,
@@ -187,13 +189,25 @@ export const latihanSoal = baseApi.injectEndpoints({
       LatihanSoalAttemptResponse,
       { attempt_id: string; question_id: string }
     >({
-      query: ({ attempt_id, question_id }) => ({
+      query: ({ attempt_id }) => ({
         url: `latihan-soal/submit/${attempt_id}`,
         method: "PUT",
       }),
       invalidatesTags: (result, error, { attempt_id, question_id }) => [
         { type: "LatihanSoalAttempt", id: question_id },
       ],
+    }),
+    downloadPdfLatihanSoal: builder.mutation<
+      DownloadPDFResponse,
+      DownloadPDFRequest
+    >({
+      query: ({ subject_id, topic_id }) => ({
+        url: `latihan-soal/generate-pdf/${subject_id}`,
+        method: "POST",
+        params: {
+          topic_id: topic_id ?? undefined,
+        },
+      }),
     }),
   }),
 });
@@ -214,4 +228,5 @@ export const {
   useGetQuestionNavigationQuery,
   useLazyGetQuestionNavigationQuery,
   useSubmitLatihanSoalMutation,
+  useDownloadPdfLatihanSoalMutation,
 } = latihanSoal;

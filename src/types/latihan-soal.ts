@@ -132,3 +132,12 @@ export type PembahasanQuestion = {
 };
 
 export type PembahasanQuestionResponse = ResponseWrapper<PembahasanQuestion>;
+
+export type DownloadPDFRequest = {
+  topic_id?: string;
+  subject_id: string;
+};
+
+export type DownloadPDFResponse = ResponseWrapper<{
+  url: string;
+}>;
