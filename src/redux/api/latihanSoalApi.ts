@@ -204,7 +204,7 @@ export const latihanSoal = baseApi.injectEndpoints({
       query: ({ subject_id, topic_id }) => ({
         url: `latihan-soal/generate-pdf/${subject_id}`,
         method: "POST",
-        params: {
+        body: {
           topic_id: topic_id ?? undefined,
         },
       }),
