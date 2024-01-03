@@ -1,6 +1,11 @@
 import Iconify from "@/components/Iconify";
 
-const SearchSoal = () => {
+interface SearchInputI {
+  placeholder?: string;
+  value: string;
+  setValue: (value: string) => void;
+}
+const SearchInput = ({ value, setValue, placeholder }: SearchInputI) => {
   return (
     <div className="relative w-full">
       <Iconify
@@ -9,11 +14,15 @@ const SearchSoal = () => {
       />
       <input
         type="text"
-        placeholder="Cari soal"
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        placeholder={placeholder}
         className="flex h-10 w-full items-center rounded-full border border-surface-300 bg-surface-100 pl-11 font-500"
       />
     </div>
   );
 };
 
-export default SearchSoal;
+export default SearchInput;
