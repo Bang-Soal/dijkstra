@@ -10,7 +10,7 @@ export const LeaderboardHero = () => {
         <Image src={heroBgMesh} alt={""} className="h-full w-full" />
       </div>
 
-      <div className="mx-auto grid w-2/3 grid-cols-1 gap-8 py-10 text-center text-white">
+      <div className="mx-auto grid w-full grid-cols-1  gap-8 px-5 py-10 text-center text-white md:w-2/3">
         <p className="text-4xl font-bold">Leaderboard</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
@@ -22,11 +22,11 @@ export const LeaderboardHero = () => {
         </p>
       </div>
 
-      <div className="relative z-10 mx-10 flex flex-col items-center justify-center gap-5 lg:mx-20 lg:flex-row">
-        <div className="w-2/3">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-5 px-5 lg:mx-20 lg:flex-row">
+        <div className="w-full md:w-2/3">
           <MyRankCard />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <PointsInfo />
         </div>
       </div>

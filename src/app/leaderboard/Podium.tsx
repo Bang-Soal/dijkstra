@@ -10,23 +10,48 @@ interface PodiumI {
 export const Podium = ({ data }: PodiumI) => {
   const customOrder = [1, 0, 2];
   return (
-    <div className="relative -mb-10 flex flex-row justify-center">
-      <div className="absolute -bottom-0 h-56 w-full rounded-t-[50%] bg-white" />
-      {customOrder.map((order, idx) => {
-        const rank = data[order];
-        return (
-          <div
-            key={idx}
-            className={cn(
-              PodiumVariants({
-                rank: idx == 0 ? "second" : idx == 1 ? "first" : "third",
-              }),
-            )}
-          >
-            <PodiumCard {...rank} />
-          </div>
-        );
-      })}
+    <div className="relative md:-mb-10">
+      <div className="absolute -bottom-10 h-56 w-full rounded-t-[50%] bg-white md:-bottom-0" />
+      <div className="flex flex-col items-center justify-start md:flex-row md:justify-center">
+        {customOrder.map((order, idx) => {
+          const rankMD = data[order];
+          const rank = data[idx];
+          return (
+            <div key={idx}>
+              <div
+                className={cn(
+                  PodiumVariants({
+                    rank:
+                      rankMD.rank == 2
+                        ? "second"
+                        : rankMD.rank == 1
+                          ? "first"
+                          : "third",
+                  }),
+                  "hidden md:block",
+                )}
+              >
+                <PodiumCard {...rankMD} />
+              </div>
+              <div
+                className={cn(
+                  PodiumVariants({
+                    rank:
+                      rank.rank == 2
+                        ? "second"
+                        : rank.rank == 1
+                          ? "first"
+                          : "third",
+                  }),
+                  "md:hidden",
+                )}
+              >
+                <PodiumCard {...rank} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

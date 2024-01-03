@@ -16,9 +16,9 @@ const filters = ["kelas", "mapel"];
 export const LeaderboardFilters = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   return (
-    <div className="my-10 flex items-center gap-3 text-content-300">
+    <div className="my-10 flex flex-col justify-start gap-3 text-content-300 md:flex-row md:items-center">
       <Fragment>
-        <div className="w-1/3">
+        <div className="w-full md:w-96 lg:w-1/3">
           <SearchInput
             placeholder="Cari siswa"
             value={searchValue}

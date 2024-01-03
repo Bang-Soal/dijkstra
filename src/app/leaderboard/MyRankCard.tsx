@@ -10,9 +10,9 @@ interface MyRankCardI {
 export const MyRankCard = () => {
   return (
     <div className="rounded-3xl bg-gradient-to-br from-emerald-700/60 to-emerald-600/50">
-      <div className="flex flex-col items-center justify-center gap-4 divide-x-2 divide-emerald-600/80 px-4 py-5 text-white lg:flex-row">
+      <div className="flex flex-col items-center justify-center gap-4 px-4 py-5 text-white lg:flex-row lg:divide-x-2 lg:divide-emerald-600/80">
         <div className="grid w-full grid-cols-2 justify-items-center gap-4 lg:w-2/5">
-          <p className="col-span-2 gap-4 justify-self-start px-10 text-xl">
+          <p className="col-span-2 gap-4 justify-self-start text-xl md:px-10">
             Posisimu
           </p>
           <div className="flex flex-row items-center">
@@ -31,7 +31,7 @@ export const MyRankCard = () => {
             </p>
           </div>
           <div className="col-span-2">
-            <Button variant={"bsSecondary"}>
+            <Button variant={"bsSecondary"} className="w-full">
               <span className="pr-2">
                 <ArrowDown className="w-4" />
               </span>

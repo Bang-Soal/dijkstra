@@ -4,14 +4,20 @@ export const PodiumVariants = cva("", {
   variants: {
     rank: {
       first: "",
-      second: "mt-16",
-      third: "mt-32",
+      second: "md:mt-16",
+      third: "md:mt-32",
     },
     divider: {
       first: "bg-amber-500",
       second: "bg-gray-300",
       third: "bg-yellow-600",
     },
+    text: {
+      first: "text-amber-800",
+      second: "text-gray-700",
+      third: "text-yellow-900",
+    },
   },
   defaultVariants: { rank: "first" },
 });
+export const MyRankStyle = "";

@@ -34,8 +34,8 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
     },
   ];
   return (
-    <div className="w-80 py-3">
-      <div className="mb-3 flex w-full flex-col items-center justify-center gap-3 text-white">
+    <div className="flex w-full flex-col items-center justify-start gap-4 px-5 py-3 md:w-56 md:justify-between md:px-0 lg:w-80">
+      <div className="relative z-10 flex flex-row items-center gap-3 text-black md:mb-3 md:w-full md:flex-col md:text-white">
         <Image
           src={"/avatar.jpeg"}
           alt="profile"
@@ -51,7 +51,12 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
           </span>
         </p>
       </div>
-      <div className="relative min-h-60 w-full rounded-xl bg-gradient-to-b from-white/70 to-transparent px-4 py-3">
+      <div
+        className={cn(
+          "relative w-[90vw] rounded-xl bg-gradient-to-b from-white/70 to-white/25 px-4 py-3 md:min-h-60 md:w-full md:to-transparent",
+          rank == 2 ? "md:rounded-l-xl" : rank == 3 && "md:rounded-r-xl",
+        )}
+      >
         <div className="relative -mt-3 flex h-16 w-full justify-center pb-4">
           <div className="absolute">
             <Image
@@ -76,7 +81,14 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
                 }),
               )}
             />
-            <p>{totalPoints}</p>
+            <p
+              className={cn(
+                PodiumVariants({ text: RANK_POSITION[rank - 1] as RANK_TYPE }),
+                "font-bold",
+              )}
+            >
+              {totalPoints}pt
+            </p>
           </div>
         </div>
         <div className="mt-4 flex flex-row items-center gap-3">
