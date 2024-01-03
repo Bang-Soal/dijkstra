@@ -17,7 +17,6 @@ export const LeaderboardModule = () => {
       skip: !user.profile,
     },
   );
-  console.log(myRankData);
 
   return (
     <div className="flex flex-col pb-12">

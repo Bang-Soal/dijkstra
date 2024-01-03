@@ -4,12 +4,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 import { LeaderboardData } from "@/types";
+import { RankTableVariants } from "./style";
 interface RankInfoAccordionI {
   data: LeaderboardData;
+  myRank?: number;
 }
 
-export const RankInfoAccordion = ({ data }: RankInfoAccordionI) => {
+export const RankInfoAccordion = ({ data, myRank }: RankInfoAccordionI) => {
   const {
     user: {
       full_name,
@@ -29,7 +32,12 @@ export const RankInfoAccordion = ({ data }: RankInfoAccordionI) => {
     <Accordion
       type="single"
       collapsible
-      className="w-full rounded-lg bg-gray-100 "
+      className={cn(
+        "w-full rounded-lg",
+        RankTableVariants({
+          variant: myRank == rank ? "my-rank" : "others",
+        }),
+      )}
     >
       <AccordionItem value="item" className="border-b-0">
         <AccordionTrigger className="w-full px-2 py-2 hover:no-underline ">

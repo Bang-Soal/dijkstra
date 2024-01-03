@@ -1,20 +1,29 @@
 "use client";
 
-// components
-import Iconify from "@/components/Iconify";
-
-// data
-import { filter } from "@/data/bang-catatan";
-
-// libs
-import * as Select from "@radix-ui/react-select";
-import { Fragment, useState } from "react";
+import SearchableDropdown from "@/components/ui/searchable-dropdown";
+import { useGetAllPTNQuery } from "@/redux/api/ptnApi";
+import { PTN } from "@/types";
+import { Fragment } from "react";
 import SearchInput from "../latihan-soal/components/SearchInput";
 
-const filters = ["kelas", "mapel"];
+interface LeaderboardFiltersI {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+  setSelectedPTN: (value: string) => void;
+  SMAData: string[];
+  setSelectedSMA: (value: string) => void;
+}
+export const LeaderboardFilters = ({
+  searchValue,
+  setSearchValue,
+  setSelectedPTN,
+  SMAData,
+  setSelectedSMA,
+}: LeaderboardFiltersI) => {
+  const { data: ptnData } = useGetAllPTNQuery();
+  const ptnList: PTN[] = ptnData?.data ?? [];
+  const ptnOptions = ptnList?.map(({ name }) => name) ?? [];
 
-export const LeaderboardFilters = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
   return (
     <div className="my-10 flex flex-col justify-start gap-3 text-content-300 md:flex-row md:items-center">
       <Fragment>
@@ -25,50 +34,21 @@ export const LeaderboardFilters = () => {
             setValue={setSearchValue}
           />
         </div>
-        {filters.map((filterSelect) => (
-          <Select.Root key={filterSelect}>
-            <Select.Trigger
-              id={filterSelect}
-              className="flex h-full items-center justify-between gap-1 rounded-lg px-3 text-left capitalize text-content-200 outline-none hover:bg-surface-200"
-              aria-label={filterSelect}
-            >
-              <Select.Value placeholder={filterSelect} />
-              <Select.Icon>
-                <Iconify icon="ph:caret-down-bold" />
-              </Select.Icon>
-            </Select.Trigger>
-            <Select.Portal>
-              <Select.Content className="z-10 rounded-lg border border-surface-400/40 bg-surface-100/20 p-2 text-content-100 shadow-lg backdrop-blur-2xl">
-                <Select.ScrollUpButton className="flex h-6 cursor-default items-center justify-center text-content-100">
-                  <Iconify icon="ph:caret-up-bold" className="animate-bounce" />
-                </Select.ScrollUpButton>
-                <Select.Viewport>
-                  {filter[filterSelect as keyof typeof filter].map(
-                    (filterItem) => (
-                      <Select.Item
-                        key={filterItem}
-                        value={filterItem}
-                        className="relative cursor-pointer select-none rounded-md px-5 py-1 pl-9 text-sm text-content-100 outline-none data-[state=checked]:bg-content-200 data-[state=unchecked]:data-[highlighted]:bg-surface-700/10 data-[state=checked]:text-white"
-                      >
-                        <Select.ItemText>{filterItem}</Select.ItemText>
-                        <Select.ItemIndicator className="absolute left-2 top-1/2 inline-flex w-6 -translate-y-1/2 items-center justify-center">
-                          <Iconify icon="ph:check-bold" />
-                        </Select.ItemIndicator>
-                      </Select.Item>
-                    ),
-                  )}
-                </Select.Viewport>
-                <Select.ScrollDownButton className="flex h-6 cursor-default items-center justify-center text-content-100">
-                  <Iconify
-                    icon="ph:caret-down-bold"
-                    className="animate-bounce"
-                  />
-                </Select.ScrollDownButton>
-                <Select.Arrow />
-              </Select.Content>
-            </Select.Portal>
-          </Select.Root>
-        ))}
+
+        <div className="flex w-full flex-col gap-3 md:flex-row">
+          <SearchableDropdown
+            className="w-full truncate bg-white focus-visible:ring-0"
+            options={SMAData}
+            setStringValue={setSelectedSMA}
+            placeholder="SMA"
+          />
+          <SearchableDropdown
+            className="w-full truncate bg-white focus-visible:ring-0"
+            options={ptnOptions}
+            setStringValue={setSelectedPTN}
+            placeholder="PTN Tujuan"
+          />
+        </div>
       </Fragment>
       <div className="h-0.5 w-full bg-gray-100" />
     </div>

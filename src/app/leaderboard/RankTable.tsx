@@ -1,4 +1,7 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { LeaderboardData } from "@/types";
+import { useEffect, useState } from "react";
 import { LeaderboardFilters } from "./Filters";
 import { RankInfoAccordion } from "./RankInfoAccordion";
 import { LeaderboardComponentsI } from "./constants";
@@ -9,9 +12,43 @@ export const RankTable = ({
   myRank,
   isLoading,
 }: LeaderboardComponentsI) => {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [selectedSMA, setSelectedSMA] = useState<string>("");
+  const [selectedPTN, setSelectedPTN] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<LeaderboardData[]>(
+    data.slice(3),
+  );
+  const SMAOptions = Array.from(
+    new Set(data.map(({ user }) => user.highschool)),
+  );
+
+  useEffect(() => {
+    if (searchValue != "" || selectedSMA != "" || selectedPTN != "") {
+      const newData = data.filter(({ user }) => {
+        return (
+          user.full_name.toLowerCase().includes(searchValue.toLowerCase()) &&
+          user.highschool.includes(selectedSMA) &&
+          (user.first_university.includes(selectedPTN) ||
+            user.second_university?.includes(selectedPTN) ||
+            user.third_university?.includes(selectedPTN))
+        );
+      });
+
+      setFilteredData(newData);
+    } else {
+      setFilteredData(data.slice(3));
+    }
+  }, [searchValue, selectedSMA, selectedPTN, data]);
+
   return (
     <div className="bg-white px-10 pb-10 lg:px-16">
-      <LeaderboardFilters />
+      <LeaderboardFilters
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        SMAData={SMAOptions}
+        setSelectedSMA={setSelectedSMA}
+        setSelectedPTN={setSelectedPTN}
+      />
 
       <div className="grid border-spacing-2 grid-cols-6 gap-4 px-2 pb-2 text-left lg:grid-cols-12">
         <div className="col-span-1 font-bold">Rank</div>
@@ -34,7 +71,7 @@ export const RankTable = ({
             })}
           </div>
         ) : (
-          data.slice(3).map(({ rank, totalPoints, user }, idx) => (
+          filteredData.map(({ rank, totalPoints, user }, idx) => (
             <div key={idx} className="my-2">
               <div
                 className={cn(
@@ -68,7 +105,10 @@ export const RankTable = ({
                 </div>
               </div>
               <div className="lg:hidden">
-                <RankInfoAccordion data={{ user, totalPoints, rank }} />
+                <RankInfoAccordion
+                  data={{ user, totalPoints, rank }}
+                  myRank={myRank?.rank}
+                />
               </div>
             </div>
           ))
