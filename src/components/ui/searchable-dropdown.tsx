@@ -80,6 +80,14 @@ const SearchableDropdown = ({
           }}
           onChange={(e) => {
             setSearchTerm(e.target.value);
+            if (e.target.value == "") {
+              if (!!setValue && !!field) {
+                setValue(field, "");
+              }
+              if (!!setStringValue) {
+                setStringValue("");
+              }
+            }
           }}
           onBlur={() => {
             setTimeout(() => setShowOptions(false), 100);
