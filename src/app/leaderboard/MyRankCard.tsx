@@ -1,13 +1,16 @@
 "use client";
 import CaretUpIcon from "@/components/icons/CaretUp";
 import { Button } from "@/components/ui/button";
+import { LeaderboardData } from "@/types";
 import { ArrowDown } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface MyRankCardI {
-  rank: any;
+  myRank?: LeaderboardData;
 }
 
-export const MyRankCard = () => {
+export const MyRankCard = ({ myRank }: MyRankCardI) => {
+  const router = useRouter();
   return (
     <div className="rounded-3xl bg-gradient-to-br from-emerald-700/60 to-emerald-600/50 py-3">
       <div className="flex flex-col items-center justify-center gap-4 px-4 py-5 text-white lg:flex-row lg:divide-x-2 lg:divide-emerald-600/80">
@@ -15,29 +18,51 @@ export const MyRankCard = () => {
           <p className="col-span-2 gap-4 justify-self-start text-xl md:px-10">
             Posisimu
           </p>
-          <div className="flex flex-row items-center">
-            <span>
-              <CaretUpIcon />
-            </span>
-            <p className="text-5xl font-bold">
+
+          {!!myRank ? (
+            <>
+              <div className="flex flex-row items-center">
+                <span>
+                  <CaretUpIcon />
+                </span>
+                <p className="text-5xl font-bold">
+                  {" "}
+                  <span className="text-base font-bold text-emerald-200">
+                    #
+                  </span>
+                  {myRank.rank}
+                </p>
+              </div>
+              <div>
+                <p className="text-5xl font-bold">
+                  {myRank.totalPoints}{" "}
+                  <span className="text-base font-bold text-emerald-200">
+                    pts
+                  </span>
+                </p>
+              </div>
+              <div className="col-span-2">
+                <Button variant={"bsSecondary"} className="w-full">
+                  <span className="pr-2">
+                    <ArrowDown className="w-4" />
+                  </span>
+                  Lihat posisi
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="col-span-2">
               {" "}
-              <span className="text-base font-bold text-emerald-200">#</span>6
-            </p>
-          </div>
-          <div>
-            <p className="text-5xl font-bold">
-              968{" "}
-              <span className="text-base font-bold text-emerald-200">pts</span>
-            </p>
-          </div>
-          <div className="col-span-2">
-            <Button variant={"bsSecondary"} className="w-full">
-              <span className="pr-2">
-                <ArrowDown className="w-4" />
-              </span>
-              Lihat posisi
-            </Button>
-          </div>
+              <Button
+                variant={"bsSecondary"}
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                Masuk untuk melihat posisimu
+              </Button>
+            </div>
+          )}
         </div>
         <div className="grid w-full grid-cols-1 lg:w-3/5">
           {[...Array(3)].map((_, idx) => {

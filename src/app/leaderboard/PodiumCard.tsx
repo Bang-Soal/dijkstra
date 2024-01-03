@@ -14,23 +14,23 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
   const {
     full_name,
     highschool,
-    choosen_university_one,
-    choosen_major_one,
-    choosen_university_two,
-    choosen_major_two,
-    choosen_university_three,
-    choosen_major_three,
+    first_university,
+    first_major,
+    second_university,
+    second_major,
+    third_university,
+    third_major,
   } = user;
 
   const targetPtnList = [
-    { uni: choosen_university_one, major: choosen_major_one },
+    { uni: first_university, major: first_major },
     {
-      uni: choosen_university_two,
-      major: choosen_major_two,
+      uni: second_university,
+      major: second_major,
     },
     {
-      uni: choosen_university_three,
-      major: choosen_major_three,
+      uni: third_university,
+      major: third_major,
     },
   ];
   return (
@@ -43,12 +43,10 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
           height={100}
           className="h-12 w-12 rounded-full"
         />
-        <p className="text-center text-lg font-bold">
+        <p className="text-center text-lg font-bold leading-5">
           {full_name}
 
-          <span className="-mt-2 block text-base font-normal">
-            {highschool}
-          </span>
+          <span className="block text-base font-normal">{highschool}</span>
         </p>
       </div>
       <div

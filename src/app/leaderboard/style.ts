@@ -23,7 +23,7 @@ export const PodiumVariants = cva("", {
 export const RankTableVariants = cva("", {
   variants: {
     variant: {
-      "my-rank": "bg-[url('/bg-rank-emerald.png')]",
+      "my-rank": "bg-[url('/bg-rank-emerald.png')] bg-cover",
       others: "bg-gray-100",
     },
   },

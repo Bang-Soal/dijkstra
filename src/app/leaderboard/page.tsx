@@ -1,6 +1,5 @@
 // libs
 import { Metadata } from "next";
-import { LeaderboardHero } from "./Hero";
 import { LeaderboardModule } from "./LeaderboardModule";
 
 export const metadata: Metadata = {
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function LeaderboardPage() {
   return (
     <main>
-      <LeaderboardHero />
       <LeaderboardModule />
     </main>
   );

@@ -14,12 +14,12 @@ export const RankInfoAccordion = ({ data }: RankInfoAccordionI) => {
     user: {
       full_name,
       highschool,
-      choosen_university_one,
-      choosen_major_one,
-      choosen_university_two,
-      choosen_major_two,
-      choosen_university_three,
-      choosen_major_three,
+      first_university,
+      first_major,
+      second_university,
+      second_major,
+      third_university,
+      third_major,
     },
     totalPoints,
     rank,
@@ -50,16 +50,16 @@ export const RankInfoAccordion = ({ data }: RankInfoAccordionI) => {
           </div>
           <div className="grid border-spacing-2 grid-cols-6 gap-4 px-2 text-left lg:grid-cols-12">
             <div className="col-span-2 rounded-lg">
-              <p className="font-bold">{choosen_university_one}</p>
-              <p className="text-sm">{choosen_major_one}</p>
+              <p className="font-bold">{first_university}</p>
+              <p className="text-sm">{first_major}</p>
             </div>
             <div className="col-span-2 rounded-lg">
-              <p className="font-bold">{choosen_university_two}</p>
-              <p className="text-sm">{choosen_major_two}</p>
+              <p className="font-bold">{second_university}</p>
+              <p className="text-sm">{second_major}</p>
             </div>
             <div className="col-span-2 rounded-lg">
-              <p className="font-bold">{choosen_university_three}</p>
-              <p className="text-sm">{choosen_major_three}</p>
+              <p className="font-bold">{third_university}</p>
+              <p className="text-sm">{third_major}</p>
             </div>
           </div>
         </AccordionContent>

@@ -1,4 +1,5 @@
 import { CarouselItemType } from "@/components/ui/swipe-carousel";
+import { LeaderboardData } from "@/types";
 
 export const RANK_POSITION = ["first", "second", "third"];
 export type RANK_TYPE = "first" | "second" | "third";
@@ -7,7 +8,6 @@ export const SLIDER_IMAGES = [
   "/icons/Indonesia.svg",
   "/icons/inten.svg",
 ];
-
 export const PointsInfoItems: CarouselItemType[] = [
   {
     image_url: SLIDER_IMAGES[0],
@@ -25,3 +25,9 @@ export const PointsInfoItems: CarouselItemType[] = [
       "Bagi catatan belajar mu di Bang Catatan dan dapatkan poin bila dilike atau disimpan ",
   },
 ];
+
+export interface LeaderboardComponentsI {
+  data: LeaderboardData[];
+  myRank?: LeaderboardData;
+  isLoading?: boolean;
+}

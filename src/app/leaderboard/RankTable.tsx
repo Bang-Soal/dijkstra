@@ -1,16 +1,14 @@
 import { cn } from "@/lib/utils";
-import { LeaderboardData } from "@/types/leaderboard";
 import { LeaderboardFilters } from "./Filters";
 import { RankInfoAccordion } from "./RankInfoAccordion";
+import { LeaderboardComponentsI } from "./constants";
 import { RankTableVariants } from "./style";
 
-interface RankTableI {
-  data: LeaderboardData[];
-  myRank?: LeaderboardData;
-  isLoading?: boolean;
-}
-
-export const RankTable = ({ data, myRank, isLoading }: RankTableI) => {
+export const RankTable = ({
+  data,
+  myRank,
+  isLoading,
+}: LeaderboardComponentsI) => {
   return (
     <div className="bg-white px-10 pb-10 lg:px-16">
       <LeaderboardFilters />
@@ -24,10 +22,19 @@ export const RankTable = ({ data, myRank, isLoading }: RankTableI) => {
         <div className="col-span-2 hidden font-bold lg:block">Pilihan 3</div>
       </div>
       <div className="hide-scrollbar max-h-[67vh] overflow-y-scroll">
-        {data
-          .concat(data)
-          .slice(3)
-          .map(({ rank, totalPoints, user }, idx) => (
+        {isLoading ? (
+          <div className="relative z-10 flex flex-col gap-2">
+            {[...Array(10)].map((_, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className="skeleton h-16 w-full rounded-lg bg-surface-300 from-surface-300 via-surface-100 to-surface-300"
+                />
+              );
+            })}
+          </div>
+        ) : (
+          data.slice(3).map(({ rank, totalPoints, user }, idx) => (
             <div key={idx} className="my-2">
               <div
                 className={cn(
@@ -48,23 +55,24 @@ export const RankTable = ({ data, myRank, isLoading }: RankTableI) => {
                   {totalPoints}
                 </div>
                 <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.choosen_university_one}</p>
-                  <p className="text-sm">{user.choosen_major_one}</p>
+                  <p className="font-bold">{user.first_university}</p>
+                  <p className="text-sm">{user.first_major}</p>
                 </div>
                 <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.choosen_university_two}</p>
-                  <p className="text-sm">{user.choosen_major_two}</p>
+                  <p className="font-bold">{user.second_university}</p>
+                  <p className="text-sm">{user.second_major}</p>
                 </div>
                 <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.choosen_university_three}</p>
-                  <p className="text-sm">{user.choosen_major_three}</p>
+                  <p className="font-bold">{user.third_university}</p>
+                  <p className="text-sm">{user.third_major}</p>
                 </div>
               </div>
               <div className="lg:hidden">
                 <RankInfoAccordion data={{ user, totalPoints, rank }} />
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );
