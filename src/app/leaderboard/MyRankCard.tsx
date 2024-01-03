@@ -9,7 +9,7 @@ interface MyRankCardI {
 
 export const MyRankCard = () => {
   return (
-    <div className="rounded-3xl bg-gradient-to-br from-emerald-700/60 to-emerald-600/50">
+    <div className="rounded-3xl bg-gradient-to-br from-emerald-700/60 to-emerald-600/50 py-3">
       <div className="flex flex-col items-center justify-center gap-4 px-4 py-5 text-white lg:flex-row lg:divide-x-2 lg:divide-emerald-600/80">
         <div className="grid w-full grid-cols-2 justify-items-center gap-4 lg:w-2/5">
           <p className="col-span-2 gap-4 justify-self-start text-xl md:px-10">

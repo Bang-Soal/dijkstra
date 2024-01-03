@@ -1,13 +1,16 @@
+import { cn } from "@/lib/utils";
 import { LeaderboardData } from "@/types/leaderboard";
 import { LeaderboardFilters } from "./Filters";
 import { RankInfoAccordion } from "./RankInfoAccordion";
+import { RankTableVariants } from "./style";
 
 interface RankTableI {
   data: LeaderboardData[];
+  myRank?: LeaderboardData;
   isLoading?: boolean;
 }
 
-export const RankTable = ({ data }: RankTableI) => {
+export const RankTable = ({ data, myRank, isLoading }: RankTableI) => {
   return (
     <div className="bg-white px-10 pb-10 lg:px-16">
       <LeaderboardFilters />
@@ -26,7 +29,14 @@ export const RankTable = ({ data }: RankTableI) => {
           .slice(3)
           .map(({ rank, totalPoints, user }, idx) => (
             <div key={idx} className="my-2">
-              <div className="hidden border-spacing-2 grid-cols-12 items-center gap-4 rounded-lg bg-gray-100 px-2 py-2 text-left lg:grid">
+              <div
+                className={cn(
+                  "hidden border-spacing-2 grid-cols-12 items-center gap-4 rounded-lg px-2 py-2 text-left lg:grid",
+                  RankTableVariants({
+                    variant: myRank?.rank == rank ? "my-rank" : "others",
+                  }),
+                )}
+              >
                 <div className="col-span-1 rounded-lg px-2 font-bold text-gray-500">
                   {rank}
                 </div>

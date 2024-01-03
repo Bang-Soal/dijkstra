@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
+import { ChevronDown } from "lucide-react";
 import { AutoSizer, List } from "react-virtualized";
 import { Input } from "./input";
 
@@ -62,19 +63,27 @@ const SearchableDropdown = ({
 
   return (
     <div className="pt-2">
-      <Input
-        value={searchTerm}
-        onClick={() => {
-          setShowOptions(true);
-        }}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        onBlur={() => {
-          setTimeout(() => setShowOptions(false), 100);
-        }}
-        placeholder={placeholder}
-      />
+      <div className="relative">
+        <Input
+          value={searchTerm}
+          onClick={() => {
+            setShowOptions(true);
+          }}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+          onBlur={() => {
+            setTimeout(() => setShowOptions(false), 100);
+          }}
+          placeholder={placeholder}
+        />
+        <ChevronDown
+          className={cn(
+            "absolute right-2 top-2 w-4 transition-transform",
+            showOptions && "rotate-180",
+          )}
+        />
+      </div>
 
       {showOptions && filteredOptions.length > 0 && (
         <motion.div

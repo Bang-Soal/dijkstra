@@ -20,4 +20,11 @@ export const PodiumVariants = cva("", {
   },
   defaultVariants: { rank: "first" },
 });
-export const MyRankStyle = "";
+export const RankTableVariants = cva("", {
+  variants: {
+    variant: {
+      "my-rank": "bg-[url('/bg-rank-emerald.png')]",
+      others: "bg-gray-100",
+    },
+  },
+});
