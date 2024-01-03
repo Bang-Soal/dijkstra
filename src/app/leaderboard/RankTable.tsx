@@ -3,11 +3,12 @@ import { LeaderboardFilters } from "./Filters";
 
 interface RankTableI {
   data: LeaderboardData[];
+  isLoading?: boolean;
 }
 
 export const RankTable = ({ data }: RankTableI) => {
   return (
-    <div className="mt-10 bg-white  px-10 pb-10 lg:px-16">
+    <div className="bg-white px-10 pb-10 lg:px-16">
       <LeaderboardFilters />
 
       <div className="grid border-spacing-2 grid-cols-12 gap-4 px-2 text-left">

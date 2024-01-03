@@ -29,6 +29,7 @@ export const DUMMY_LEADERBOARD = [
       choosen_university_one: "Long PLC",
       choosen_major_one: "Visual merchandiser",
       choosen_university_two: "Wood-Wright",
+      choosen_major_two: "Engineer, aeronautical",
       choosen_university_three: "Smith-Johnson",
       choosen_major_three: "Engineer, aeronautical",
     },

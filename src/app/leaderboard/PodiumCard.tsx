@@ -1,11 +1,15 @@
+import { cn } from "@/lib/utils";
 import { LeaderboardUser } from "@/types";
 import Image from "next/image";
+import { RANK_POSITION, RANK_TYPE } from "./constants";
+import { PodiumVariants } from "./style";
 
 interface PodiumCardI {
   user: LeaderboardUser;
   totalPoints: number;
   rank: number;
 }
+
 export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
   const {
     full_name,
@@ -30,7 +34,7 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
     },
   ];
   return (
-    <div className="w-80 px-4 py-3">
+    <div className="w-80 py-3">
       <div className="mb-3 flex w-full flex-col items-center justify-center gap-3 text-white">
         <Image
           src={"/avatar.jpeg"}
@@ -47,12 +51,38 @@ export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
           </span>
         </p>
       </div>
-      <div className=" relative w-full rounded-xl bg-gradient-to-b from-white/70 to-transparent px-4 py-3">
-        <div className=""></div>
-        <div className="flex flex-row items-center gap-3">
-          <div className="h-1 w-full rounded-full bg-gray-100" />
-          <p className="text-nowrap">PTN Pilihan</p>
-          <div className="h-1 w-full rounded-full bg-gray-100" />
+      <div className="relative min-h-60 w-full rounded-xl bg-gradient-to-b from-white/70 to-transparent px-4 py-3">
+        <div className="relative -mt-3 flex h-16 w-full justify-center pb-4">
+          <div className="absolute">
+            <Image
+              src={`/illustrations/${RANK_POSITION[rank - 1]}-place.svg`}
+              width={160}
+              height={80}
+              alt="badge"
+            />
+          </div>
+          <div className="relative z-10 flex flex-row items-center gap-4">
+            <Image
+              src={`/illustrations/${RANK_POSITION[rank - 1]}-rank.svg`}
+              width={40}
+              height={40}
+              alt="rank"
+            />
+            <div
+              className={cn(
+                "h-4 w-0.5 rounded-full",
+                PodiumVariants({
+                  divider: RANK_POSITION[rank - 1] as RANK_TYPE,
+                }),
+              )}
+            />
+            <p>{totalPoints}</p>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-row items-center gap-3">
+          <div className="h-0.5 w-full rounded-full bg-black/5" />
+          <p className="text-nowrap text-gray-500">PTN Pilihan</p>
+          <div className="h-0.5 w-full rounded-full bg-black/5" />
         </div>
 
         <div className="flex flex-col gap-1">

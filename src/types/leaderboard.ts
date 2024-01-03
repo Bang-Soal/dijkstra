@@ -7,3 +7,4 @@ export type LeaderboardData = {
 };
 
 export type LeaderboardResponse = ResponseWrapper<LeaderboardData[]>;
+export type MyRankResponse = ResponseWrapper<LeaderboardData>;
