@@ -80,6 +80,7 @@ export const RankTable = ({
                     variant: myRank?.rank == rank ? "my-rank" : "others",
                   }),
                 )}
+                id={myRank?.rank == rank ? "my-rank" : ""}
               >
                 <div className="col-span-1 rounded-lg px-2 font-bold text-gray-500">
                   {rank}

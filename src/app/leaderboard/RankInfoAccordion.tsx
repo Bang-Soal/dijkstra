@@ -30,6 +30,7 @@ export const RankInfoAccordion = ({ data, myRank }: RankInfoAccordionI) => {
 
   return (
     <Accordion
+      id={myRank == rank ? "my-rank" : ""}
       type="single"
       collapsible
       className={cn(

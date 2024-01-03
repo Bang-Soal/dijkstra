@@ -1,6 +1,7 @@
 "use client";
 import CaretUpIcon from "@/components/icons/CaretUp";
 import { Button } from "@/components/ui/button";
+import { scrollToElement } from "@/lib/utils";
 import { LeaderboardData } from "@/types";
 import { ArrowDown } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -42,7 +43,13 @@ export const MyRankCard = ({ myRank }: MyRankCardI) => {
                 </p>
               </div>
               <div className="col-span-2">
-                <Button variant={"bsSecondary"} className="w-full">
+                <Button
+                  variant={"bsSecondary"}
+                  className="w-full"
+                  onClick={() => {
+                    scrollToElement("my-rank");
+                  }}
+                >
                   <span className="pr-2">
                     <ArrowDown className="w-4" />
                   </span>
@@ -52,7 +59,6 @@ export const MyRankCard = ({ myRank }: MyRankCardI) => {
             </>
           ) : (
             <div className="col-span-2">
-              {" "}
               <Button
                 variant={"bsSecondary"}
                 onClick={() => {
