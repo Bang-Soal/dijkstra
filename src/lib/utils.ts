@@ -29,6 +29,6 @@ export const renderLatexContent = (content: string) => {
 export const scrollToElement = (elementId: string) => {
   const element = document.getElementById(elementId);
   if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 };

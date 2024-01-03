@@ -1,4 +1,5 @@
 "use client";
+import { useWindowsBreakpoints } from "@/lib/hooks/useWindowBreakpoints";
 import { cn } from "@/lib/utils";
 import { LeaderboardData } from "@/types";
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ export const RankTable = ({
   myRank,
   isLoading,
 }: LeaderboardComponentsI) => {
+  const { isTabletBreakpoint } = useWindowsBreakpoints();
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedSMA, setSelectedSMA] = useState<string>("");
   const [selectedPTN, setSelectedPTN] = useState<string>("");
@@ -73,44 +75,52 @@ export const RankTable = ({
         ) : (
           filteredData.map(({ rank, totalPoints, user }, idx) => (
             <div key={idx} className="my-2">
-              <div
-                className={cn(
-                  "hidden border-spacing-2 grid-cols-12 items-center gap-4 rounded-lg px-2 py-2 text-left lg:grid",
-                  RankTableVariants({
-                    variant: myRank?.rank == rank ? "my-rank" : "others",
-                  }),
-                )}
-                id={myRank?.rank == rank ? "my-rank" : ""}
-              >
-                <div className="col-span-1 rounded-lg px-2 font-bold text-gray-500">
-                  {rank}
+              {isTabletBreakpoint ? (
+                <div
+                  className={cn(
+                    "grid border-spacing-2 grid-cols-12 items-center gap-4 rounded-lg px-2 py-2 text-left",
+                    RankTableVariants({
+                      variant: myRank?.rank == rank ? "my-rank" : "others",
+                    }),
+                  )}
+                  id={myRank?.rank == rank ? "my-rank" : ""}
+                >
+                  <div
+                    className={cn(
+                      "col-span-1 rounded-lg px-2 font-bold",
+                      myRank?.rank == rank ? "text-white" : "text-gray-500",
+                    )}
+                  >
+                    {rank}
+                  </div>
+                  <div className="col-span-3 rounded-lg">
+                    <p className="font-bold">{user.full_name}</p>
+                    <p className="text-sm">{user.highschool}</p>
+                  </div>
+                  <div className="col-span-2 rounded-lg font-bold">
+                    {totalPoints}
+                  </div>
+                  <div className="col-span-2 rounded-lg">
+                    <p className="font-bold">{user.first_university}</p>
+                    <p className="text-sm">{user.first_major}</p>
+                  </div>
+                  <div className="col-span-2 rounded-lg">
+                    <p className="font-bold">{user.second_university}</p>
+                    <p className="text-sm">{user.second_major}</p>
+                  </div>
+                  <div className="col-span-2 rounded-lg">
+                    <p className="font-bold">{user.third_university}</p>
+                    <p className="text-sm">{user.third_major}</p>
+                  </div>
                 </div>
-                <div className="col-span-3 rounded-lg">
-                  <p className="font-bold">{user.full_name}</p>
-                  <p className="text-sm">{user.highschool}</p>
+              ) : (
+                <div id={myRank?.rank == rank ? "my-rank" : ""}>
+                  <RankInfoAccordion
+                    data={{ user, totalPoints, rank }}
+                    myRank={myRank?.rank}
+                  />
                 </div>
-                <div className="col-span-2 rounded-lg font-bold">
-                  {totalPoints}
-                </div>
-                <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.first_university}</p>
-                  <p className="text-sm">{user.first_major}</p>
-                </div>
-                <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.second_university}</p>
-                  <p className="text-sm">{user.second_major}</p>
-                </div>
-                <div className="col-span-2 rounded-lg">
-                  <p className="font-bold">{user.third_university}</p>
-                  <p className="text-sm">{user.third_major}</p>
-                </div>
-              </div>
-              <div className="lg:hidden">
-                <RankInfoAccordion
-                  data={{ user, totalPoints, rank }}
-                  myRank={myRank?.rank}
-                />
-              </div>
+              )}
             </div>
           ))
         )}
