@@ -1,23 +1,27 @@
 import { cn } from "@/lib/utils";
-import { UserOnboardRequest } from "@/types";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
+import { ChevronDown } from "lucide-react";
 import { AutoSizer, List } from "react-virtualized";
 import { Input } from "./input";
 
 interface SearchableDropdownI {
   options: string[];
-  setValue: UseFormSetValue<UserOnboardRequest>;
-  field: keyof UserOnboardRequest;
+  setValue?: UseFormSetValue<any>;
+  field?: string;
+  setStringValue?: (value: string) => void;
   placeholder?: string;
+  className?: string;
 }
 const SearchableDropdown = ({
   options,
   setValue,
+  setStringValue,
   field,
   placeholder,
+  className,
 }: SearchableDropdownI) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showOptions, setShowOptions] = useState(false);
@@ -50,7 +54,12 @@ const SearchableDropdown = ({
           borderStyle,
         )}
         onClick={() => {
-          setValue(field, item);
+          if (!!setValue && !!field) {
+            setValue(field, item);
+          }
+          if (!!setStringValue) {
+            setStringValue(item);
+          }
           setSearchTerm(item);
         }}
       >
@@ -61,20 +70,37 @@ const SearchableDropdown = ({
   const dropdownHeight = Math.min(160, filteredOptions.length * 40);
 
   return (
-    <div className="pt-2">
-      <Input
-        value={searchTerm}
-        onClick={() => {
-          setShowOptions(true);
-        }}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        onBlur={() => {
-          setTimeout(() => setShowOptions(false), 100);
-        }}
-        placeholder={placeholder}
-      />
+    <div className="relative pt-2">
+      <div className="relative">
+        <Input
+          className={className}
+          value={searchTerm}
+          onClick={() => {
+            setShowOptions(true);
+          }}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            if (e.target.value == "") {
+              if (!!setValue && !!field) {
+                setValue(field, "");
+              }
+              if (!!setStringValue) {
+                setStringValue("");
+              }
+            }
+          }}
+          onBlur={() => {
+            setTimeout(() => setShowOptions(false), 100);
+          }}
+          placeholder={placeholder}
+        />
+        <ChevronDown
+          className={cn(
+            "absolute right-2 top-2 w-4 transition-transform",
+            showOptions && "rotate-180",
+          )}
+        />
+      </div>
 
       {showOptions && filteredOptions.length > 0 && (
         <motion.div
@@ -82,10 +108,7 @@ const SearchableDropdown = ({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          style={{
-            background: "white",
-            z: 20,
-          }}
+          className="absolute left-0 top-[100%] z-10 w-full"
         >
           <div className="mt-2">
             <AutoSizer disableHeight>

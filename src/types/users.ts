@@ -26,4 +26,13 @@ export type User = {
   onboard_date: string;
 };
 
+export type LeaderboardUser = Pick<User, "full_name" | "highschool"> & {
+  first_university: string;
+  first_major: string;
+  second_university?: string;
+  second_major?: string;
+  third_university?: string;
+  third_major?: string;
+};
+
 export type ProfileResponse = ResponseWrapper<User>;
