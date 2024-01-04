@@ -11,6 +11,7 @@ export const baseApi = createApi({
     "LatihanSoalDetail",
     "QuestionNavigation",
     "LatihanSoalAttempt",
+    "Feedback",
   ],
   baseQuery: fetchBaseQuery({
     baseUrl: apiConfig.baseUrl,

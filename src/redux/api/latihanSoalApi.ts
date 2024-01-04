@@ -1,6 +1,7 @@
 import {
   DownloadPDFRequest,
   DownloadPDFResponse,
+  FeedbackResponse,
   GetLatihanSoalAttemptRequest,
   LatihanSoalAttemptRequest,
   LatihanSoalAttemptResponse,
@@ -209,6 +210,51 @@ export const latihanSoal = baseApi.injectEndpoints({
         },
       }),
     }),
+    getFeedback: builder.query<FeedbackResponse, { questionId: string }>({
+      query: ({ questionId }) => ({
+        url: `latihan-soal/feedback/${questionId}`,
+      }),
+      providesTags: (result, error, { questionId }) => [
+        { type: "Feedback", id: questionId },
+      ],
+    }),
+    addFeedback: builder.mutation<
+      FeedbackResponse,
+      { questionId: string; isLike: boolean; feedback: string }
+    >({
+      query: ({ questionId, isLike, feedback }) => ({
+        url: `latihan-soal/feedback/${questionId}`,
+        method: "POST",
+        body: {
+          is_like: isLike,
+          feedback,
+        },
+      }),
+      invalidatesTags: (result, error, { questionId }) => [
+        { type: "Feedback", id: questionId },
+      ],
+    }),
+    updateFeedback: builder.mutation<
+      void,
+      {
+        feedbackId: string;
+        isLike: boolean;
+        feedback: string;
+        questionId: string;
+      }
+    >({
+      query: ({ feedbackId, isLike, feedback }) => ({
+        url: `latihan-soal/feedback/${feedbackId}`,
+        method: "PUT",
+        body: {
+          is_like: isLike,
+          feedback: feedback,
+        },
+      }),
+      invalidatesTags: (result, error, { questionId }) => [
+        { type: "Feedback", id: questionId },
+      ],
+    }),
   }),
 });
 
@@ -229,4 +275,7 @@ export const {
   useLazyGetQuestionNavigationQuery,
   useSubmitLatihanSoalMutation,
   useDownloadPdfLatihanSoalMutation,
+  useGetFeedbackQuery,
+  useAddFeedbackMutation,
+  useUpdateFeedbackMutation,
 } = latihanSoal;

@@ -141,3 +141,16 @@ export type DownloadPDFRequest = {
 export type DownloadPDFResponse = ResponseWrapper<{
   url: string;
 }>;
+
+export type Feedback = {
+  feedback: {
+    id: string;
+    question_id: string;
+    user_id: string;
+    feedback: string;
+    timestamp: string;
+    is_like: boolean;
+  };
+};
+
+export type FeedbackResponse = ResponseWrapper<Feedback>;
