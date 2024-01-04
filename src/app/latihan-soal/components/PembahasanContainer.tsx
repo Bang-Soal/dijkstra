@@ -39,15 +39,15 @@ const PembahasanContainer = ({
     if (
       isSuccess &&
       feedbackData &&
-      feedbackData.data.feedback.is_like !== null
+      feedbackData.data?.feedback?.is_like !== null
     ) {
-      setIsLiked(feedbackData.data.feedback.is_like);
+      setIsLiked(feedbackData.data.feedback?.is_like);
     }
   }, [isSuccess, feedbackData]);
 
   const handleLike = async (isLike: boolean) => {
     if (isSuccess && feedbackData) {
-      if (feedbackData.data.feedback.is_like == null) {
+      if (feedbackData?.data?.feedback?.is_like == null) {
         await mutateAddFeedback({
           questionId: slug[1],
           isLike,
