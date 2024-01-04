@@ -24,7 +24,7 @@ const buttonVariants = cva(
         emerald:
           "bg-emerald-400 text-surface-100 hover:bg-emerald-300/70 hover:text-gray-500",
         bsPrimary:
-          "rounded-full border border-emerald-500 bg-emerald-400 text-white shadow after:rounded-full after:shadow-highlight after:shadow-white/25 hover:scale-105 hover:border-emerald-600 hover:bg-emerald-500 active:scale-95",
+          "rounded-full border border-emerald-500 bg-emerald-400 text-white shadow after:rounded-full after:shadow-highlight after:shadow-white/25 hover:scale-105 hover:border-emerald-600 hover:bg-emerald-500 hover:text-white active:scale-95",
         bsSecondary:
           "rounded-full bg-white/20 text-white shadow after:rounded-full after:shadow-highlight after:shadow-white/25 hover:scale-105 hover:bg-white/40 active:scale-95",
       },
