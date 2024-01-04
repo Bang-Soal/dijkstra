@@ -181,7 +181,12 @@ export const QuestionContainer = ({ slug }: QuestionContainerI) => {
           ))}
         </div>
         <div className="pt-6">
-          {pembahasanFetched && <PembahasanContainer data={pembahasan.data} />}
+          {pembahasanFetched && attemptQuestionData && (
+            <PembahasanContainer
+              data={pembahasan.data}
+              attemptId={attemptQuestionData?.data.id}
+            />
+          )}
         </div>
         {data && <QuestionNavigator disableCekJawaban={pembahasanFetched} />}
       </div>

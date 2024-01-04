@@ -154,3 +154,8 @@ export type Feedback = {
 };
 
 export type FeedbackResponse = ResponseWrapper<Feedback>;
+
+export type UploadAssetRequest = {
+  attempt_id: string;
+  file: File;
+};

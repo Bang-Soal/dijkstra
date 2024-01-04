@@ -17,6 +17,7 @@ import {
   SubmitNotesLatihanSoalResponse,
   TopicBySubjectResponse,
   TopicResponse,
+  UploadAssetRequest,
 } from "@/types";
 import { baseApi } from "./baseApi";
 
@@ -255,6 +256,20 @@ export const latihanSoal = baseApi.injectEndpoints({
         { type: "Feedback", id: questionId },
       ],
     }),
+    addSubmissionAsset: builder.mutation<void, UploadAssetRequest>({
+      query: ({ file, attempt_id }) => {
+        const bodyFormData = new FormData();
+
+        bodyFormData.append("file", file);
+
+        return {
+          url: `latihan-soal/submission-asset/${attempt_id}`,
+          method: "POST",
+          body: bodyFormData,
+          formData: true,
+        };
+      },
+    }),
   }),
 });
 
@@ -278,4 +293,5 @@ export const {
   useGetFeedbackQuery,
   useAddFeedbackMutation,
   useUpdateFeedbackMutation,
+  useAddSubmissionAssetMutation,
 } = latihanSoal;

@@ -3,6 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn, renderLatexContent } from "@/lib/utils";
 import {
   useAddFeedbackMutation,
+  useAddSubmissionAssetMutation,
   useGetFeedbackQuery,
   useUpdateFeedbackMutation,
 } from "@/redux/api/latihanSoalApi";
@@ -15,7 +16,8 @@ import { useDropzone } from "react-dropzone";
 
 const PembahasanContainer = ({
   data,
-}: PembahasanQuestionResponse): JSX.Element => {
+  attemptId,
+}: PembahasanQuestionResponse & { attemptId: string }): JSX.Element => {
   const { getRootProps, getInputProps, isDragAccept, acceptedFiles } =
     useDropzone({
       accept: {
@@ -27,11 +29,6 @@ const PembahasanContainer = ({
 
   const [pembahasan] = useState<Pembahasan | string>(data.correct_answer);
   const [acceptedImages, setAcceptedImage] = useState<File[]>([]);
-  useEffect(() => {
-    if (acceptedFiles.length > 0) {
-      setAcceptedImage([...acceptedImages, ...acceptedFiles]);
-    }
-  }, [acceptedFiles]);
   const { slug } = useParams();
 
   const { data: feedbackData, isSuccess } = useGetFeedbackQuery(
@@ -45,10 +42,22 @@ const PembahasanContainer = ({
 
   const [mutateAddFeedback] = useAddFeedbackMutation();
   const [mutateUpdateFeedback] = useUpdateFeedbackMutation();
+  const [mutateSubmissionAsset] = useAddSubmissionAssetMutation();
 
   const isUserEligable = typeof pembahasan !== "string";
 
   const [isLiked, setIsLiked] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      mutateSubmissionAsset({
+        attempt_id: attemptId,
+        file: acceptedFiles[0],
+      });
+
+      setAcceptedImage([...acceptedImages, ...acceptedFiles]);
+    }
+  }, [acceptedFiles]);
 
   useEffect(() => {
     if (
@@ -143,7 +152,7 @@ const PembahasanContainer = ({
                 onClick={() => {
                   setAcceptedImage(acceptedImages.filter((f) => f !== file));
                 }}
-                className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full text-black"
+                className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-500 shadow"
               >
                 <Iconify icon="ic:round-close" />
               </button>
