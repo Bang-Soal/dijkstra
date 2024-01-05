@@ -15,8 +15,8 @@ export const DashboardAside = () => {
 
   const [activeMenu, setActiveMenu] = useState<string>("profile");
   return (
-    <aside className="sticky top-0 flex flex-col gap-4 border-r border-gray-300 px-4">
-      <div>
+    <aside className="hide-scrollbar sticky bottom-0 z-20 -mt-[60px] flex h-screen w-96 shrink-0 flex-col  gap-4 overflow-y-scroll border-r border-gray-300 px-4 pb-4">
+      <div className="sticky top-0 bg-white py-1">
         <Link
           className="flex items-center justify-center gap-1 text-2xl font-700 text-gray-700"
           href="/"
@@ -70,13 +70,13 @@ export const DashboardAside = () => {
             height={40}
           />
         </div>
-        <div className="rounded-xl bg-black/60 px-7 py-6">
-          <div className="grid grid-cols-3 content-center gap-4 text-white">
-            <div className="col-span-2 mx-auto flex flex-col py-2 leading-tight">
+        <div className="rounded-xl bg-black/60 px-7 py-6 text-sm">
+          <div className="grid grid-cols-3 content-center gap-2 text-white">
+            <div className="col-span-2 mx-auto flex flex-col leading-tight">
               <p className="font-bold">{profile?.choosen_university_one}</p>
               <p>{profile?.choosen_major_one}</p>
             </div>
-            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2 py-2">
+            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2">
               <span>
                 <CaretUpIcon />
               </span>
@@ -85,13 +85,13 @@ export const DashboardAside = () => {
                 <p className="text-4xl font-bold">{1}</p>
               </div>
             </div>
-            <div className="col-span-2 mx-auto flex flex-col py-2 leading-tight">
+            <div className="col-span-2 mx-auto flex flex-col leading-tight">
               <p className="font-bold">
                 {profile?.choosen_university_one ?? ""}
               </p>
               <p>{profile?.choosen_major_one}</p>
             </div>
-            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2 py-2">
+            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2">
               <span>
                 <CaretUpIcon />
               </span>
@@ -100,13 +100,13 @@ export const DashboardAside = () => {
                 <p className="text-4xl font-bold">{2}</p>
               </div>
             </div>
-            <div className="col-span-2 mx-auto flex flex-col py-2 leading-tight">
+            <div className="col-span-2 mx-auto flex flex-col leading-tight">
               <p className="font-bold">
                 {profile?.choosen_university_one ?? ""}
               </p>
               <p>{profile?.choosen_major_one}</p>
             </div>
-            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2 py-2">
+            <div className="col-span-1 flex w-full flex-row items-center justify-center gap-1 px-2">
               <span>
                 <CaretUpIcon />
               </span>
