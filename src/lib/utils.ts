@@ -32,3 +32,14 @@ export const scrollToElement = (elementId: string) => {
     element.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 };
+
+import toast from "react-hot-toast";
+
+export const copyToClipboard = (text?: string) => {
+  try {
+    navigator.clipboard.writeText(text ?? window.location.href);
+    toast.success("Link copied");
+  } catch (err) {
+    toast.error("Your browser doesn't support copying to clipboard");
+  }
+};

@@ -31,7 +31,7 @@ export default function Nav() {
 
   const path = usePathname();
 
-  if (path === "/latihan-soal" || path === "/try-out") {
+  if (path === "/latihan-soal" || path === "/try-out" || path == "/dashboard") {
     return (
       <nav className="sticky top-0 z-20 flex h-16 items-center justify-end bg-surface-100/60 px-20 backdrop-blur-lg">
         <NavMenuDesktop />
