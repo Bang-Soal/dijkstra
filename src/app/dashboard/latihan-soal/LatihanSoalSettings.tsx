@@ -20,9 +20,9 @@ export const LatihanSoalSettings = () => {
           <p className="font-medium">Accuracy Rate</p>
           <div className="flex flex-row items-center justify-between">
             <p className="text-3xl font-bold">96%</p>
-            <div className="flex w-1/3 flex-row gap-2">
+            <div className="flex w-1/2 flex-row items-center gap-2">
               <ArrowUpIcon className="text-green-500" />
-              <p className="text-wrap">+7% from the last average</p>
+              <p className="text-wrap text-xs">+7% from the last average</p>
             </div>
           </div>
           <p className="text-slate-500">500/789 soal benar</p>

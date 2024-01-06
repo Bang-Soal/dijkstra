@@ -25,6 +25,8 @@ export const DashboardBoxVariant = cva(
       variant: {
         primary: "border-[#E2E8F0] bg-[#F8FAFC] ",
         danger: "border-red-200 bg-red-50",
+        dangerSecondary: "border-red-200 bg-red-100",
+        warning: "border-yellow-300 bg-yellow-50",
       },
     },
     defaultVariants: {
