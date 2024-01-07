@@ -5,7 +5,7 @@ export const DetailAverageScore = () => {
   const data = DUMMY_TO_AVG;
   return (
     <div>
-      <p>Detail Average Score</p>
+      <p className="pb-2 text-2xl font-medium">Detail Average Score</p>
       <div className="grid grid-cols-2 gap-3">
         {data.map((avgData, idx) => {
           return <AverageScoreCard key={idx} {...avgData} />;
