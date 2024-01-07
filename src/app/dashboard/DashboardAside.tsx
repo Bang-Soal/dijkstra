@@ -1,6 +1,7 @@
 "use client";
 import Logo from "@/components/Logo";
 import CaretUpIcon from "@/components/icons/CaretUp";
+import { Button } from "@/components/ui/button";
 import { RootState, useAppSelector } from "@/redux/store";
 import { LogOut, Settings, UserCircle } from "lucide-react";
 import Image from "next/image";
@@ -121,7 +122,7 @@ export const DashboardAside = () => {
         </div>
       </div>
       <div className="relative mx-4 rounded-xl border-4 border-orange-200 bg-orange-500">
-        <div className="absolute right-4 top-4 z-20 text-lg font-bold text-white">
+        <div className="absolute right-4 top-4 z-20 text-lg font-medium text-white">
           <p>Limited points</p>
           <p className="text-xl">59:12:06</p>
         </div>
@@ -133,8 +134,11 @@ export const DashboardAside = () => {
           height={100}
           className="h-full w-full"
         />
+        <div className="absolute left-[25%] top-[45%]">
+          <Button variant={"bsPrimary"}>Open Flashcard</Button>
+        </div>
         <div className="absolute bottom-0 z-10 h-28 w-full bg-gradient-to-t from-orange-500 to-orange-100/0 blur-md" />
-        <p className="absolute bottom-4 z-10 w-full text-center text-2xl font-bold text-white ">
+        <p className="absolute bottom-4 z-10 w-full text-center text-2xl font-medium text-white ">
           Flashcard of the day
         </p>
       </div>
