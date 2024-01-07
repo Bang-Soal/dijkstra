@@ -13,7 +13,7 @@ export const TopicStatistics = () => {
             key={idx}
             subject={stats.subject}
             soalFinished={stats.totalSoal}
-            feedbacks={stats.feedback}
+            feedbacks={stats.feedbacks}
           />
         );
       })}

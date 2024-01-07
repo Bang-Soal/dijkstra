@@ -15,7 +15,9 @@ function DashboardPageLayout({
   return (
     <div className="flex w-full flex-row lg:h-[90vh]">
       <DashboardAside />
-      <div className="grow px-4 lg:overflow-y-scroll">{children}</div>
+      <div className="grow border-t border-gray-300 px-4 lg:overflow-y-scroll">
+        {children}
+      </div>
     </div>
   );
 }
