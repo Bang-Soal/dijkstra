@@ -40,7 +40,6 @@ export const onboardingFormSchema = z.object({
 });
 
 export const EditAccountFormSchema = z.object({
-  profile_picture: z.string(),
   full_name: z.string().min(1, "Nama lengkap diperlukan"),
   highschool: z.string().min(1, "Nama sekolah menengah atas diperlukan"),
   phone_number: z

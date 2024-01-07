@@ -20,20 +20,26 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { PlanCardVariant } from "../style";
+import { ImageInput } from "./ImageInput";
 
 export const AccountDetails = () => {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [profilePicture, setProfilePicture] = useState<string | null>(null);
 
-  const user = useAppSelector((state: RootState) => state.user);
+  const { profile } = useAppSelector((state: RootState) => state.user);
 
   const form = useForm<z.infer<typeof EditAccountFormSchema>>({
     resolver: zodResolver(EditAccountFormSchema),
-    defaultValues: { ...user?.profile },
+    defaultValues: {
+      full_name: profile?.full_name,
+      highschool: profile?.highschool,
+      phone_number: profile?.phone_number.replace("+62", "0"),
+    },
   });
-  const { control, handleSubmit } = form;
+  const { handleSubmit } = form;
 
-  const onSubmitForm = async (
+  const onSubmitEdit = async (
     values: z.infer<typeof EditAccountFormSchema>,
   ) => {
     console.log(values);
@@ -42,44 +48,49 @@ export const AccountDetails = () => {
   return (
     <div className="flex flex-col gap-3">
       <div>
-        <button
-          className={cn(
-            "flex w-full flex-row items-center justify-end gap-3",
-            isEdit ? "text-emerald-600" : "text-gray-600",
-          )}
-          onClick={() => {
-            if (isEdit) {
-              // hanldeSubmit
-              console.log("hello");
-              handleSubmit(onSubmitForm);
-            } else {
-              setIsEdit(true);
-            }
-          }}
-        >
+        <div className={cn(isEdit ? "text-emerald-600" : "text-gray-600")}>
           {isEdit ? (
-            <>
+            <button
+              onClick={handleSubmit(onSubmitEdit)}
+              className="flex w-full flex-row items-center justify-end gap-3"
+            >
               <CheckIcon />
               <p> Save changes</p>
-            </>
+            </button>
           ) : (
-            <>
+            <button
+              onClick={() => {
+                setIsEdit(true);
+              }}
+              className="flex w-full flex-row items-center justify-end gap-3"
+            >
               <i className="i-ph-pencil-simple h-5 w-5 shrink-0 text-gray-600" />
               <p>Edit profile</p>
-            </>
+            </button>
           )}
-        </button>
+        </div>
       </div>
       <div className="flex grid-cols-3 flex-col gap-3 py-3 md:grid md:items-start">
         <div>
-          <Image
-            src={"/avatar.jpeg"}
-            width={100}
-            height={100}
-            alt="profile picture"
-            className="mx-auto rounded-full object-contain"
-          />
           {/* image field */}
+          {!isEdit ? (
+            <Image
+              src={profilePicture ?? "/icons/User.svg"}
+              width={160}
+              height={160}
+              alt="Thumbnail"
+              className={cn(
+                "h-44 w-44 shrink-0 rounded-full bg-slate-200 object-cover",
+                !profilePicture && "p-6",
+              )}
+            />
+          ) : (
+            <ImageInput
+              className="-ml-16"
+              imageSrc={profilePicture}
+              setImageSrc={setProfilePicture}
+            />
+          )}
         </div>
         <div className="flex flex-col gap-4 md:col-span-2">
           <div className="flex flex-col gap-4">
@@ -120,7 +131,7 @@ export const AccountDetails = () => {
                   />
                   <FormField
                     disabled={!isEdit}
-                    control={control}
+                    control={form.control}
                     name="phone_number"
                     render={({ field }) => (
                       <FormItem>
