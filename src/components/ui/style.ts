@@ -29,3 +29,11 @@ export const SelectVariants = cva("", {
     variant: "selected",
   },
 });
+
+export const ModalVariants = cva("flex flex-col gap-3 rounded-3xl px-4 py-5", {
+  variants: {
+    variant: {
+      primary: "",
+    },
+  },
+});

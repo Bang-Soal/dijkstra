@@ -35,3 +35,17 @@ export const DashboardBoxVariant = cva(
     },
   },
 );
+
+export const PlanCardVariant = cva(
+  "flex flex-col gap-5 rounded-2xl p-4 shadow-xl",
+  {
+    variants: {
+      variant: {
+        pemula:
+          "border-4 border-surface-100 bg-gradient-to-br from-surface-200 to-surface-300 ring-1 ring-surface-300",
+        setia: "bg-[url('/bg-mesh-horizontal.webp')] bg-cover bg-center",
+        ambis: "text-gray-700 mix-blend-color-burn",
+      },
+    },
+  },
+);

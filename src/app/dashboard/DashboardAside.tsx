@@ -6,6 +6,7 @@ import { LogOut, Settings, UserCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { AccountModal } from "./elements/AccountModal";
 import { ProfileCard } from "./elements/ProfileCard";
 import { ReferralCode } from "./elements/ReferralCode";
 import { DashboardButtonVariants } from "./style";
@@ -13,7 +14,8 @@ import { DashboardButtonVariants } from "./style";
 export const DashboardAside = () => {
   const { profile } = useAppSelector((state: RootState) => state.user);
 
-  const [activeMenu, setActiveMenu] = useState<string>("profile");
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
+
   return (
     <aside className="hide-scrollbar sticky bottom-0 z-20 -mt-[60px] flex h-screen w-96 shrink-0 flex-col  gap-4 overflow-y-scroll border-r border-gray-300 px-4 pb-4">
       <div className="sticky top-0 bg-white py-1">
@@ -32,10 +34,10 @@ export const DashboardAside = () => {
       <div className="flex flex-row items-center gap-3">
         <button
           className={DashboardButtonVariants({
-            variant: activeMenu == "profile" ? "active" : "inactive",
+            variant: !openMenu ? "active" : "inactive",
           })}
           onClick={() => {
-            setActiveMenu("profile");
+            setOpenMenu(false);
           }}
         >
           <UserCircle />
@@ -43,10 +45,10 @@ export const DashboardAside = () => {
         </button>
         <button
           className={DashboardButtonVariants({
-            variant: activeMenu != "profile" ? "active" : "inactive",
+            variant: openMenu ? "active" : "inactive",
           })}
           onClick={() => {
-            setActiveMenu("settings");
+            setOpenMenu(true);
           }}
         >
           <Settings />
@@ -142,6 +144,7 @@ export const DashboardAside = () => {
           Logout
         </button>
       </div>
+      <AccountModal open={openMenu} setOpen={setOpenMenu} />
     </aside>
   );
 };
