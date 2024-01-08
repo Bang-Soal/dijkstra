@@ -71,7 +71,7 @@ export const SignupForm = () => {
       setShowOTPInput(true);
     }
     if (isLoginSucess) {
-      redirect("/");
+      redirect("/dashboard");
     }
     if (isRegisterSuccess) {
       redirect("/onboarding");
