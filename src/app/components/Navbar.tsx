@@ -2,7 +2,7 @@
 
 // components
 import Logo from "@/components/Logo";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import NavMenuDesktop from "./NavMenuDesktop";
 import NavMenuMobile from "./NavMenuMobile";
 
@@ -13,9 +13,15 @@ import { useEffect, useState } from "react";
 
 // utils
 import { cn } from "@/lib/utils";
+import { logout } from "@/redux/features/userSlice";
+import { RootState, useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
 
 export default function Nav() {
   const [atTop, setAtTop] = useState(true);
+
+  const user = useAppSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,22 +82,34 @@ export default function Nav() {
                 "w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:hidden",
               )}
             >
-              <i className="i-bi-whatsapp size-4" />
               <p className="hidden sm:flex">Masuk grup WA</p>
             </Link>
             <NavMenuMobile />
           </div>
         </div>
-        <Link
-          href="https://chat.whatsapp.com/K9FbxphpmSx4DXVuNio5v2"
-          className={cn(
-            buttonVariants({ variant: "bsPrimary" }),
-            "hidden h-12 w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:flex",
-          )}
-        >
-          <i className="i-bi-whatsapp size-4" />
-          <p>Masuk grup WA</p>
-        </Link>
+        {user.profile ? (
+          <Button
+            onClick={() => {
+              dispatch(logout());
+            }}
+            className={cn(
+              buttonVariants({ variant: "bsPrimary" }),
+              "hidden h-12 w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:flex",
+            )}
+          >
+            <p>Logout</p>
+          </Button>
+        ) : (
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ variant: "bsPrimary" }),
+              "hidden h-12 w-10 gap-1.5 p-0 sm:w-auto sm:px-5 lg:flex",
+            )}
+          >
+            <p>Login</p>
+          </Link>
+        )}
       </nav>
     );
   }

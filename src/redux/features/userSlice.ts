@@ -1,5 +1,5 @@
 import { ProfileResponse, SigninResponse, SignupResponse, User } from "@/types";
-import { PayloadAction, Slice, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { authApi } from "../api/authApi";
 
@@ -13,7 +13,7 @@ const initialState: UserSliceState = {
   profile: null,
 };
 
-const userSlice: Slice<UserSliceState> = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {

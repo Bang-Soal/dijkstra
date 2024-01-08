@@ -11,6 +11,10 @@ interface PodiumCardI {
 }
 
 export const PodiumCard = ({ user, totalPoints, rank }: PodiumCardI) => {
+  if (!user) {
+    return null;
+  }
+
   const {
     full_name,
     highschool,
