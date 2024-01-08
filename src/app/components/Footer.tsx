@@ -14,7 +14,11 @@ import { cn } from "@/lib/utils";
 export default function Footer() {
   const path = usePathname();
 
-  if (path === "/latihan-soal" || path === "/try-out") {
+  if (
+    path === "/latihan-soal" ||
+    path === "/try-out" ||
+    path === "/dashboard"
+  ) {
     return null;
   }
 

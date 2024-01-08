@@ -38,3 +38,19 @@ export const onboardingFormSchema = z.object({
   choosen_university_three: z.string().optional(),
   choosen_major_three: z.string().optional(),
 });
+
+export const EditAccountFormSchema = z.object({
+  full_name: z.string().min(1, "Nama lengkap diperlukan"),
+  highschool: z.string().min(1, "Nama sekolah menengah atas diperlukan"),
+  phone_number: z
+    .string()
+    .min(10, { message: "Nomor telepon tidak valid. Terlalu pendek" })
+    .max(13, { message: "Nomor telepon tidak valid. Terlalu panjang" })
+    .refine((value) => /^[0-9]+$/.test(value), {
+      message: "Nomor telepon harus berupa angka saja",
+    })
+    .refine((value) => /^08[0-9]{8,11}$/.test(value), {
+      message:
+        "Format tidak valid. Nomor telepon Indonesia harus diawali dengan '08'",
+    }),
+});
