@@ -15,7 +15,7 @@ const DashboardContent = () => {
   return (
     <div className="px-4">
       <Tabs.Root defaultValue="latihan-soal">
-        <Tabs.List className="hide-scrollbar sticky top-0 flex flex-row gap-4 overflow-x-scroll bg-white py-3">
+        <Tabs.List className="hide-scrollbar sticky top-12 flex flex-row gap-4 overflow-x-scroll bg-white py-3 shadow-sm lg:top-0">
           {!isDesktopBreakpoint && (
             <Tabs.Trigger className={cn(tabsTriggerStyle)} value="profile">
               Profile
