@@ -24,7 +24,7 @@ export const TopicCard = ({ subject, soalFinished, feedbacks }: TopicCardI) => {
       </div>
       <p className="text-3xl font-bold">{soalFinished} Soal</p>
       <div className="flex flex-row items-center gap-1 ">
-        <p className="text-xs">Topic yang belum kamu kuasai</p>
+        <p className="text-nowrap text-xs">Topik yang belum kamu kuasai</p>
         <div className="h-[0.5] w-full bg-slate-300" />
       </div>
       <div className="flex flex-col gap-1">

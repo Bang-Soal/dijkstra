@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { DashboardAside } from "./DashboardAside";
+import DashboardAside from "./DashboardAside";
 
 export const metadata: Metadata = {
   title: "Dashboard | BangSoal",
@@ -13,7 +13,7 @@ function DashboardPageLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex w-full flex-row lg:h-[90vh]">
+    <div className="flex w-full flex-col lg:h-[90vh] lg:flex-row">
       <DashboardAside />
       <div className="grow border-t border-gray-300 px-4 lg:overflow-y-scroll">
         {children}

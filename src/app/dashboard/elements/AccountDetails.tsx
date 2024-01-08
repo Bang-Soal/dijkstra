@@ -46,7 +46,7 @@ export const AccountDetails = () => {
     setIsEdit(false);
   };
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex max-h-[80vh] flex-col gap-3 overflow-y-scroll px-3 md:h-full">
       <div>
         <div className={cn(isEdit ? "text-emerald-600" : "text-gray-600")}>
           {isEdit ? (
@@ -96,7 +96,7 @@ export const AccountDetails = () => {
           <div className="flex flex-col gap-4">
             <Form {...form}>
               <form className="flex w-full flex-col gap-5">
-                <div className="-ml-4 mr-1 md:-ml-4 md:mr-2">
+                <div className="-ml-2 mr-1 md:-ml-4 md:mr-2">
                   <FormField
                     disabled={!isEdit}
                     control={form.control}
@@ -151,7 +151,12 @@ export const AccountDetails = () => {
           </div>
           <div className="flex flex-col gap-3">
             <p className="text-lg font-bold">BangSoal Payment Plan</p>
-            <div className={cn(PlanCardVariant({ variant: "pemula" }), "w-96")}>
+            <div
+              className={cn(
+                PlanCardVariant({ variant: "pemula" }),
+                "w-full md:w-96",
+              )}
+            >
               <div className="flex justify-between">
                 <h3 className="text-center text-xl font-500">Pelajar Pemula</h3>
               </div>
