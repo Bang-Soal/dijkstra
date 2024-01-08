@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { DashboardAside } from "./DashboardAside";
+import DashboardAside from "./DashboardAside";
 
 export const metadata: Metadata = {
   title: "Dashboard | BangSoal",

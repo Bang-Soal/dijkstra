@@ -1,9 +1,17 @@
-import { LogOut } from "lucide-react";
+import { logout } from "@/redux/features/userSlice";
+import { useAppDispatch } from "@/redux/store";
+import { LogOutIcon } from "lucide-react";
 
 export const LogoutButton = () => {
+  const dispatch = useAppDispatch();
   return (
-    <button className="flex flex-row items-center justify-center gap-2 py-1 text-red-600 md:text-xl">
-      <LogOut className="md:w-5" />
+    <button
+      className="flex flex-row items-center justify-center gap-2 py-1 text-red-600 md:text-xl"
+      onClick={() => {
+        dispatch(logout({}));
+      }}
+    >
+      <LogOutIcon className="md:w-5" />
       Logout
     </button>
   );

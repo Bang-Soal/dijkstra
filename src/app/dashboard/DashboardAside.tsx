@@ -3,12 +3,13 @@ import Logo from "@/components/Logo";
 import { Settings, UserCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import withAuth from "../components/withAuth";
 import { AccountModal } from "./elements/AccountModal";
 import { LogoutButton } from "./elements/LogoutButton";
 import { ProfileSettings } from "./elements/ProfileSettings";
 import { DashboardButtonVariants } from "./style";
 
-export const DashboardAside = () => {
+const DashboardAside = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   return (
@@ -59,3 +60,5 @@ export const DashboardAside = () => {
     </aside>
   );
 };
+
+export default withAuth(DashboardAside);

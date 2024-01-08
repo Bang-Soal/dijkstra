@@ -3,12 +3,13 @@
 import { useWindowsBreakpoints } from "@/lib/hooks/useWindowBreakpoints";
 import { cn } from "@/lib/utils";
 import * as Tabs from "@radix-ui/react-tabs";
+import withAuth from "../components/withAuth";
 import { ProfileSettings } from "./elements/ProfileSettings";
 import { LatihanSoalSettings } from "./latihan-soal/LatihanSoalSettings";
 import { tabsTriggerStyle } from "./style";
 import { TryOutSettings } from "./try-out/TryOutSettings";
 
-export const DashboardContent = () => {
+const DashboardContent = () => {
   const { isDesktopBreakpoint } = useWindowsBreakpoints();
 
   return (
@@ -42,3 +43,5 @@ export const DashboardContent = () => {
     </div>
   );
 };
+
+export default withAuth(DashboardContent);
