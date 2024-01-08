@@ -8,7 +8,7 @@ export const LogoutButton = () => {
     <button
       className="flex flex-row items-center justify-center gap-2 py-1 text-red-600 md:text-xl"
       onClick={() => {
-        dispatch(logout({}));
+        dispatch(logout());
       }}
     >
       <LogOutIcon className="md:w-5" />
