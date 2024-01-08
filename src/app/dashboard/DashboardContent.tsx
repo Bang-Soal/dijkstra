@@ -13,10 +13,7 @@ export const DashboardContent = () => {
 
   return (
     <div className="px-4">
-      <Tabs.Root
-        orientation={isDesktopBreakpoint ? "horizontal" : "vertical"}
-        defaultValue={isDesktopBreakpoint ? "latihan-soal" : "profile"}
-      >
+      <Tabs.Root defaultValue="latihan-soal">
         <Tabs.List className="hide-scrollbar sticky top-0 flex flex-row gap-4 overflow-x-scroll bg-white py-3">
           {!isDesktopBreakpoint && (
             <Tabs.Trigger className={cn(tabsTriggerStyle)} value="profile">

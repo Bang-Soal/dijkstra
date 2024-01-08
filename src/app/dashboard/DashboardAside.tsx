@@ -3,8 +3,8 @@ import Logo from "@/components/Logo";
 import { Settings, UserCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { LogoutButton } from "./LogoutButton";
 import { AccountModal } from "./elements/AccountModal";
+import { LogoutButton } from "./elements/LogoutButton";
 import { ProfileSettings } from "./elements/ProfileSettings";
 import { DashboardButtonVariants } from "./style";
 
@@ -52,9 +52,9 @@ export const DashboardAside = () => {
       </div>
 
       <ProfileSettings />
-      <div>
-        <LogoutButton />
-      </div>
+
+      <LogoutButton />
+
       <AccountModal open={openMenu} setOpen={setOpenMenu} />
     </aside>
   );

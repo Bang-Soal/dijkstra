@@ -15,7 +15,7 @@ export const Catatanmu = () => {
         <div className="w-full">
           <SearchInput value={searchValue} setValue={setSearchValue} />
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row items-center justify-between">
           <Filters />
         </div>
         <div className="h-0.5 grow rounded-full bg-surface-200" />

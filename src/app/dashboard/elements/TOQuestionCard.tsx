@@ -1,9 +1,11 @@
 import RenderMarkdown from "@/app/latihan-soal/components/RenderMarkdown";
-import { OptionBoxVariants } from "@/app/latihan-soal/components/style";
+import {
+  OptionBoxVariants,
+  wrongChoice,
+} from "@/app/latihan-soal/components/style";
 import { cn, renderLatexContent } from "@/lib/utils";
 import { OptionChoice } from "@/types";
-
-interface TOQuestionCardI {
+export interface TOQuestionCardI {
   title: string;
   subject: string;
   topic: string;
@@ -20,11 +22,12 @@ export const TOQuestionCard = ({
   answer,
 }: TOQuestionCardI) => {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl bg-white px-4 shadow-md md:px-6 md:py-3">
-      <p className="text-lg font-bold">{title}</p>
-      <p>{subject}</p>
-      <p>{topic}</p>
-
+    <div className="flex w-full flex-col gap-3 rounded-2xl bg-white px-4 py-3 shadow-md md:px-6">
+      <div className="">
+        <p className="text-lg font-bold ">{title}</p>
+        <p className="-mt-4 ">{subject}</p>
+        <p className="-mt-3">{topic}</p>
+      </div>
       <RenderMarkdown markdown={content} />
 
       <div className="grid w-full grid-flow-col grid-cols-2 grid-rows-3 gap-4">
@@ -35,12 +38,13 @@ export const TOQuestionCard = ({
               className={cn(
                 cn(
                   OptionBoxVariants({
-                    variant: answer == choice_id ? "active" : "inactive",
+                    variant: "inactive",
                   }),
+                  choice_id == answer && wrongChoice,
                 ),
               )}
             >
-              <p>{key}</p>
+              <p className="my-auto rounded bg-black p-1.5 text-white">{key}</p>
               <div
                 id="option-content"
                 dangerouslySetInnerHTML={{
