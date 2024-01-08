@@ -5,8 +5,8 @@ import { DashboardBoxContainer } from "../elements/DashboardBoxContainer";
 export const Tips = () => {
   return (
     <DashboardBoxContainer variant={"warning"}>
-      <div className="flex flex-row items-center justify-between gap-3">
-        <div className="flex w-1/2 flex-col justify-start gap-3">
+      <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+        <div className="flex flex-col justify-start gap-3 md:w-1/2">
           <p>
             <span></span>
             Tips UTBK
@@ -21,7 +21,7 @@ export const Tips = () => {
             </Button>
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           {/* animate /scroll wrong answer */}
           wrong answers only
         </div>

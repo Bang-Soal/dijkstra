@@ -16,7 +16,7 @@ export const DashboardButtonVariants = cva(
 );
 
 export const tabsTriggerStyle =
-  "inline-flex items-center justify-center text-gray-300 whitespace-nowrap text-3xl font-medium transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-black";
+  "inline-flex items-center justify-center text-gray-300 whitespace-nowrap text-base md:text-xl lg:text-3xl font-medium transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-black";
 
 export const DashboardBoxVariant = cva(
   "flex flex-col gap-3 rounded-xl border px-4 py-3",
