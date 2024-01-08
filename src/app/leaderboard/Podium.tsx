@@ -36,9 +36,9 @@ export const Podium = ({ data, isLoading }: PodiumI) => {
                     className={cn(
                       PodiumVariants({
                         rank:
-                          rankMD.rank == 2
+                          rankMD?.rank == 2
                             ? "second"
-                            : rankMD.rank == 1
+                            : rankMD?.rank == 1
                               ? "first"
                               : "third",
                       }),
@@ -51,9 +51,9 @@ export const Podium = ({ data, isLoading }: PodiumI) => {
                     className={cn(
                       PodiumVariants({
                         rank:
-                          rank.rank == 2
+                          rank?.rank == 2
                             ? "second"
-                            : rank.rank == 1
+                            : rank?.rank == 1
                               ? "first"
                               : "third",
                       }),
