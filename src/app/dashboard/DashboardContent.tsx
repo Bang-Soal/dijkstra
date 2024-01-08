@@ -5,6 +5,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { LatihanSoalSettings } from "./latihan-soal/LatihanSoalSettings";
 import { tabsTriggerStyle } from "./style";
 import { TryOutSettings } from "./try-out/TryOutSettings";
+
 export const DashboardContent = () => {
   return (
     <div className="px-4">
